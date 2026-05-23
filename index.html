@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Justus — Job Board</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f9f9f8;
+    color: #1a1a1a;
+    padding: 24px 20px 48px;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 28px;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: #111;
+  }
+  .last-scan {
+    font-size: 12px;
+    color: #888;
+    background: #f0f0ee;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .mode-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: #7c3aed;
+    background: #f3f0ff;
+    border: 1px solid #ddd6fe;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.2px;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: #888;
+  }
+
+  /* Stats row */
+  .stats {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .stat-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    border: 1px solid #e8e8e5;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: #444;
+  }
+  .stat-pill strong { font-weight: 600; color: #111; }
+  .dot-a { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+  .dot-b { width: 8px; height: 8px; border-radius: 50%; background: #3b82f6; flex-shrink: 0; }
+  .dot-c { width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; flex-shrink: 0; }
+  .dot-all { width: 8px; height: 8px; border-radius: 50%; background: #a1a1aa; flex-shrink: 0; }
+
+  /* Filter bar */
+  .filter-bar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid #e0e0db;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #555;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: #bbb; color: #222; }
+  .filter-btn.active {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #1a1a1a;
+  }
+
+  /* Job cards */
+  .jobs-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .job-card {
+    background: #fff;
+    border: 1px solid #e8e8e5;
+    border-radius: 10px;
+    padding: 16px 18px;
+    transition: box-shadow 0.15s;
+  }
+  .job-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+  .job-card.hidden { display: none; }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .card-left { flex: 1; min-width: 0; }
+  .card-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+  .role-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.4;
+    margin-bottom: 3px;
+  }
+  .company {
+    font-size: 13px;
+    color: #555;
+    font-weight: 500;
+  }
+
+  .grade-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 5px;
+    letter-spacing: 0.3px;
+  }
+  .grade-A { background: #dcfce7; color: #15803d; }
+  .grade-B { background: #dbeafe; color: #1d4ed8; }
+  .grade-C { background: #fef3c7; color: #b45309; }
+
+  .apply-btn {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    background: #f4f4f2;
+    color: #333;
+    border: 1px solid #e0e0db;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .apply-btn:hover { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+  .apply-btn.no-url { opacity: 0.4; pointer-events: none; }
+
+  .card-meta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .meta-tag {
+    font-size: 11.5px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .meta-tag svg { opacity: 0.5; }
+
+  .card-notes {
+    margin-top: 9px;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+    border-top: 1px solid #f0f0ee;
+    padding-top: 9px;
+  }
+
+  .scan-tag {
+    font-size: 11px;
+    background: #f4f4f2;
+    color: #999;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
+  /* Dream company section */
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #aaa;
+    margin: 28px 0 10px;
+  }
+  .dream-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 8px;
+  }
+  .dream-pill {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid #e8e8e5;
+    background: #fff;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .dream-pill.hit { border-color: #bbf7d0; background: #f0fdf4; color: #15803d; font-weight: 500; }
+  .dream-pill .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #d1d5db; }
+  .dream-pill.hit .status-dot { background: #22c55e; }
+
+  /* Empty state */
+  .empty { text-align: center; padding: 40px 20px; color: #bbb; font-size: 14px; }
+
+  /* Footer */
+  .footer {
+    margin-top: 36px;
+    font-size: 11.5px;
+    color: #bbb;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="title">Justus — Job Board</div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="mode-badge">⚡ 10× scan active</span>
+      <div class="last-scan" id="lastScan">Last scan: —</div>
+    </div>
+  </div>
+  <div class="subtitle">Munich · Head/Director/Lead · Operations, Process, Transformation · €120k+</div>
+</div>
+
+<div class="stats" id="statsRow"></div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="setFilter('all')">All</button>
+  <button class="filter-btn" onclick="setFilter('A')">🟢 A-Grade</button>
+  <button class="filter-btn" onclick="setFilter('B')">🔵 B-Grade</button>
+  <button class="filter-btn" onclick="setFilter('C')">🟡 C-Grade</button>
+</div>
+
+<div class="jobs-grid" id="jobsGrid"></div>
+
+<div class="section-label">Dream Company Monitor</div>
+<div class="dream-grid" id="dreamGrid"></div>
+
+<div class="footer" id="footer"></div>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+// Each scan appends new entries here (deduplicated by url or title+company).
+// Format: { id, scanDate, grade, title, company, location, source, url, hybrid, notes, dreamCompany }
+
+const JOBS = [
+  {
+    id: "montana-head-process-mgmt",
+    scanDate: "2026-05-23",
+    grade: "A",
+    title: "Head of Process Management (m/w/d)",
+    company: "MONTANA Energie-Handel GmbH & Co. KG",
+    location: "Munich",
+    source: "Google Jobs",
+    url: "https://talents.studysmarter.de/companies/montana-energie-handel-gmbh-co-kg/head-of-process-management-m-w-d-19956123/",
+    hybrid: true,
+    notes: "8-person team, reports directly to Geschäftsleitung. Celonis & process mining explicitly required. M.Sc. WIW match. Highest priority this week.",
+    dreamCompany: false
+  },
+  {
+    id: "auterion-factory-head",
+    scanDate: "2026-05-23",
+    grade: "B",
+    title: "Factory Head & Director of Operations",
+    company: "Auterion",
+    location: "Munich",
+    source: "Indeed",
+    url: "https://de.indeed.com/viewjob?jk=f5ce732453addc2b",
+    hybrid: null,
+    notes: "Autonomous drone/AI tech company. Director-level ops leadership. Gap: 5+ yrs manufacturing preferred — process/industrial eng background is adjacent.",
+    dreamCompany: false
+  },
+  {
+    id: "amazon-sr-manager-fleet",
+    scanDate: "2026-05-23",
+    grade: "B",
+    title: "Sr. Manager, MEU Regional Fleet Management",
+    company: "Amazon",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/sr-manager-meu-regional-fleet-management-eu-regional-fleet-management-at-amazon-4417774656",
+    hybrid: null,
+    notes: "Large-scale ops leadership, senior management scope. Fleet & logistics overlaps with MRO/aviation background. Check shift-work policy against dealbreaker.",
+    dreamCompany: false
+  },
+  {
+    id: "servicenow-head-exec-experience",
+    scanDate: "2026-05-23",
+    grade: "B",
+    title: "Head of Executive Experience (Innovation Center)",
+    company: "ServiceNow",
+    location: "Munich",
+    source: "Dream company monitor",
+    url: "https://careers.servicenow.com",
+    hybrid: null,
+    notes: "Dream company ⭐. Munich Innovation Center. Strategic, exec-facing role. Less operational depth but ServiceNow priority elevates it.",
+    dreamCompany: true
+  },
+  {
+    id: "westwing-head-people-ops",
+    scanDate: "2026-05-23",
+    grade: "C",
+    title: "Head of People Operations",
+    company: "Westwing Group SE",
+    location: "Munich",
+    source: "Google Jobs",
+    url: "",
+    hybrid: null,
+    notes: "Leads 11-person team, strong automation/AI process angle. Domain is People/HR — not Justus's background, but tooling/systems angle is relevant if open to a pivot.",
+    dreamCompany: false
+  },
+  {
+    id: "secunet-director-ai-transformation",
+    scanDate: "2026-05-23",
+    grade: "C",
+    title: "Director AI Transformation",
+    company: "secunet Security Networks",
+    location: "Munich / Germany",
+    source: "Google Jobs",
+    url: "",
+    hybrid: null,
+    notes: "Cybersecurity/defense sector. AI transformation leadership, director title. Multi-location — confirm Munich is primary base before applying.",
+    dreamCompany: false
+  },
+  {
+    id: "celonis-vp-gtm-operations",
+    scanDate: "2026-05-23",
+    grade: "B",
+    title: "VP GTM Operations",
+    company: "Celonis",
+    location: "Munich",
+    source: "Dream company monitor",
+    url: "https://careers.celonis.com/join-us/open-positions/job-detail?jobId=7626322003",
+    hybrid: null,
+    notes: "⭐ Dream company #1. VP level at Celonis — the tool Justus uses daily. Domain is go-to-market/revenue ops rather than internal process modeling, but deep Celonis practitioner experience gives a unique edge no external hire has.",
+    dreamCompany: true
+  },
+  {
+    id: "flughafen-muenchen-leiter-prozessmanagement",
+    scanDate: "2026-05-23",
+    grade: "B",
+    title: "Leiter IT und Prozessmanagement",
+    company: "Flughafen München GmbH",
+    location: "Munich (MUC Airport)",
+    source: "Google Jobs",
+    url: "",
+    hybrid: null,
+    notes: "Munich Airport — Europe's 3rd busiest. Process management at this scale is genuinely complex. Strong alignment with Justus's aviation background. IT + Process combo matches his toolset perfectly.",
+    dreamCompany: false
+  },
+  {
+    id: "webasto-director-digital-transformation",
+    scanDate: "2026-05-23",
+    grade: "B",
+    title: "Director Digital Transformation & Process Excellence",
+    company: "Webasto",
+    location: "Stockdorf (18km Munich)",
+    source: "Google Jobs",
+    url: "",
+    hybrid: null,
+    notes: "Tier-1 automotive supplier undergoing electrification transformation. Director level, explicitly combines digital transformation AND process excellence. 20-30 min commute from Munich.",
+    dreamCompany: false
+  },
+  {
+    id: "vantis-vp-operations",
+    scanDate: "2026-05-23",
+    grade: "B",
+    title: "VP Operations (m/w/d)",
+    company: "Vantis",
+    location: "Munich",
+    source: "Google Jobs",
+    url: "",
+    hybrid: null,
+    notes: "Health-tech scale-up, Munich. VP level with real operational ownership. Early VP at a growing company means equity and genuine scope.",
+    dreamCompany: false
+  },
+  {
+    id: "quantum-systems-head-serial-production",
+    scanDate: "2026-05-23",
+    grade: "C",
+    title: "Head of Serial Production",
+    company: "Quantum Systems GmbH",
+    location: "Gilching (near Munich)",
+    source: "Dream company monitor",
+    url: "https://www.arbeitnow.com/jobs/companies/quantum-systems-gmbh/head-of-production-gilching-96824",
+    hybrid: null,
+    notes: "⭐ Dream company. Autonomous drone systems. Head level, P&L for serial production. Role is manufacturing ops rather than process modeling — worth exploring if open to production leadership pivot.",
+    dreamCompany: true
+  },
+  {
+    id: "fresenius-kabi-head-operational-excellence",
+    scanDate: "2026-05-23",
+    grade: "C",
+    title: "Head of Operational Excellence",
+    company: "Fresenius Kabi",
+    location: "Munich area",
+    source: "Google Jobs",
+    url: "",
+    hybrid: null,
+    notes: "Medical devices/pharma. Head of Operational Excellence — perfect title. Confirm exact Munich site location (HQ is Bad Homburg but Munich operations exist).",
+    dreamCompany: false
+  },
+  {
+    id: "knds-senior-manager-operational-excellence",
+    scanDate: "2026-05-23",
+    grade: "C",
+    title: "Senior Manager Operational Excellence",
+    company: "KNDS Deutschland",
+    location: "Munich",
+    source: "Google Jobs",
+    url: "",
+    hybrid: null,
+    notes: "Defense/industrial (Leopard tank / CAESAR manufacturer). Munich, operational excellence focus. Title is Senior Manager rather than Head — one step below target level but interesting company.",
+    dreamCompany: false
+  }
+];
+
+const DREAM_COMPANIES = [
+  { name: "Celonis", hit: true },
+  { name: "ServiceNow", hit: true },
+  { name: "Helsing", hit: false },
+  { name: "Isar Aerospace", hit: false },
+  { name: "Rohde & Schwarz", hit: false },
+  { name: "MTU Aero Engines", hit: false },
+  { name: "Infineon", hit: false },
+  { name: "Knorr-Bremse", hit: false },
+  { name: "Siemens", hit: false },
+  { name: "Airbus", hit: false },
+  { name: "Carl Zeiss AG", hit: false },
+  { name: "Personio", hit: false },
+  { name: "Forto", hit: false },
+  { name: "Quantum Systems", hit: true },
+  { name: "MAN Truck & Bus", hit: false }
+];
+
+// ─── RENDER ──────────────────────────────────────────────────────────────────
+let activeFilter = 'all';
+
+function setFilter(f) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  renderJobs();
+}
+
+function renderStats() {
+  const counts = { A: 0, B: 0, C: 0 };
+  JOBS.forEach(j => counts[j.grade]++);
+  const total = JOBS.length;
+  const scans = [...new Set(JOBS.map(j => j.scanDate))];
+  const latest = scans.sort().at(-1);
+
+  document.getElementById('lastScan').textContent = 'Last scan: ' + (latest || '—');
+
+  document.getElementById('statsRow').innerHTML = `
+    <div class="stat-pill"><span class="dot-all"></span> <strong>${total}</strong> total listings</div>
+    <div class="stat-pill"><span class="dot-a"></span> <strong>${counts.A}</strong> A-grade</div>
+    <div class="stat-pill"><span class="dot-b"></span> <strong>${counts.B}</strong> B-grade</div>
+    <div class="stat-pill"><span class="dot-c"></span> <strong>${counts.C}</strong> C-grade</div>
+    <div class="stat-pill">📅 <strong>${scans.length}</strong> scan${scans.length !== 1 ? 's' : ''} run</div>
+  `;
+}
+
+function renderJobs() {
+  const grid = document.getElementById('jobsGrid');
+  const filtered = activeFilter === 'all' ? JOBS : JOBS.filter(j => j.grade === activeFilter);
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty">No listings for this filter yet.</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(job => `
+    <div class="job-card" data-grade="${job.grade}">
+      <div class="card-top">
+        <div class="card-left">
+          <div class="role-title">${job.title}${job.dreamCompany ? ' ⭐' : ''}</div>
+          <div class="company">${job.company}</div>
+        </div>
+        <div class="card-right">
+          <span class="grade-badge grade-${job.grade}">${job.grade}-Grade</span>
+          ${job.url
+            ? `<a class="apply-btn" href="${job.url}" target="_blank">Apply →</a>`
+            : `<span class="apply-btn no-url">Apply →</span>`
+          }
+        </div>
+      </div>
+      <div class="card-meta">
+        <span class="meta-tag">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 8.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" fill="currentColor"/><path d="M8 1a6 6 0 00-6 6c0 3.314 5.25 8 6 8s6-4.686 6-8a6 6 0 00-6-6z" stroke="currentColor" stroke-width="1.4"/></svg>
+          ${job.location}
+        </span>
+        ${job.hybrid ? '<span class="meta-tag">🏠 Hybrid</span>' : ''}
+        <span class="meta-tag">${job.source}</span>
+        <span class="scan-tag">${job.scanDate}</span>
+      </div>
+      ${job.notes ? `<div class="card-notes">${job.notes}</div>` : ''}
+    </div>
+  `).join('');
+}
+
+function renderDreamCompanies() {
+  document.getElementById('dreamGrid').innerHTML = DREAM_COMPANIES.map(c => `
+    <div class="dream-pill ${c.hit ? 'hit' : ''}">
+      <span class="status-dot"></span>
+      ${c.name}
+    </div>
+  `).join('');
+}
+
+function renderFooter() {
+  const scans = [...new Set(JOBS.map(j => j.scanDate))].sort();
+  document.getElementById('footer').innerHTML =
+    `Scan history: ${scans.join(' · ')} · 7 sources · 30+ queries per run · Updated automatically by Kleen Hub Job Scan Agent`;
+}
+
+// Init
+renderStats();
+renderJobs();
+renderDreamCompanies();
+renderFooter();
+</script>
+
+</body>
+</html>
