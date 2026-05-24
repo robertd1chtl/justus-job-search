@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Justus Job Board",
+  "schemaVersion": 1,
+  "description": "Justus Stähle's live job board — all scan results across runs, filterable by grade, with dream company monitor. Updated automatically each time the job scan runs."
+}
+</script>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -292,6 +298,97 @@ const JOBS = [
     dreamCompany: false
   },
   {
+    id: "webasto-director-digital-transformation",
+    scanDate: "2026-05-23",
+    grade: "A",
+    title: "Director Digital Transformation & Process Excellence (f/m/x)",
+    company: "Webasto",
+    location: "Stockdorf (Munich area)",
+    source: "Google Jobs",
+    url: "https://de.indeed.com/viewjob?jk=aa6016131ae545ab",
+    hybrid: true,
+    notes: "Director title with dual mandate: digital transformation + process excellence. Exact match for LHT responsibilities. SAP/ERP, Lean, process optimization in JD. ~20 min from Munich city.",
+    dreamCompany: false
+  },
+  {
+    id: "celonis-vp-gtm-operations",
+    scanDate: "2026-05-23",
+    grade: "B",
+    title: "VP GTM Operations",
+    company: "Celonis",
+    location: "Munich",
+    source: "Dream company monitor",
+    url: "https://job-boards.greenhouse.io/celonis/jobs/7626322003",
+    hybrid: null,
+    notes: "Dream company ⭐. VP at the process mining market leader, HQ'd in Munich. GTM Operations leans commercial but Celonis expertise makes Justus uniquely positioned. Posted March 2026.",
+    dreamCompany: true
+  },
+  {
+    id: "knds-sr-manager-operational-excellence",
+    scanDate: "2026-05-23",
+    grade: "B",
+    title: "Senior Manager Operational Excellence (w/m/d)",
+    company: "KNDS Deutschland",
+    location: "Munich",
+    source: "StepStone",
+    url: "https://www.stepstone.de/stellenangebote--Senior-Manager-w-m-d-Operational-Excellence-Muenchen-KNDS--14037952-inline.html",
+    hybrid: null,
+    notes: "Defense prime, Munich. Lean/OpEx focus. Title is Senior Manager (one below Head) but KNDS is a marquee defense employer. Confirm direct reports and strategic ownership before applying.",
+    dreamCompany: false
+  },
+  {
+    id: "vantis-vp-operations",
+    scanDate: "2026-05-23",
+    grade: "B",
+    title: "VP Operations (m/w/d)",
+    company: "Vantis",
+    location: "Munich",
+    source: "Glassdoor",
+    url: "https://www.glassdoor.de/job-listing/vp-operations-m-w-d-vantis-JV_IC4990924_KO0,19_KE20,26.htm?jl=1010097130891",
+    hybrid: null,
+    notes: "VP level, Munich, healthcare sector. Strong level match. Domain is adjacent but operationally intensive. Validate company headcount and salary range before applying.",
+    dreamCompany: false
+  },
+  {
+    id: "troger-cie-vp-global-operations",
+    scanDate: "2026-05-23",
+    grade: "B",
+    title: "Vice President Global Operations",
+    company: "Tröger & Cie. (executive search)",
+    location: "Bavaria / Munich area",
+    source: "Google Jobs",
+    url: "https://talents.studysmarter.de/companies/troeger-cie-executive-search/vice-president-global-operations-3198891/",
+    hybrid: null,
+    notes: "VP level, manufacturing sector, Bavaria. Executive search placement — undisclosed end company. Global scope signals strategic ownership and senior comp. Confirm location and end employer first.",
+    dreamCompany: false
+  },
+  {
+    id: "finn-vp-vehicle-logistics",
+    scanDate: "2026-05-23",
+    grade: "B",
+    title: "VP Vehicle Logistics (m/f/d)",
+    company: "FINN",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/vice-president-vehicle-logistics-m-f-d-at-finn-4418137641",
+    hybrid: null,
+    notes: "VP at Munich's fast-growing car subscription startup. Logistics ops adjacent to MRO supply chain. Likely strong equity. Confirm it's strategic leadership vs. pure logistics management.",
+    dreamCompany: false
+  },
+  {
+    id: "servicenow-head-exec-experience",
+    scanDate: "2026-05-23",
+    grade: "B",
+    title: "Head of Executive Experience (Innovation Center)",
+    company: "ServiceNow",
+    location: "Munich",
+    source: "Dream company monitor",
+    url: "https://careers.servicenow.com/jobs/744000077009575/head-of-executive-experience-munich/",
+    hybrid: null,
+    notes: "Dream company ⭐. Munich Innovation Center. Strategic, exec-facing role. Less operationally deep but ServiceNow is a tier-1 target. Confirm scope includes operational ownership.",
+    dreamCompany: true
+  },
+  {
     id: "auterion-factory-head",
     scanDate: "2026-05-23",
     grade: "B",
@@ -301,7 +398,7 @@ const JOBS = [
     source: "Indeed",
     url: "https://de.indeed.com/viewjob?jk=f5ce732453addc2b",
     hybrid: null,
-    notes: "Autonomous drone/AI tech company. Director-level ops leadership. Gap: 5+ yrs manufacturing preferred — process/industrial eng background is adjacent.",
+    notes: "Autonomous drone/AI tech company. Director-level ops leadership. Gap: 5+ yrs manufacturing preferred — process/industrial eng background is adjacent. Strong framing needed.",
     dreamCompany: false
   },
   {
@@ -314,21 +411,8 @@ const JOBS = [
     source: "LinkedIn",
     url: "https://de.linkedin.com/jobs/view/sr-manager-meu-regional-fleet-management-eu-regional-fleet-management-at-amazon-4417774656",
     hybrid: null,
-    notes: "Large-scale ops leadership, senior management scope. Fleet & logistics overlaps with MRO/aviation background. Check shift-work policy against dealbreaker.",
+    notes: "Large-scale ops leadership, senior management scope. Fleet & logistics overlaps with MRO/aviation background. Check Amazon shift-work policy against dealbreaker before applying.",
     dreamCompany: false
-  },
-  {
-    id: "servicenow-head-exec-experience",
-    scanDate: "2026-05-23",
-    grade: "B",
-    title: "Head of Executive Experience (Innovation Center)",
-    company: "ServiceNow",
-    location: "Munich",
-    source: "Dream company monitor",
-    url: "https://careers.servicenow.com",
-    hybrid: null,
-    notes: "Dream company ⭐. Munich Innovation Center. Strategic, exec-facing role. Less operational depth but ServiceNow priority elevates it.",
-    dreamCompany: true
   },
   {
     id: "westwing-head-people-ops",
@@ -355,97 +439,6 @@ const JOBS = [
     hybrid: null,
     notes: "Cybersecurity/defense sector. AI transformation leadership, director title. Multi-location — confirm Munich is primary base before applying.",
     dreamCompany: false
-  },
-  {
-    id: "celonis-vp-gtm-operations",
-    scanDate: "2026-05-23",
-    grade: "B",
-    title: "VP GTM Operations",
-    company: "Celonis",
-    location: "Munich",
-    source: "Dream company monitor",
-    url: "https://careers.celonis.com/join-us/open-positions/job-detail?jobId=7626322003",
-    hybrid: null,
-    notes: "⭐ Dream company #1. VP level at Celonis — the tool Justus uses daily. Domain is go-to-market/revenue ops rather than internal process modeling, but deep Celonis practitioner experience gives a unique edge no external hire has.",
-    dreamCompany: true
-  },
-  {
-    id: "flughafen-muenchen-leiter-prozessmanagement",
-    scanDate: "2026-05-23",
-    grade: "B",
-    title: "Leiter IT und Prozessmanagement",
-    company: "Flughafen München GmbH",
-    location: "Munich (MUC Airport)",
-    source: "Google Jobs",
-    url: "",
-    hybrid: null,
-    notes: "Munich Airport — Europe's 3rd busiest. Process management at this scale is genuinely complex. Strong alignment with Justus's aviation background. IT + Process combo matches his toolset perfectly.",
-    dreamCompany: false
-  },
-  {
-    id: "webasto-director-digital-transformation",
-    scanDate: "2026-05-23",
-    grade: "B",
-    title: "Director Digital Transformation & Process Excellence",
-    company: "Webasto",
-    location: "Stockdorf (18km Munich)",
-    source: "Google Jobs",
-    url: "",
-    hybrid: null,
-    notes: "Tier-1 automotive supplier undergoing electrification transformation. Director level, explicitly combines digital transformation AND process excellence. 20-30 min commute from Munich.",
-    dreamCompany: false
-  },
-  {
-    id: "vantis-vp-operations",
-    scanDate: "2026-05-23",
-    grade: "B",
-    title: "VP Operations (m/w/d)",
-    company: "Vantis",
-    location: "Munich",
-    source: "Google Jobs",
-    url: "",
-    hybrid: null,
-    notes: "Health-tech scale-up, Munich. VP level with real operational ownership. Early VP at a growing company means equity and genuine scope.",
-    dreamCompany: false
-  },
-  {
-    id: "quantum-systems-head-serial-production",
-    scanDate: "2026-05-23",
-    grade: "C",
-    title: "Head of Serial Production",
-    company: "Quantum Systems GmbH",
-    location: "Gilching (near Munich)",
-    source: "Dream company monitor",
-    url: "https://www.arbeitnow.com/jobs/companies/quantum-systems-gmbh/head-of-production-gilching-96824",
-    hybrid: null,
-    notes: "⭐ Dream company. Autonomous drone systems. Head level, P&L for serial production. Role is manufacturing ops rather than process modeling — worth exploring if open to production leadership pivot.",
-    dreamCompany: true
-  },
-  {
-    id: "fresenius-kabi-head-operational-excellence",
-    scanDate: "2026-05-23",
-    grade: "C",
-    title: "Head of Operational Excellence",
-    company: "Fresenius Kabi",
-    location: "Munich area",
-    source: "Google Jobs",
-    url: "",
-    hybrid: null,
-    notes: "Medical devices/pharma. Head of Operational Excellence — perfect title. Confirm exact Munich site location (HQ is Bad Homburg but Munich operations exist).",
-    dreamCompany: false
-  },
-  {
-    id: "knds-senior-manager-operational-excellence",
-    scanDate: "2026-05-23",
-    grade: "C",
-    title: "Senior Manager Operational Excellence",
-    company: "KNDS Deutschland",
-    location: "Munich",
-    source: "Google Jobs",
-    url: "",
-    hybrid: null,
-    notes: "Defense/industrial (Leopard tank / CAESAR manufacturer). Munich, operational excellence focus. Title is Senior Manager rather than Head — one step below target level but interesting company.",
-    dreamCompany: false
   }
 ];
 
@@ -460,14 +453,15 @@ const DREAM_COMPANIES = [
   { name: "Knorr-Bremse", hit: false },
   { name: "Siemens", hit: false },
   { name: "Airbus", hit: false },
-  { name: "Carl Zeiss AG", hit: false },
+  { name: "Carl Zeis AG", hit: false },
   { name: "Personio", hit: false },
   { name: "Forto", hit: false },
-  { name: "Quantum Systems", hit: true },
+  { name: "Quantum Systems", hit: false },
   { name: "MAN Truck & Bus", hit: false }
 ];
 
-// ─── RENDER ──────────────────────────────────────────────────────────────────
+// ──�
+ RENDER ────────────────────────────────────────────────────────────────────
 let activeFilter = 'all';
 
 function setFilter(f) {
@@ -545,7 +539,7 @@ function renderDreamCompanies() {
 function renderFooter() {
   const scans = [...new Set(JOBS.map(j => j.scanDate))].sort();
   document.getElementById('footer').innerHTML =
-    `Scan history: ${scans.join(' · ')} · 7 sources · 30+ queries per run · Updated automatically by Kleen Hub Job Scan Agent`;
+    `Scan history: ${scans.join(' · ')} · 8 sources · 45 queries per run · Updated automatically by Kleen Hub Job Scan Agent`;
 }
 
 // Init
