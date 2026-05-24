@@ -1,10 +1,4 @@
-<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
-{
-  "name": "Justus Job Board",
-  "schemaVersion": 1,
-  "description": "Justus Stähle's live job board — all scan results across runs, filterable by grade, with dream company monitor. Updated automatically each time the job scan runs."
-}
-</script>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -279,7 +273,7 @@
 <div class="footer" id="footer"></div>
 
 <script>
-// ─── DATA ────────────────────────────────────────────────────────────────────
+// --- DATA --------------------------------------------------------------------
 // Each scan appends new entries here (deduplicated by url or title+company).
 // Format: { id, scanDate, grade, title, company, location, source, url, hybrid, notes, dreamCompany }
 
@@ -453,15 +447,14 @@ const DREAM_COMPANIES = [
   { name: "Knorr-Bremse", hit: false },
   { name: "Siemens", hit: false },
   { name: "Airbus", hit: false },
-  { name: "Carl Zeis AG", hit: false },
+  { name: "Carl Zeiss AG", hit: false },
   { name: "Personio", hit: false },
   { name: "Forto", hit: false },
   { name: "Quantum Systems", hit: false },
   { name: "MAN Truck & Bus", hit: false }
 ];
 
-// ──�
- RENDER ────────────────────────────────────────────────────────────────────
+// --- RENDER ------------------------------------------------------------------
 let activeFilter = 'all';
 
 function setFilter(f) {
