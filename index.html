@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Justus Job Board",
+  "schemaVersion": 1,
+  "description": "Justus Stähle's live job board — all scan results across runs, filterable by grade, with dream company monitor. Updated automatically each time the job scan runs."
+}
+</script>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -273,10 +279,7 @@
 <div class="footer" id="footer"></div>
 
 <script>
-// --- DATA --------------------------------------------------------------------
-// Each scan appends new entries here (deduplicated by url or title+company).
-// Format: { id, scanDate, grade, title, company, location, source, url, hybrid, notes, dreamCompany }
-
+// ─── DATA ────────────────────────────────────────────────────────────────────
 const JOBS = [
   {
     id: "montana-head-process-mgmt",
@@ -303,244 +306,23 @@ const JOBS = [
     hybrid: true,
     notes: "Director title with dual mandate: digital transformation + process excellence. Exact match for LHT responsibilities. SAP/ERP, Lean, process optimization in JD. ~20 min from Munich city.",
     dreamCompany: false
-  },
-  {
-    id: "celonis-vp-gtm-operations",
-    scanDate: "2026-05-23",
-    grade: "B",
-    title: "VP GTM Operations",
-    company: "Celonis",
-    location: "Munich",
-    source: "Dream company monitor",
-    url: "https://job-boards.greenhouse.io/celonis/jobs/7626322003",
-    hybrid: null,
-    notes: "Dream company ⭐. VP at the process mining market leader, HQ'd in Munich. GTM Operations leans commercial but Celonis expertise makes Justus uniquely positioned. Posted March 2026.",
-    dreamCompany: true
-  },
-  {
-    id: "knds-sr-manager-operational-excellence",
-    scanDate: "2026-05-23",
-    grade: "B",
-    title: "Senior Manager Operational Excellence (w/m/d)",
-    company: "KNDS Deutschland",
-    location: "Munich",
-    source: "StepStone",
-    url: "https://www.stepstone.de/stellenangebote--Senior-Manager-w-m-d-Operational-Excellence-Muenchen-KNDS--14037952-inline.html",
-    hybrid: null,
-    notes: "Defense prime, Munich. Lean/OpEx focus. Title is Senior Manager (one below Head) but KNDS is a marquee defense employer. Confirm direct reports and strategic ownership before applying.",
-    dreamCompany: false
-  },
-  {
-    id: "vantis-vp-operations",
-    scanDate: "2026-05-23",
-    grade: "B",
-    title: "VP Operations (m/w/d)",
-    company: "Vantis",
-    location: "Munich",
-    source: "Glassdoor",
-    url: "https://www.glassdoor.de/job-listing/vp-operations-m-w-d-vantis-JV_IC4990924_KO0,19_KE20,26.htm?jl=1010097130891",
-    hybrid: null,
-    notes: "VP level, Munich, healthcare sector. Strong level match. Domain is adjacent but operationally intensive. Validate company headcount and salary range before applying.",
-    dreamCompany: false
-  },
-  {
-    id: "troger-cie-vp-global-operations",
-    scanDate: "2026-05-23",
-    grade: "B",
-    title: "Vice President Global Operations",
-    company: "Tröger & Cie. (executive search)",
-    location: "Bavaria / Munich area",
-    source: "Google Jobs",
-    url: "https://talents.studysmarter.de/companies/troeger-cie-executive-search/vice-president-global-operations-3198891/",
-    hybrid: null,
-    notes: "VP level, manufacturing sector, Bavaria. Executive search placement — undisclosed end company. Global scope signals strategic ownership and senior comp. Confirm location and end employer first.",
-    dreamCompany: false
-  },
-  {
-    id: "finn-vp-vehicle-logistics",
-    scanDate: "2026-05-23",
-    grade: "B",
-    title: "VP Vehicle Logistics (m/f/d)",
-    company: "FINN",
-    location: "Munich",
-    source: "LinkedIn",
-    url: "https://de.linkedin.com/jobs/view/vice-president-vehicle-logistics-m-f-d-at-finn-4418137641",
-    hybrid: null,
-    notes: "VP at Munich's fast-growing car subscription startup. Logistics ops adjacent to MRO supply chain. Likely strong equity. Confirm it's strategic leadership vs. pure logistics management.",
-    dreamCompany: false
-  },
-  {
-    id: "servicenow-head-exec-experience",
-    scanDate: "2026-05-23",
-    grade: "B",
-    title: "Head of Executive Experience (Innovation Center)",
-    company: "ServiceNow",
-    location: "Munich",
-    source: "Dream company monitor",
-    url: "https://careers.servicenow.com/jobs/744000077009575/head-of-executive-experience-munich/",
-    hybrid: null,
-    notes: "Dream company ⭐. Munich Innovation Center. Strategic, exec-facing role. Less operationally deep but ServiceNow is a tier-1 target. Confirm scope includes operational ownership.",
-    dreamCompany: true
-  },
-  {
-    id: "auterion-factory-head",
-    scanDate: "2026-05-23",
-    grade: "B",
-    title: "Factory Head & Director of Operations",
-    company: "Auterion",
-    location: "Munich",
-    source: "Indeed",
-    url: "https://de.indeed.com/viewjob?jk=f5ce732453addc2b",
-    hybrid: null,
-    notes: "Autonomous drone/AI tech company. Director-level ops leadership. Gap: 5+ yrs manufacturing preferred — process/industrial eng background is adjacent. Strong framing needed.",
-    dreamCompany: false
-  },
-  {
-    id: "amazon-sr-manager-fleet",
-    scanDate: "2026-05-23",
-    grade: "B",
-    title: "Sr. Manager, MEU Regional Fleet Management",
-    company: "Amazon",
-    location: "Munich",
-    source: "LinkedIn",
-    url: "https://de.linkedin.com/jobs/view/sr-manager-meu-regional-fleet-management-eu-regional-fleet-management-at-amazon-4417774656",
-    hybrid: null,
-    notes: "Large-scale ops leadership, senior management scope. Fleet & logistics overlaps with MRO/aviation background. Check Amazon shift-work policy against dealbreaker before applying.",
-    dreamCompany: false
-  },
-  {
-    id: "westwing-head-people-ops",
-    scanDate: "2026-05-23",
-    grade: "C",
-    title: "Head of People Operations",
-    company: "Westwing Group SE",
-    location: "Munich",
-    source: "Google Jobs",
-    url: "",
-    hybrid: null,
-    notes: "Leads 11-person team, strong automation/AI process angle. Domain is People/HR — not Justus's background, but tooling/systems angle is relevant if open to a pivot.",
-    dreamCompany: false
-  },
-  {
-    id: "secunet-director-ai-transformation",
-    scanDate: "2026-05-23",
-    grade: "C",
-    title: "Director AI Transformation",
-    company: "secunet Security Networks",
-    location: "Munich / Germany",
-    source: "Google Jobs",
-    url: "",
-    hybrid: null,
-    notes: "Cybersecurity/defense sector. AI transformation leadership, director title. Multi-location — confirm Munich is primary base before applying.",
-    dreamCompany: false
   }
 ];
 
-const DREAM_COMPANIES = [
-  { name: "Celonis", hit: true },
-  { name: "ServiceNow", hit: true },
-  { name: "Helsing", hit: false },
-  { name: "Isar Aerospace", hit: false },
-  { name: "Rohde & Schwarz", hit: false },
-  { name: "MTU Aero Engines", hit: false },
-  { name: "Infineon", hit: false },
-  { name: "Knorr-Bremse", hit: false },
-  { name: "Siemens", hit: false },
-  { name: "Airbus", hit: false },
-  { name: "Carl Zeiss AG", hit: false },
-  { name: "Personio", hit: false },
-  { name: "Forto", hit: false },
-  { name: "Quantum Systems", hit: false },
-  { name: "MAN Truck & Bus", hit: false }
-];
+const sha = window.__ghSha;
 
-// --- RENDER ------------------------------------------------------------------
-let activeFilter = 'all';
-
-function setFilter(f) {
-  activeFilter = f;
-  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
-  renderJobs();
-}
-
-function renderStats() {
-  const counts = { A: 0, B: 0, C: 0 };
-  JOBS.forEach(j => counts[j.grade]++);
-  const total = JOBS.length;
-  const scans = [...new Set(JOBS.map(j => j.scanDate))];
-  const latest = scans.sort().at(-1);
-
-  document.getElementById('lastScan').textContent = 'Last scan: ' + (latest || '—');
-
-  document.getElementById('statsRow').innerHTML = `
-    <div class="stat-pill"><span class="dot-all"></span> <strong>${total}</strong> total listings</div>
-    <div class="stat-pill"><span class="dot-a"></span> <strong>${counts.A}</strong> A-grade</div>
-    <div class="stat-pill"><span class="dot-b"></span> <strong>${counts.B}</strong> B-grade</div>
-    <div class="stat-pill"><span class="dot-c"></span> <strong>${counts.C}</strong> C-grade</div>
-    <div class="stat-pill">📅 <strong>${scans.length}</strong> scan${scans.length !== 1 ? 's' : ''} run</div>
-  `;
-}
-
-function renderJobs() {
-  const grid = document.getElementById('jobsGrid');
-  const filtered = activeFilter === 'all' ? JOBS : JOBS.filter(j => j.grade === activeFilter);
-
-  if (filtered.length === 0) {
-    grid.innerHTML = '<div class="empty">No listings for this filter yet.</div>';
-    return;
-  }
-
-  grid.innerHTML = filtered.map(job => `
-    <div class="job-card" data-grade="${job.grade}">
-      <div class="card-top">
-        <div class="card-left">
-          <div class="role-title">${job.title}${job.dreamCompany ? ' ⭐' : ''}</div>
-          <div class="company">${job.company}</div>
-        </div>
-        <div class="card-right">
-          <span class="grade-badge grade-${job.grade}">${job.grade}-Grade</span>
-          ${job.url
-            ? `<a class="apply-btn" href="${job.url}" target="_blank">Apply →</a>`
-            : `<span class="apply-btn no-url">Apply →</span>`
-          }
-        </div>
-      </div>
-      <div class="card-meta">
-        <span class="meta-tag">
-          <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 8.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" fill="currentColor"/><path d="M8 1a6 6 0 00-6 6c0 3.314 5.25 8 6 8s6-4.686 6-8a6 6 0 00-6-6z" stroke="currentColor" stroke-width="1.4"/></svg>
-          ${job.location}
-        </span>
-        ${job.hybrid ? '<span class="meta-tag">🏠 Hybrid</span>' : ''}
-        <span class="meta-tag">${job.source}</span>
-        <span class="scan-tag">${job.scanDate}</span>
-      </div>
-      ${job.notes ? `<div class="card-notes">${job.notes}</div>` : ''}
-    </div>
-  `).join('');
-}
-
-function renderDreamCompanies() {
-  document.getElementById('dreamGrid').innerHTML = DREAM_COMPANIES.map(c => `
-    <div class="dream-pill ${c.hit ? 'hit' : ''}">
-      <span class="status-dot"></span>
-      ${c.name}
-    </div>
-  `).join('');
-}
-
-function renderFooter() {
-  const scans = [...new Set(JOBS.map(j => j.scanDate))].sort();
-  document.getElementById('footer').innerHTML =
-    `Scan history: ${scans.join(' · ')} · 8 sources · 45 queries per run · Updated automatically by Kleen Hub Job Scan Agent`;
-}
-
-// Init
-renderStats();
-renderJobs();
-renderDreamCompanies();
-renderFooter();
-</script>
-
-</body>
-</html>
+const putResp = await fetch('https://api.github.com/repos/robertd1chtl/justus-job-search/contents/index.html', {
+  method: 'PUT',
+  headers: {
+    Authorization: `Bearer ${TOKEN}`,
+    'Content-Type': 'application/json',
+    'Accept': 'application/vnd.github+json'
+  },
+  body: JSON.stringify({
+    message: 'Job scan update 2026-05-25',
+    content: content,
+    sha: window.__ghSha
+  })
+});
+const result = await putResp.json();
+result.commit ? `Deploy OK — commit ${result.commit.sha.slice(0,7)}` : `Error: ${JSON.stringify(result).slice(0,200)}`;
