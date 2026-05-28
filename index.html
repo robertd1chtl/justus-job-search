@@ -207,6 +207,15 @@
     border-radius: 4px;
   }
 
+  .new-tag {
+    font-size: 11px;
+    background: #fef9c3;
+    color: #854d0e;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
   /* Dream company section */
   .section-label {
     font-size: 11px;
@@ -269,6 +278,7 @@
   <button class="filter-btn" onclick="setFilter('A')">🟢 A-Grade</button>
   <button class="filter-btn" onclick="setFilter('B')">🔵 B-Grade</button>
   <button class="filter-btn" onclick="setFilter('C')">🟡 C-Grade</button>
+  <button class="filter-btn" onclick="setFilter('new')">🆕 New Today</button>
 </div>
 
 <div class="jobs-grid" id="jobsGrid"></div>
@@ -280,49 +290,8 @@
 
 <script>
 // ─── DATA ────────────────────────────────────────────────────────────────────
-const JOBS = [
-  {
-    id: "montana-head-process-mgmt",
-    scanDate: "2026-05-23",
-    grade: "A",
-    title: "Head of Process Management (m/w/d)",
-    company: "MONTANA Energie-Handel GmbH & Co. KG",
-    location: "Munich",
-    source: "Google Jobs",
-    url: "https://talents.studysmarter.de/companies/montana-energie-handel-gmbh-co-kg/head-of-process-management-m-w-d-19956123/",
-    hybrid: true,
-    notes: "8-person team, reports directly to Geschäftsleitung. Celonis & process mining explicitly required. M.Sc. WIW match. Highest priority this week.",
-    dreamCompany: false
-  },
-  {
-    id: "webasto-director-digital-transformation",
-    scanDate: "2026-05-23",
-    grade: "A",
-    title: "Director Digital Transformation & Process Excellence (f/m/x)",
-    company: "Webasto",
-    location: "Stockdorf (Munich area)",
-    source: "Google Jobs",
-    url: "https://de.indeed.com/viewjob?jk=aa6016131ae545ab",
-    hybrid: true,
-    notes: "Director title with dual mandate: digital transformation + process excellence. Exact match for LHT responsibilities. SAP/ERP, Lean, process optimization in JD. ~20 min from Munich city.",
-    dreamCompany: false
-  }
-];
-
-const sha = window.__ghSha;
-
-const putResp = await fetch('https://api.github.com/repos/robertd1chtl/justus-job-search/contents/index.html', {
-  method: 'PUT',
-  headers: {
-    Authorization: `Bearer ${TOKEN}`,
-    'Content-Type': 'application/json',
-    'Accept': 'application/vnd.github+json'
-  },
-  body: JSON.stringify({
-    message: 'Job scan update 2026-05-25',
-    content: content,
-    sha: window.__ghSha
-  })
-});
-const result = await putResp.json();
-result.commit ? `Deploy OK — commit ${result.commit.sha.slice(0,7)}` : `Error: ${JSON.stringify(result).slice(0,200)}`;
+const JOBS = [];
+const DREAM_COMPANIES = [];
+const TODAY = "2026-05-28";
+</script>
+</body></html>
