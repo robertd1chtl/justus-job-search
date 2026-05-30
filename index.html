@@ -135,37 +135,29 @@ const DREAM_COMPANIES = [
   { name: 'Knorr-Bremse', hit: false, url: 'https://knorr-bremse.wd3.myworkdayjobs.com/Knorr-Bremse-Careers' }
 ];
 let activeFilter = 'all', searchTerm = '';
-function gradeBadge(g) { return `<span class="badge badge-${g.toLowerCase()}">${g}</span>`; }
+function gradeBadge(g) { return '<span class="badge badge-' + g.toLowerCase() + '">' + g + '</span>'; }
 function wMode(h) { return h === true ? 'Hybrid' : h === false ? 'On-site' : 'Unknown'; }
 function renderMeta() {
   if (!SCAN_META.lastScan) return;
   document.getElementById('scan-bar').style.display = 'flex';
   document.getElementById('meta-date').textContent = SCAN_META.lastScan;
-  document.getElementById('meta-scraped').textContent = SCAN_META.totalScraped ?? '-';
-  document.getElementById('meta-verified').textContent = SCAN_META.passedVerification ?? '-';
-  document.getElementById('meta-dead').textContent = SCAN_META.deadLinks ?? '-';
-  document.getElementById('meta-cost').textContent = SCAN_META.estCostUSD != null ? '$' + SCAN_META.estCostUSD.toFixed(2) : '-';
+  document.getElementById('meta-scraped').textContent = SCAN_META.totalScraped != null ? SCAN_META.totalScraped : '-';
+  document.getElementById('meta-verified').textContent = SCAN_META.passedVerification != null ? SCAN_META.passedVerification : '-';
+  document.getElementById('meta-dead').textContent = SCAN_META.deadLinks != null ? SCAN_META.deadLinks : '-';
+  document.getElementById('meta-cost').textContent = SCAN_META->estCostUSD != null ? '$' + SCAN_META.estCostUSD.toFixed(2) : '-';
 }
 function renderJobs() {
-  const c = document.getElementById('jobs-container');
-  let f = JOBS.filter(j => activeFilter === 'dream' ? j.dreamCompany : activeFilter !== 'all' ? j.grade === activeFilter : true);
-  if (searchTerm) { const q = searchTerm.toLowerCase(); f = f.filter(j => j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || (j.source||'').toLowerCase().includes(q) || (j.notes||'').toLowerCase().includes(q) || (j.location||'').toLowerCase().includes(q)); }
-  f.sort((a, b) => { const m = {A:0,B:1,C:2}; if (m[a.grade] !== m[b.grade]) return m[a.grade] - m[b.grade]; if (a.dreamCompany !== b.dreamCompany) return a.dreamCompany ? -1 : 1; return new Date(b.scanDate) - new Date(a.scanDate); });
+  var c = document.getElementById('jobs-container');
+  var f = JOBS.filter(function(j) { return activeFilter === 'dream' ? j.dreamCompany : activeFilter !== 'all' ? j.grade === activeFilter : true; });
+  if (searchTerm) { var q = searchTerm.toLowerCase(); f = f.filter(function(j) { return j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || (j.source||'').toLowerCase().includes(q) || (j.notes||'').toLowerCase().includes(q) || (j.location||'').toLowerCase().includes(q); }); }
+  f.sort(function(a, b) { var m = {A:0,B:1,C:2}; if (m[a.grade] !== m[b.grade]) return m[a.grade] - m[b.grade]; if (a.dreamCompany !== b.dreamCompany) return a.dreamCompany ? -1 : 1; return new Date(b.scanDate) - new Date(a.scanDate); });
   if (!f.length) { c.innerHTML = '<div class="empty-state"><h3>' + (JOBS.length === 0 ? 'No listings yet' : 'No matches') + '</h3><p>' + (JOBS.length === 0 ? 'The first scan will populate this board.' : 'Try clearing your filter or search.') + '</p></div>'; return; }
-  c.innerHTML = f.map(j => '<div class="job-card"><div class="job-card-header"><div class="job-title">' + j.title + '</div><div class="badges">' + (j.dreamCompany ? '<span class="badge badge-dream">Dream Co</span>' : '') + gradeBadge(j.grade) + '</div></div><div class="job-company">' + j.company + '</div><div class="job-meta"><span>' + (j.location||'Munich') + '</span><span>' + wMode(j.hybrid) + '</span><span>' + (j.source||'Unknown') + '</span></div>' + (j.notes ? '<div class="job-notes">' + j.notes + '</div>' : '') + '<div class="job-footer"><span class="job-date">Found ' + j.scanDate + '</span>' + (j.url ? '<a href="' + j.url + '" target="_blank" class="apply-btn">Apply →</a>' : '<span class="apply-btn disabled">No link</span>') + '</div></div>').join('');
+  c.innerHTML = f.map(function(j) { return '<div class="job-card"><div class="job-card-header"><div class="job-title">' + j.title + '</div><div class="badges">' + (j.dreamCompany ? '<span class="badge badge-dream">Dream Co</span>' : '') + gradeBadge(j.grade) + '</div></div><div class="job-company">' + j.company + '</div><div class="job-meta"><span>' + (j.location||'Munich') + '</span><span>' + wMode(j.hybrid) + '</span><span>' + (j.source||'Unknown') + '</span></div>' + (j.notes ? '<div class="job-notes">' + j.notes + '</div>' : '') + '<div class="job-footer"><span class="job-date">Found ' + j.scanDate + '</span>' + (j.url ? '<a href="' + j.url + '" target="_blank" class="apply-btn">Apply ₒ</a>' : '<span class="apply-btn disabled">No link</span>') + '</div></div>'; }).join('');
 }
-function renderDreams() { document.getElementById('dream-container').innerHTML = DREAM_COMPANIES,map(d => '<div class="dream-card"><div class="dream-dot ' + (d.hit ? 'hit' : 'miss') + '"></div><div><div class="dream-name">' + d.name + '</div><div class="dream-status">' + (d.hit ? 'Role found' : 'No open roles') + '</div></div></div>').join(''); }
-function updateStats() {
-  document.getElementById('count-a').textContent = JOBS.filter(j => j.grade === 'A').length;
-  document.getElementById('count-b').textContent = JOBS.filter(j => j.grade === 'B').length;
-  document.getElementById('count-c').textContent = JOBS.filter(j => j.grade === 'C').length;
-  document.getElementById('count-dream').textContent = JOBS.filter(j => j.dreamCompany).length;
-  document.getElementById('count-total').textContent = JOBS.length;
-  if (JOBS.length > 0) { const l = JOBS.map(j => j.scanDate).sort().reverse()[0]; document.getElementById('last-updated').textContent = 'Last scan: ' + l; }
+function renderDreams() {
+  document.getElementById('dream-container').innerHTML = DREAM_COMPANIES,map(function(d) {
+    return '<div class="dream-card"><div class="dream-dot ' + (d.hit ? 'hit' : 'miss') + '"></div>' +
+      '<div><div class="dream-name">' + d.name + '</div>' +
+      '<div class="dream-status">' + (d.hit ? 'Role found' : 'No open roles') + '</div></div></div>';
+  }).join('');
 }
-document.querySelectorAll('.filter-btn').forEach(b => { b.addEventListener('click', () => { activeFilter = b.dataset.filter; document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active','active-a','active-b','active-c','active-dream')); const m = {A:'active-a',B:'active-b',C:'active-c',dream:'active-dream'}; b.classList.add(m[activeFilter] || 'active'); renderJobs(); }); });
-document.getElementById('search').addEventListener('input', e => { searchTerm = e.target.value; renderJobs(); });
-updateStats(); renderMeta(); renderJobs(); renderDreams();
-</script>
-</body>
-</html>
