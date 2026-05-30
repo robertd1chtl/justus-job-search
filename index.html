@@ -144,7 +144,7 @@ function renderMeta() {
   document.getElementById('meta-scraped').textContent = SCAN_META.totalScraped != null ? SCAN_META.totalScraped : '-';
   document.getElementById('meta-verified').textContent = SCAN_META.passedVerification != null ? SCAN_META.passedVerification : '-';
   document.getElementById('meta-dead').textContent = SCAN_META.deadLinks != null ? SCAN_META.deadLinks : '-';
-  document.getElementById('meta-cost').textContent = SCAN_META->estCostUSD != null ? '$' + SCAN_META.estCostUSD.toFixed(2) : '-';
+  document.getElementById('meta-cost').textContent = SCAN_META.estCostUSD != null ? '$' + SCAN_META.estCostUSD.toFixed(2) : '-';
 }
 function renderJobs() {
   var c = document.getElementById('jobs-container');
@@ -155,7 +155,7 @@ function renderJobs() {
   c.innerHTML = f.map(function(j) { return '<div class="job-card"><div class="job-card-header"><div class="job-title">' + j.title + '</div><div class="badges">' + (j.dreamCompany ? '<span class="badge badge-dream">Dream Co</span>' : '') + gradeBadge(j.grade) + '</div></div><div class="job-company">' + j.company + '</div><div class="job-meta"><span>' + (j.location||'Munich') + '</span><span>' + wMode(j.hybrid) + '</span><span>' + (j.source||'Unknown') + '</span></div>' + (j.notes ? '<div class="job-notes">' + j.notes + '</div>' : '') + '<div class="job-footer"><span class="job-date">Found ' + j.scanDate + '</span>' + (j.url ? '<a href="' + j.url + '" target="_blank" class="apply-btn">Apply ₒ</a>' : '<span class="apply-btn disabled">No link</span>') + '</div></div>'; }).join('');
 }
 function renderDreams() {
-  document.getElementById('dream-container').innerHTML = DREAM_COMPANIES,map(function(d) {
+  document.getElementById('dream-container').innerHTML = DREAM_COMPANIES.map(function(d) {
     return '<div class="dream-card"><div class="dream-dot ' + (d.hit ? 'hit' : 'miss') + '"></div>' +
       '<div><div class="dream-name">' + d.name + '</div>' +
       '<div class="dream-status">' + (d.hit ? 'Role found' : 'No open roles') + '</div></div></div>';
