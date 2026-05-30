@@ -5,74 +5,84 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Justus Stähle — Job Search Board</title>
 <style>
-  :root { --bg:#f9fafb;--card:#fff;inter-border:#e5e7eb;--text:#111827;--muted:#6b7280;--accent:#4f46e5;--accent-light:#eef2ff;--grade-a:#166534;--grade-a-bg:#dcfce7;--grade-b:#1e40af;--grade-b-bg:#dbeafe;--grade-c:#92400e;--grade-c-bg:#fef3c7;--dream:#7c3aed;--dream-bg:#ede9fe;--border:#e5e7eb }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-  header{background:var(--card);border-bottom:1px solid var(--border);padding:20px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:10}
-  .header-left h1{font-size:18px;font-weight:700}
-  .header-left p{font-size:13px;color:var(--muted);margin-top:2px}
-  .header-right{display:flex;gap:8px;flex-wrap:wrap}
-  .btn{font-size:13px;padding:6px 14px;border-radius:6px;border:1px solid var(--border);background:var(--card);cursor:pointer;color:var(--text);font-weight:500;transition:background .15s;text-decoration:none;display:inline-block}
-  main{max-width:1100px;margin:0 auto;padding:28px 20px}
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:16px}
-  .stat-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
-  .stat-card .num{font-size:28px;font-weight:700}
-  .stat-card .label{font-size:12px;color:var(--muted);margin-top:4px}
-  .stat-card.a .num{color:var(--grade-a)}.stat-card.b .num{color:var(--grade-b)}
-  .stat-card.c .num{color:var(--grade-c)}.stat-card.dream .num{color:var(--dream)}
-  .scan-bar{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:20px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;font-size:13px}
-  .scan-bar-item{display:flex;gap:6px;align-items:center}
-  .scan-bar-label{color:var(--muted)}.scan-bar-value{font-weight:600}
-  .cost-tag{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;border-radius:20px;padding:2px 10px;font-size:12px;font-weight:700}
-  .cost-section{margin-bottom:32px}
-  .cost-toggle{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;color:var(--muted);cursor:pointer;width:100%;text-align:left;display:fle{;justify-content:space-between}
-  .cost-table-wrap{display:none;margin-top:8px;border:1px solid var(--border);border-radius:8px;overflow:hidden}.cost-table-wrap.open{display:block}
-  .cost-table{width:100%;border-collapse:collapse;font-size:12px}
-  .cost-table th{background:var(--bg);padding:8px 12px;text-align:left;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
-  .cost-table td{padding:8px 12px;border-bottom:1px solid var(--border)}
-  .cost-table tr:last-child td{border-bottom:none}
-  .cost-table tr.total td{font-weight:700;background:var(--bg)}
-  .cost-removed{text-decoration:line-through;color:var(--muted)}
-  .cost-saved{color:#16a34a;font-size:11px;margin-left:4px}
-  .controls{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;align-items:center}
-  .controls input{flex:1;min-width:200px;padding:8px 12px;border:1px solid var(--border);border-radius:7px;font-size:14px;background:var(--card);color:var(--text);outline:none}
-  .filter-btns{display:flex;gap:6px;flex-wrap:wrap}
-  .filter-btn{padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:13px;font-weight:500;color:var(--muted);transition:all .15s}
-  .filter-btn.active,.filter-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light)}
-  .filter-btn.active-a{background:var(--grade-a-bg);color:var(--grade-a);border-color:var(--grade-a)}
-  .filter-btn.active-b{background:var(--grade-b-bg);color:var(--grade-b);border-color:var(--grade-b)}
-  .filter-btn.active-c{background:var(--grade-c-bg);color:var(--grade-c);border-color:var(--grade-c)}
-  .filter-btn.active-dream{background:var(--dream-bg);color:var(--dream);border-color:var(--dream)}
-  .jobs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-bottom:40px}
-  .job-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;transition:box-shadow .15s;display:flex;flex-direction:column;gap:10px}
-  .job-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.08)}
-  .job-card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-  .job-title{font-size:15px;font-weight:600;line-height:1.35}
-  .badges{display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
-  .badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:12px;white-space:nowrap}
-  .badge-a{background:var(--grade-a-bg);color:var(--grade-a)}.badge-b{background:var(--grade-b-bg);color:var(--grade-b)}
-  .badge-c{background:var(--grade-c-bg);color:var(--grade-c)}.badge-dream{background:var(--dream-bg);color:var(--dream)}
-  .job-company{font-size:14px;font-weight:500;color:var(--accent)}
-  .job-meta{font-size:12px;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap}
-  .job-notes{font-size:13px;line-height:1.5;background:var(--bg);padding:10px 12px;border-radius:7px}
-  .job-footer{display:fle{;justify-content:space-between,align-items:center;gap:8px;flex-wrap:wrap}
-  .job-date{font-size:11px;color:var(--muted)}
-  .apply-btn{font-size:12px;padding:5px 12px;background:var(--accent);color:#fff;border-radius:6px;text-decoration:none;font-weight:600;display:inline-block}
-  .apply-btn.disabled{background:var(--border);color:var(--muted);pointer-events:none}
-  .section-title{font-size:16px;font-weight:700;margin-bottom:14px}
-  .dream-gri{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:40px}
-  .dream-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:flex;align-items:center;gap:10px}
-  .dream-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-  .dream-dot.hit{background:#22c55e}.dream-dot.miss{background:var(--border)}
-  .dream-name{font-size:13px;font-weight:600}.dream-status{font-size:11px;color:var(--muted);margin-top:1px}
-  .empty-state{text-align:center;padding:60px 20px;color:var(--muted);grid-column:1 / -1}
-  footer{text-align:center;padding:20px;font-size:12px;color:var(--muted);border-top:1px solid var(--border)}
-  @media(max-width:600px){header{padding:14px 16px}main{padding:16px 14px}.jobs-gri{grid-template-columns:1fr}}
-</style></head>
+  :root {
+    --bg: #f9fafb; --card: #ffffff; --border: #e5e7eb; --text: #111827;
+    --muted: #6b7280; --accent: #4f46e5; --accent-light: #eef2ff;
+    --grade-a: #166534; --grade-a-bg: #dcfce7;
+    --grade-b: #1e40af; --grade-b-bg: #dbeafe;
+    --grade-c: #92400e; --grade-c-bg: #fef3c7;
+    --dream: #7c3aed; --dream-bg: #ede9fe;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  header { background: var(--card); border-bottom: 1px solid var(--border); padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; position: sticky; top: 0; z-index: 10; }
+  .header-left h1 { font-size: 18px; font-weight: 700; }
+  .header-left p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .header-right { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn { font-size: 13px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--card); cursor: pointer; color: var(--text); font-weight: 500; transition: background 0.15s; text-decoration: none; display: inline-block; }
+  .btn:hover { background: var(--bg); }
+  main { max-width: 1100px; margin: 0 auto; padding: 28px 20px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .stat-card .num { font-size: 28px; font-weight: 700; }
+  .stat-card .label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .stat-card.a .num { color: var(--grade-a); } .stat-card.b .num { color: var(--grade-b); }
+  .stat-card.c .num { color: var(--grade-c); } .stat-card.dream .num { color: var(--dream); }
+  .scan-bar { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; font-size: 13px; }
+  .scan-bar-item { display: flex; gap: 6px; align-items: center; }
+  .scan-bar-label { color: var(--muted); } .scan-bar-value { font-weight: 600; }
+  .cost-tag { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; border-radius: 20px; padding: 2px 10px; font-size: 12px; font-weight: 700; }
+  .cost-note { font-size: 12px; color: var(--muted); background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; margin-bottom: 20px; }
+  .cost-note strong { color: var(--text); }
+  .controls { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+  .controls input[type="text"] { flex: 1; min-width: 200px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 7px; font-size: 14px; background: var(--card); color: var(--text); outline: none; }
+  .controls input:focus { border-color: var(--accent); }
+  .filter-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-btn { padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: var(--card); cursor: pointer; font-size: 13px; font-weight: 500; color: var(--muted); transition: all 0.15s; }
+  .filter-btn.active, .filter-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+  .filter-btn.active-a { background: var(--grade-a-bg); color: var(--grade-a); border-color: var(--grade-a); }
+  .filter-btn.active-b { background: var(--grade-b-bg); color: var(--grade-b); border-color: var(--grade-b); }
+  .filter-btn.active-c { background: var(--grade-c-bg); color: var(--grade-c); border-color: var(--grade-c); }
+  .filter-btn.active-dream { background: var(--dream-bg); color: var(--dream); border-color: var(--dream); }
+  .jobs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-bottom: 40px; }
+  .job-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; transition: box-shadow 0.15s; display: flex; flex-direction: column; gap: 10px; }
+  .job-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .job-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+  .job-title { font-size: 15px; font-weight: 600; line-height: 1.35; }
+  .badges { display: flex; gap: 5px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+  .badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 12px; white-space: nowrap; }
+  .badge-a { background: var(--grade-a-bg); color: var(--grade-a); } .badge-b { background: var(--grade-b-bg); color: var(--grade-b); }
+  .badge-c { background: var(--grade-c-bg); color: var(--grade-c); } .badge-dream { background: var(--dream-bg); color: var(--dream); }
+  .job-company { font-size: 14px; font-weight: 500; color: var(--accent); }
+  .job-meta { font-size: 12px; color: var(--muted); display: flex; gap: 12px; flex-wrap: wrap; }
+  .job-notes { font-size: 13px; line-height: 1.5; background: var(--bg); padding: 10px 12px; border-radius: 7px; }
+  .job-footer { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .job-date { font-size: 11px; color: var(--muted); }
+  .apply-btn { font-size: 12px; padding: 5px 12px; background: var(--accent); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; }
+  .apply-btn:hover { background: #4338ca; }
+  .apply-btn.disabled { background: var(--border); color: var(--muted); pointer-events: none; }
+  .section-title { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
+  .dream-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; margin-bottom: 40px; }
+  .dream-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
+  .dream-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dream-dot.hit { background: #22c55e; } .dream-dot.miss { background: var(--border); }
+  .dream-name { font-size: 13px; font-weight: 600; } .dream-status { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); grid-column: 1 / -1; }
+  .empty-state h3 { font-size: 16px; margin-bottom: 8px; color: var(--text); }
+  footer { text-align: center; padding: 20px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
+  @media (max-width: 600px) { header { padding: 14px 16px; } main { padding: 16px 14px; } .jobs-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
 <body>
 <header>
-  <div class="header-left"><h1>Justus Stähle — Job Search</h1><p>Operations &amp; Process Management — Munich</p></div>
-  <div class="header-right"><a class="btn" href="martin-bauer.html">Martin's Board</a><span class="btn" id="last-updated" style="cursor:default;color:var(--muted)"></span></div>
+  <div class="header-left">
+    <h1>Justus Stähle — Job Search</h1>
+    <p>Operations &amp; Process Management — Munich</p>
+  </div>
+  <div class="header-right">
+    <a class="btn" href="martin-bauer.html">Martin's Board</a>
+    <span class="btn" id="last-updated" style="cursor:default;color:var(--muted)"></span>
+  </div>
 </header>
 <main>
   <div class="stats">
@@ -83,36 +93,15 @@
     <div class="stat-card"><div class="num" id="count-total">0</div><div class="label">Total Listings</div></div>
   </div>
   <div class="scan-bar" id="scan-bar" style="display:none">
-    <div class="scan-bar-item"><span class="scan-bar-label">Last scan</span><span class="scan-bar-value" id="meta-date">-</span></div>
-    <div class="scan-bar-item"><span class="scan-bar-label">Scraped</span><span class="scan-bar-value" id="meta-scraped">-</span></div>
-    <div class="scan-bar-item"><span class="scan-bar-label">Verified</span><span class="scan-bar-value" id="meta-verified">-</span></div>
-    <div class="scan-bar-item"><span class="scan-bar-label">Dead links</span><span class="scan-bar-value" id="meta-dead">-</span></div>
-    <div class="scan-bar-item"><span class="scan-bar-label">Est. cost</span><span class="cost-tag" id="meta-cost">-</span></div>
+    <div class="scan-bar-item"><span class="scan-bar-label">Last scan</span><span class="scan-bar-value" id="meta-date"></span></div>
+    <div class="scan-bar-item"><span class="scan-bar-label">Scraped</span><span class="scan-bar-value" id="meta-scraped"></span></div>
+    <div class="scan-bar-item"><span class="scan-bar-label">Verified ✅</span><span class="scan-bar-value" id="meta-verified"></span></div>
+    <div class="scan-bar-item"><span class="scan-bar-label">Dead links 🚫</span><span class="scan-bar-value" id="meta-dead"></span></div>
+    <div class="scan-bar-item"><span class="scan-bar-label">Est. cost</span><span class="cost-tag" id="meta-cost"></span></div>
   </div>
-  <div class="cost-section">
-    <button class="cost-toggle" onclick="document.getElementById('cost-table').classList.toggle('open');this.querySelector('span').textContent=document.getElementById('cost-table').classList.contains('open')?'▲':'▼'">
-      💰 Apify cost reference — per scan estimate <span>▼</span>
-    </button>
-    <div class="cost-table-wrap" id="cost-table">
-      <table class="cost-table">
-        <thead><tr><th>Actor</th><th>Queries</th><th>Start</th><th>Results</th><th>Per scan</th></tr></thead>
-        <tbody>
-          <tr><td>valig/glassdoor-jobs-scraper</td><td>5</td><td>5&#215;$0.0009</td><td>~250&#215;$0.00036</td><td><strong>>$0.10</strong></td></tr>
-          <tr><td>curious_coder/linkedin-jobs-scraper</td><td>6</td><td>negl</td><td>~150&#215;$0.001</td><td><strong>>$0.15</strong></td></tr>
-          <tr><td>easyapi/stepstone-jobs-scraper</td><td>4</td><td>4&#215;$0.09</td><td>~100&#215;$0.003</td><td><strong>>$0.66</strong></td></tr>
-          <tr><td>misceres/indeed-scraper</td><td>3</td><td>negl</td><td>~75&#215;$0.005</td><td><strong>~$0.40</strong></td></tr>
-          <tr><td>shahidirfan/Xing-Jobs-Scraper <span style="color:#16a34a;font-size:11px">&#8607; was $0.09/start</span></td><td>3</td><td>3&#215;$0.0005</td><td>~60&#215;$0.001</td><td><strong>~$0.06</strong></td></tr>
-          <tr><td>blackfalcondata/arbeitsagentur-jobs-feed</td><td>2</td><td>2&#215;$0.01</td><td>~18&#215;$0.002</td><td><strong>~$0.06</strong></td></tr>
-          <tr><td>blackfalcondata/workday-scraper</td><td>10</td><td>10&#215;$0.005</td><td>~200&#215;$0.002</td><td><strong>~$0.45</strong></td></tr>
-          <tr class="total"><td colspan="4">Total per scan</td><td>~$1.88</td></tr>
-          <tr class="total"><td colspan="4">Both scans/day</td><td>~$3.76/day</td></tr>
-          <tr><td colspan="5" style="color:var(--muted);font-size:11px;padding-top:6px">Removed: <style>.rm{text-decoration:line-through}</style><span class="rm">orgupdate/google-jobs-scraper ~$10.76/run</span> &amp; <span class="rm">johnvc/Google-Jobs-Scraper ~$27.66/run</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <div class="cost-note">💰 <strong>~$1.88/scan · ~$3.76/day</strong> for both boards — Glassdoor, LinkedIn, StepStone, Indeed, XING, Arbeitsagentur, Workday · Removed Google Jobs scrapers (~$38/run) · Switched XING to shahidirfan (saves ~$0.27/scan)</div>
   <div class="controls">
-    <input type="text" id="search" placeholder="Search by company, title, source..."/>
+    <input type="text" id="search" placeholder="Search by company, title, source..." />
     <div class="filter-btns">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="A">A-Grade</button>
@@ -125,19 +114,58 @@
   <div class="section-title">Dream Company Monitor</div>
   <div class="dream-grid" id="dream-container"></div>
 </main>
-<footer>Updated daily by Claude �� <a href="martin-bauer.html" style="color:var(--muted)">Martin's Board</a></footer>
+<footer>Updated daily by Claude · <a href="martin-bauer.html" style="color:var(--muted)">Martin's Board</a></footer>
 <script>
-const SCAN_META={lastScan:null,totalScraped:null,passedVerification:null,deadLinks:null,estCostUSD:null,sources:[]};
-const JOBS=[];
-const DREAM_COMPANIES=[{name:"Celonis",hit:false,url:"https://celonis.com/careers"},{name:"ServiceNow",hit:false,url:"https://servicenow.wd1.myworkdayjobs.com/External"},{name:"Helsing"hit:false,url:"https://helsing.ai/careers"},{name:"Isar Aerospace",hit:false,url:"https://isarspace.de/careers"},{name:"Quantum Systems",hit:false,url:"https://quantum-systems.com/career"},{name:"Forto",hit:false,url:"https://forto.com/careers"},{name:"Personio",hit:false,url:"https://personio.com/careers"},{name:"Rohde & Schwarz",hit:false,url:"https://rohde-schwarz.com/careers"},{name:"MTU Aero Engines",hit:false,url:"https://mtu.wd3.myworkdayjobs.com/mtu_careers"},{name:"Infineon",hit:false,url:"https://infineon.wd3.myworkdayjobs.com/Infineon"},{name:"Siemens",hit:false,url:"https://siemens.wd3.myworkdayjobs.com/Siemens"},{name:"Airbus",hit:false,url:"https://airbus.wd3.myworkdayjobs.com/Careers"},{name:"Carl Zeiss AG",hit:false,url:"https://zeiss.wd3.myworkdayjobs.com/Karriere_Extern"},{name:"Knorr-Bremse",hit:false,url:"https://knorr-bremse.wd3.myworkdayjobs.com/Knorr-Bremse-Careers"}];
-let activeFilter='all',searchTerm='';
-function gradeBadge(g){return `<span class="badge badge-${g.toLowerCase()}">${g}</span>`;}
-function wMode(h){return h===true?'Hybrid':h===false?'On-site':'Unknown';}
-function renderMeta(){if(!SCAN_META.lastScan)return;document.getElementById('scan-bar').style.display='flex';document.getElementById('meta-date').textContent=SCAN_META.lastScan;const f=(id,v)=>{const e=document.getElementById(id);if(e){e.textContent=v??'-';}};f('meta-scraped',SCAN_META->totalScraped);f('meta-verified',SCAN_META.passedVerification);f('meta-dead',SCAN_META->deadLinks);const c=document.getElementById('meta-cost');if(c){c.textContent=SCAN_META->estCostUSD $�null?`$${SCAN_META->estCostUSD/toFixed(2)}`:'-';}}
-function renderJobs(){const c=document.getElementById('jobs-container');let f=JOBS.filter(j=>activeFilter==='dream'?j.dreamCompany:activeFilter!=='all'?j.grade===activeFilter:true);if(searchTerm){const q=searchTerm.toLowerCase();f=f.filter(j=>j.title.toLowerCase().includes(q)||j.company.toLowerCase().includes(q)||(j.source||'').toLowerCase().includes(q)||(j.notes||'').toLowerCase().includes(q)||(uloc|j.location||'').toLowerCase().includes(q));}f.sort((a,b)=>{const m={A:0,B:1,C:2};if(m[a.grade]!==m[b.grade])return m[a.grade]-m[b.grade];if(a.dreamCompany!==b.dreamCompany)return a.dreamCompany?-1:1;return new Date(b.scanDate)-new Date(a.scanDate);});if(!f.length){c.innerHTML=`<div class="empty-state"><h3>${JOBS.length===0?'No listings yet':'No matches'}</h3><p>${JOBS.length===0?'First scan will populate this board.':'Try clearing your filter or search.'}</p></div>`;return;}c.innerHTML=f.map(j=>`<div class="job-card"><div class="job-card-header"><div class="job-title">${j.title}</div><div class="badges">${j.dreamCompany?'<span class="badge badge-dream">Dream Co</span>':''}${gradeBadge(j.grade)}</div></div><div class="job-company">${j.company}</div><div class="job-meta"><span>${j.location||'Munich'}</span><span>${wMode(j.hybrid)}</span><span>${j.source||'Unknown'}</span></div>${j.notes?`<div class="job-notes">${j.notes}</div>`:''}<div class="job-footer"><span class="job-date">Found ${j.scanDate}</span>${j.url?`<a href="${j.url}" target="_blank" class="apply-btn">Apply &#10130;</a>`:'<span class="apply-btn disabled">No link</span>'}</div></div>`).join('');}
-function renderDreams(){document.getElementById('dream-container').innerHTML=DREAM_COMPANIES.map(d=>`<div class="dream-card"><div class="dream-dot ${d.hit?'hit':'miss'}"></div><div><div class="dream-name">${d.name}</div><div class="dream-status">${d.hit?'Role found':'No open roles'}</div></div></div>`).join('');}
-function updateStats(){document.getElementById('count-a').textContent=JOBS.filter(j=>j.grade==='A').length;document.getElementById('count-b').textContent=JOBS.filter(j=>j.grade==='B').length;document.getElementById('count-c').textContent=JOBS.filter(j=>j.grade==='C').length;document.getElementById('count-dream').textContent=JOBS.filter(j=>j.dreamCompany).length;document.getElementById('count-total').textContent=JOBS.length;if(JOBS.length>0){const l=JOBS.map(j=>j.scanDate).sort().reverse()[0];document.getElementById('last-updated').textContent=`Last scan: ${l}`;}}
-document.querySelectorAll('.filter-btn').forEach(b=>{b.addEventListener('click',()=>{activeFilter=b.dataset.filter;document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active','active-a','active-b','active-c','active-dream'));const m={A:'active-a',B:'active-b',C:'active-c',dream:'active-dream'};b.classList.add(m[activeFilter]||'active');renderJobs();});});
-document.getElementById('search').addEventListener('input',e=>{searchTerm=e.target.value;renderJobs();});
-updateStats();renderMeta();renderJobs();renderDreams();
-</script></body></html>
+const SCAN_META = { lastScan: null, totalScraped: null, passedVerification: null, deadLinks: null, estCostUSD: null, sources: [] };
+const JOBS = [];
+const DREAM_COMPANIES = [
+  { name: 'Celonis', hit: false, url: 'https://celonis.com/careers' },
+  { name: 'ServiceNow', hit: false, url: 'https://servicenow.wd1.myworkdayjobs.com/External' },
+  { name: 'Helsing', hit: false, url: 'https://helsing.ai/careers' },
+  { name: 'Isar Aerospace', hit: false, url: 'https://isarspace.de/careers' },
+  { name: 'Quantum Systems', hit: false, url: 'https://quantum-systems.com/career' },
+  { name: 'Forto', hit: false, url: 'https://forto.com/careers' },
+  { name: 'Personio', hit: false, url: 'https://personio.com/careers' },
+  { name: 'Rohde & Schwarz', hit: false, url: 'https://rohde-schwarz.com/careers' },
+  { name: 'MTU Aero Engines', hit: false, url: 'https://mtu.wd3.myworkdayjobs.com/mtu_careers' },
+  { name: 'Infineon', hit: false, url: 'https://infineon.wd3.myworkdayjobs.com/Infineon' },
+  { name: 'Siemens', hit: false, url: 'https://siemens.wd3.myworkdayjobs.com/Siemens' },
+  { name: 'Airbus', hit: false, url: 'https://airbus.wd3.myworkdayjobs.com/Careers' },
+  { name: 'Carl Zeiss AG', hit: false, url: 'https://zeiss.wd3.myworkdayjobs.com/Karriere_Extern' },
+  { name: 'Knorr-Bremse', hit: false, url: 'https://knorr-bremse.wd3.myworkdayjobs.com/Knorr-Bremse-Careers' }
+];
+let activeFilter = 'all', searchTerm = '';
+function gradeBadge(g) { return `<span class="badge badge-${g.toLowerCase()}">${g}</span>`; }
+function wMode(h) { return h === true ? 'Hybrid' : h === false ? 'On-site' : 'Unknown'; }
+function renderMeta() {
+  if (!SCAN_META.lastScan) return;
+  document.getElementById('scan-bar').style.display = 'flex';
+  document.getElementById('meta-date').textContent = SCAN_META.lastScan;
+  document.getElementById('meta-scraped').textContent = SCAN_META.totalScraped ?? '-';
+  document.getElementById('meta-verified').textContent = SCAN_META.passedVerification ?? '-';
+  document.getElementById('meta-dead').textContent = SCAN_META.deadLinks ?? '-';
+  document.getElementById('meta-cost').textContent = SCAN_META.estCostUSD != null ? '$' + SCAN_META.estCostUSD.toFixed(2) : '-';
+}
+function renderJobs() {
+  const c = document.getElementById('jobs-container');
+  let f = JOBS.filter(j => activeFilter === 'dream' ? j.dreamCompany : activeFilter !== 'all' ? j.grade === activeFilter : true);
+  if (searchTerm) { const q = searchTerm.toLowerCase(); f = f.filter(j => j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || (j.source||'').toLowerCase().includes(q) || (j.notes||'').toLowerCase().includes(q) || (j.location||'').toLowerCase().includes(q)); }
+  f.sort((a, b) => { const m = {A:0,B:1,C:2}; if (m[a.grade] !== m[b.grade]) return m[a.grade] - m[b.grade]; if (a.dreamCompany !== b.dreamCompany) return a.dreamCompany ? -1 : 1; return new Date(b.scanDate) - new Date(a.scanDate); });
+  if (!f.length) { c.innerHTML = '<div class="empty-state"><h3>' + (JOBS.length === 0 ? 'No listings yet' : 'No matches') + '</h3><p>' + (JOBS.length === 0 ? 'The first scan will populate this board.' : 'Try clearing your filter or search.') + '</p></div>'; return; }
+  c.innerHTML = f.map(j => '<div class="job-card"><div class="job-card-header"><div class="job-title">' + j.title + '</div><div class="badges">' + (j.dreamCompany ? '<span class="badge badge-dream">Dream Co</span>' : '') + gradeBadge(j.grade) + '</div></div><div class="job-company">' + j.company + '</div><div class="job-meta"><span>' + (j.location||'Munich') + '</span><span>' + wMode(j.hybrid) + '</span><span>' + (j.source||'Unknown') + '</span></div>' + (j.notes ? '<div class="job-notes">' + j.notes + '</div>' : '') + '<div class="job-footer"><span class="job-date">Found ' + j.scanDate + '</span>' + (j.url ? '<a href="' + j.url + '" target="_blank" class="apply-btn">Apply →</a>' : '<span class="apply-btn disabled">No link</span>') + '</div></div>').join('');
+}
+function renderDreams() { document.getElementById('dream-container').innerHTML = DREAM_COMPANIES,map(d => '<div class="dream-card"><div class="dream-dot ' + (d.hit ? 'hit' : 'miss') + '"></div><div><div class="dream-name">' + d.name + '</div><div class="dream-status">' + (d.hit ? 'Role found' : 'No open roles') + '</div></div></div>').join(''); }
+function updateStats() {
+  document.getElementById('count-a').textContent = JOBS.filter(j => j.grade === 'A').length;
+  document.getElementById('count-b').textContent = JOBS.filter(j => j.grade === 'B').length;
+  document.getElementById('count-c').textContent = JOBS.filter(j => j.grade === 'C').length;
+  document.getElementById('count-dream').textContent = JOBS.filter(j => j.dreamCompany).length;
+  document.getElementById('count-total').textContent = JOBS.length;
+  if (JOBS.length > 0) { const l = JOBS.map(j => j.scanDate).sort().reverse()[0]; document.getElementById('last-updated').textContent = 'Last scan: ' + l; }
+}
+document.querySelectorAll('.filter-btn').forEach(b => { b.addEventListener('click', () => { activeFilter = b.dataset.filter; document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active','active-a','active-b','active-c','active-dream')); const m = {A:'active-a',B:'active-b',C:'active-c',dream:'active-dream'}; b.classList.add(m[activeFilter] || 'active'); renderJobs(); }); });
+document.getElementById('search').addEventListener('input', e => { searchTerm = e.target.value; renderJobs(); });
+updateStats(); renderMeta(); renderJobs(); renderDreams();
+</script>
+</body>
+</html>
