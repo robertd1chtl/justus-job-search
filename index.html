@@ -3,161 +3,184 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Justus StÃ¤hle â Job Search Board</title>
+<title>Justus Stähle — Job Search Board</title>
 <style>
-  :root {
-    --bg: #f9fafb; --card: #ffffff; --border: #e5e7eb; --text: #111827;
-    --muted: #6b7280; --accent: #4f46e5; --accent-light: #eef2ff;
-    --grade-a: #166534; --grade-a-bg: #dcfce7;
-    --grade-b: #1e40af; --grade-b-bg: #dbeafe;
-    --grade-c: #92400e; --grade-c-bg: #fef3c7;
-    --dream: #7c3aed; --dream-bg: #ede9fe;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-  header { background: var(--card); border-bottom: 1px solid var(--border); padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; position: sticky; top: 0; z-index: 10; }
-  .header-left h1 { font-size: 18px; font-weight: 700; }
-  .header-left p { font-size: 13px; color: var(--muted); margin-top: 2px; }
-  .header-right { display: flex; gap: 8px; flex-wrap: wrap; }
-  .btn { font-size: 13px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--card); cursor: pointer; color: var(--text); font-weight: 500; transition: background 0.15s; text-decoration: none; display: inline-block; }
-  .btn:hover { background: var(--bg); }
-  main { max-width: 1100px; margin: 0 auto; padding: 28px 20px; }
-  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 16px; }
-  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
-  .stat-card .num { font-size: 28px; font-weight: 700; }
-  .stat-card .label { font-size: 12px; color: var(--muted); margin-top: 4px; }
-  .stat-card.a .num { color: var(--grade-a); } .stat-card.b .num { color: var(--grade-b); }
-  .stat-card.c .num { color: var(--grade-c); } .stat-card.dream .num { color: var(--dream); }
-  .scan-bar { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; font-size: 13px; }
-  .scan-bar-item { display: flex; gap: 6px; align-items: center; }
-  .scan-bar-label { color: var(--muted); } .scan-bar-value { font-weight: 600; }
-  .cost-tag { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; border-radius: 20px; padding: 2px 10px; font-size: 12px; font-weight: 700; }
-  .cost-note { font-size: 12px; color: var(--muted); background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; margin-bottom: 20px; }
-  .cost-note strong { color: var(--text); }
-  .controls { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
-  .controls input[type="text"] { flex: 1; min-width: 200px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 7px; font-size: 14px; background: var(--card); color: var(--text); outline: none; }
-  .controls input:focus { border-color: var(--accent); }
-  .filter-btns { display: flex; gap: 6px; flex-wrap: wrap; }
-  .filter-btn { padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: var(--card); cursor: pointer; font-size: 13px; font-weight: 500; color: var(--muted); transition: all 0.15s; }
-  .filter-btn.active, .filter-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
-  .filter-btn.active-a { background: var(--grade-a-bg); color: var(--grade-a); border-color: var(--grade-a); }
-  .filter-btn.active-b { background: var(--grade-b-bg); color: var(--grade-b); border-color: var(--grade-b); }
-  .filter-btn.active-c { background: var(--grade-c-bg); color: var(--grade-c); border-color: var(--grade-c); }
-  .filter-btn.active-dream { background: var(--dream-bg); color: var(--dream); border-color: var(--dream); }
-  .jobs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-bottom: 40px; }
-  .job-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; transition: box-shadow 0.15s; display: flex; flex-direction: column; gap: 10px; }
-  .job-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-  .job-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
-  .job-title { font-size: 15px; font-weight: 600; line-height: 1.35; }
-  .badges { display: flex; gap: 5px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
-  .badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 12px; white-space: nowrap; }
-  .badge-a { background: var(--grade-a-bg); color: var(--grade-a); } .badge-b { background: var(--grade-b-bg); color: var(--grade-b); }
-  .badge-c { background: var(--grade-c-bg); color: var(--grade-c); } .badge-dream { background: var(--dream-bg); color: var(--dream); }
-  .job-company { font-size: 14px; font-weight: 500; color: var(--accent); }
-  .job-meta { font-size: 12px; color: var(--muted); display: flex; gap: 12px; flex-wrap: wrap; }
-  .job-notes { font-size: 13px; line-height: 1.5; background: var(--bg); padding: 10px 12px; border-radius: 7px; }
-  .job-footer { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .job-date { font-size: 11px; color: var(--muted); }
-  .apply-btn { font-size: 12px; padding: 5px 12px; background: var(--accent); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; }
-  .apply-btn:hover { background: #4338ca; }
-  .apply-btn.disabled { background: var(--border); color: var(--muted); pointer-events: none; }
-  .section-title { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
-  .dream-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; margin-bottom: 40px; }
-  .dream-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
-  .dream-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .dream-dot.hit { background: #22c55e; } .dream-dot.miss { background: var(--border); }
-  .dream-name { font-size: 13px; font-weight: 600; } .dream-status { font-size: 11px; color: var(--muted); margin-top: 1px; }
-  .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); grid-column: 1 / -1; }
-  .empty-state h3 { font-size: 16px; margin-bottom: 8px; color: var(--text); }
-  footer { text-align: center; padding: 20px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
-  @media (max-width: 600px) { header { padding: 14px 16px; } main { padding: 16px 14px; } .jobs-grid { grid-template-columns: 1fr; } }
+:root {
+--bg: #f9fafb; --card: #ffffff; --border: #e5e7eb; --text: #111827;
+--muted: #6b7280; --accent: #4f46e5; --accent-light: #eef2ff;
+--grade-a: #166534; --grade-a-bg: #dcfce7;
+--grade-b: #1e40af; --grade-b-bg: #dbeafe;
+--grade-c: #92400e; --grade-c-bg: #fef3c7;
+--dream: #7c3aed; --dream-bg: #ede9fe;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+header { background: var(--card); border-bottom: 1px solid var(--border); padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; position: sticky; top: 0; z-index: 10; }
+.header-left h1 { font-size: 18px; font-weight: 700; }
+.header-left p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.header-right { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { font-size: 13px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--card); cursor: pointer; color: var(--text); font-weight: 500; transition: background 0.15s; text-decoration: none; display: inline-block; }
+.btn:hover { background: var(--bg); }
+main { max-width: 1100px; margin: 0 auto; padding: 28px 20px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+.stat-card .num { font-size: 28px; font-weight: 700; }
+.stat-card .label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.stat-card.a .num { color: var(--grade-a); } .stat-card.b .num { color: var(--grade-b); }
+.stat-card.c .num { color: var(--grade-c); } .stat-card.dream .num { color: var(--dream); }
+.scan-bar { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; font-size: 13px; }
+.scan-bar-item { display: flex; gap: 6px; align-items: center; }
+.scan-bar-label { color: var(--muted); } .scan-bar-value { font-weight: 600; }
+.cost-tag { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; border-radius: 20px; padding: 2px 10px; font-size: 12px; font-weight: 700; }
+.cost-note { font-size: 12px; color: var(--muted); background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; margin-bottom: 20px; }
+.cost-note strong { color: var(--text); }
+.controls { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+.controls input[type="text"] { flex: 1; min-width: 200px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 7px; font-size: 14px; background: var(--card); color: var(--text); outline: none; }
+.controls input:focus { border-color: var(--accent); }
+.filter-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.filter-btn { padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: var(--card); cursor: pointer; font-size: 13px; font-weight: 500; color: var(--muted); transition: all 0.15s; }
+.filter-btn.active, .filter-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+.filter-btn.active-a { background: var(--grade-a-bg); color: var(--grade-a); border-color: var(--grade-a); }
+.filter-btn.active-b { background: var(--grade-b-bg); color: var(--grade-b); border-color: var(--grade-b); }
+.filter-btn.active-c { background: var(--grade-c-bg); color: var(--grade-c); border-color: var(--grade-c); }
+.filter-btn.active-dream { background: var(--dream-bg); color: var(--dream); border-color: var(--dream); }
+.jobs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-bottom: 40px; }
+.job-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; transition: box-shadow 0.15s; display: flex; flex-direction: column; gap: 10px; }
+.job-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.job-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.job-title { font-size: 15px; font-weight: 600; line-height: 1.35; }
+.badges { display: flex; gap: 5px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+.badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 12px; white-space: nowrap; }
+.badge-a { background: var(--grade-a-bg); color: var(--grade-a); } .badge-b { background: var(--grade-b-bg); color: var(--grade-b); }
+.badge-c { background: var(--grade-c-bg); color: var(--grade-c); } .badge-dream { background: var(--dream-bg); color: var(--dream); }
+.job-company { font-size: 14px; font-weight: 500; color: var(--accent); }
+.job-meta { font-size: 12px; color: var(--muted); display: flex; gap: 12px; flex-wrap: wrap; }
+.job-notes { font-size: 13px; line-height: 1.5; background: var(--bg); padding: 10px 12px; border-radius: 7px; }
+.job-footer { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.job-date { font-size: 11px; color: var(--muted); }
+.apply-btn { font-size: 12px; padding: 5px 12px; background: var(--accent); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; }
+.apply-btn:hover { background: #4338ca; }
+.apply-btn.disabled { background: var(--border); color: var(--muted); pointer-events: none; }
+.section-title { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
+.dream-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; margin-bottom: 40px; }
+.dream-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
+.dream-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.dream-dot.hit { background: #22c55e; } .dream-dot.miss { background: var(--border); }
+.dream-name { font-size: 13px; font-weight: 600; } .dream-status { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.empty-state { text-align: center; padding: 60px 20px; color: var(--muted); grid-column: 1 / -1; }
+.empty-state h3 { font-size: 16px; margin-bottom: 8px; color: var(--text); }
+footer { text-align: center; padding: 20px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
+@media (max-width: 600px) { header { padding: 14px 16px; } main { padding: 16px 14px; } .jobs-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 <header>
-  <div class="header-left">
-    <h1>Justus StÃ¤hle â Job Search</h1>
-    <p>Operations &amp; Process Management â Munich</p>
-  </div>
-  <div class="header-right">
-    <a class="btn" href="martin-bauer.html">Martin's Board</a>
-    <span class="btn" id="last-updated" style="cursor:default;color:var(--muted)"></span>
-  </div>
+<div class="header-left">
+<h1>Justus Stähle — Job Search</h1>
+<p>Operations &amp; Process Management — Munich</p>
+</div>
+<div class="header-right">
+<a class="btn" href="martin-bauer.html">Martin's Board</a>
+<span class="btn" id="last-updated" style="cursor:default;color:var(--muted)"></span>
+</div>
 </header>
 <main>
-  <div class="stats">
-    <div class="stat-card a"><div class="num" id="count-a">0</div><div class="label">A-Grade</div></div>
-    <div class="stat-card b"><div class="num" id="count-b">0</div><div class="label">B-Grade</div></div>
-    <div class="stat-card c"><div class="num" id="count-c">0</div><div class="label">C-Grade</div></div>
-    <div class="stat-card dream"><div class="num" id="count-dream">0</div><div class="label">Dream Co. Hits</div></div>
-    <div class="stat-card"><div class="num" id="count-total">0</div><div class="label">Total Listings</div></div>
-  </div>
-  <div class="scan-bar" id="scan-bar" style="display:none">
-    <div class="scan-bar-item"><span class="scan-bar-label">Last scan</span><span class="scan-bar-value" id="meta-date"></span></div>
-    <div class="scan-bar-item"><span class="scan-bar-label">Scraped</span><span class="scan-bar-value" id="meta-scraped"></span></div>
-    <div class="scan-bar-item"><span class="scan-bar-label">Verified â</span><span class="scan-bar-value" id="meta-verified"></span></div>
-    <div class="scan-bar-item"><span class="scan-bar-label">Dead links ð«</span><span class="scan-bar-value" id="meta-dead"></span></div>
-    <div class="scan-bar-item"><span class="scan-bar-label">Est. cost</span><span class="cost-tag" id="meta-cost"></span></div>
-  </div>
-  <div class="cost-note">ð° <strong>~$1.88/scan Â· ~$3.76/day</strong> for both boards â Glassdoor, LinkedIn, StepStone, Indeed, XING, Arbeitsagentur, Workday Â· Removed Google Jobs scrapers (~$38/run) Â· Switched XING to shahidirfan (saves ~$0.27/scan)</div>
-  <div class="controls">
-    <input type="text" id="search" placeholder="Search by company, title, source..." />
-    <div class="filter-btns">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="A">A-Grade</button>
-      <button class="filter-btn" data-filter="B">B-Grade</button>
-      <button class="filter-btn" data-filter="C">C-Grade</button>
-      <button class="filter-btn" data-filter="dream">Dream Co.</button>
-    </div>
-  </div>
-  <div class="jobs-grid" id="jobs-container"></div>
-  <div class="section-title">Dream Company Monitor</div>
-  <div class="dream-grid" id="dream-container"></div>
+<div class="stats">
+<div class="stat-card a"><div class="num" id="count-a">0</div><div class="label">A-Grade</div></div>
+<div class="stat-card b"><div class="num" id="count-b">0</div><div class="label">B-Grade</div></div>
+<div class="stat-card c"><div class="num" id="count-c">0</div><div class="label">C-Grade</div></div>
+<div class="stat-card dream"><div class="num" id="count-dream">0</div><div class="label">Dream Co. Hits</div></div>
+<div class="stat-card"><div class="num" id="count-total">0</div><div class="label">Total Listings</div></div>
+</div>
+<div class="scan-bar" id="scan-bar" style="display:none">
+<div class="scan-bar-item"><span class="scan-bar-label">Last scan</span><span class="scan-bar-value" id="meta-date"></span></div>
+<div class="scan-bar-item"><span class="scan-bar-label">Scraped</span><span class="scan-bar-value" id="meta-scraped"></span></div>
+<div class="scan-bar-item"><span class="scan-bar-label">Verified ✓</span><span class="scan-bar-value" id="meta-verified"></span></div>
+<div class="scan-bar-item"><span class="scan-bar-label">Dead links 🚫</span><span class="scan-bar-value" id="meta-dead"></span></div>
+<div class="scan-bar-item"><span class="scan-bar-label">Est. cost</span><span class="cost-tag" id="meta-cost"></span></div>
+</div>
+<div class="cost-note">💰 <strong>~$1.88/scan · ~$3.76/day</strong> for both boards — Glassdoor, LinkedIn, StepStone, Indeed, XING, Arbeitsagentur, Workday · Removed Google Jobs scrapers (~$38/run) · Switched XING to shahidirfan (saves ~$0.27/scan)</div>
+<div class="controls">
+<input type="text" id="search" placeholder="Search by company, title, source..." />
+<div class="filter-btns">
+<button class="filter-btn active" data-filter="all">All</button>
+<button class="filter-btn" data-filter="A">A-Grade</button>
+<button class="filter-btn" data-filter="B">B-Grade</button>
+<button class="filter-btn" data-filter="C">C-Grade</button>
+<button class="filter-btn" data-filter="dream">Dream Co.</button>
+</div>
+</div>
+<div class="jobs-grid" id="jobs-container"></div>
+<div class="section-title">Dream Company Monitor</div>
+<div class="dream-grid" id="dream-container"></div>
 </main>
-<footer>Updated daily by Claude Â· <a href="martin-bauer.html" style="color:var(--muted)">Martin's Board</a></footer>
+<footer>Updated daily by Claude · <a href="martin-bauer.html" style="color:var(--muted)">Martin's Board</a></footer>
 <script>
 const SCAN_META = { lastScan: null, totalScraped: null, passedVerification: null, deadLinks: null, estCostUSD: null, sources: ["Glassdoor","LinkedIn","StepStone","Indeed","XING","Arbeitsagentur","Workday"] };
 const JOBS = [];
 const DREAM_COMPANIES = [
-  { name: 'Celonis', hit: false, url: 'https://celonis.com/careers' },
-  { name: 'ServiceNow', hit: false, url: 'https://servicenow.wd1.myworkdayjobs.com/External' },
-  { name: 'Helsing', hit: false, url: 'https://helsing.ai/careers' },
-  { name: 'Isar Aerospace', hit: false, url: 'https://isarspace.de/careers' },
-  { name: 'Quantum Systems', hit: false, url: 'https://quantum-systems.com/career' },
-  { name: 'Forto', hit: false, url: 'https://forto.com/careers' },
-  { name: 'Personio', hit: false, url: 'https://personio.com/careers' },
-  { name: 'Rohde & Schwarz', hit: false, url: 'https://rohde-schwarz.com/careers' },
-  { name: 'MTU Aero Engines', hit: false, url: 'https://mtu.wd3.myworkdayjobs.com/mtu_careers' },
-  { name: 'Infineon', hit: false, url: 'https://infineon.wd3.myworkdayjobs.com/Infineon' },
-  { name: 'Siemens', hit: false, url: 'https://siemens.wd3.myworkdayjobs.com/Siemens' },
-  { name: 'Airbus', hit: false, url: 'https://airbus.wd3.myworkdayjobs.com/Careers' },
-  { name: 'Carl Zeiss AG', hit: false, url: 'https://zeiss.wd3.myworkdayjobs.com/Karriere_Extern' },
-  { name: 'Knorr-Bremse', hit: false, url: 'https://knorr-bremse.wd3.myworkdayjobs.com/Knorr-Bremse-Careers' }
+{ name: 'Celonis', hit: false, url: 'https://celonis.com/careers' },
+{ name: 'ServiceNow', hit: false, url: 'https://servicenow.wd1.myworkdayjobs.com/External' },
+{ name: 'Helsing', hit: false, url: 'https://helsing.ai/careers' },
+{ name: 'Isar Aerospace', hit: false, url: 'https://isarspace.de/careers' },
+{ name: 'Quantum Systems', hit: false, url: 'https://quantum-systems.com/career' },
+{ name: 'Forto', hit: false, url: 'https://forto.com/careers' },
+{ name: 'Personio', hit: false, url: 'https://personio.com/careers' },
+{ name: 'Rohde & Schwarz', hit: false, url: 'https://rohde-schwarz.com/careers' },
+{ name: 'MTU Aero Engines', hit: false, url: 'https://mtu.wd3.myworkdayjobs.com/mtu_careers' },
+{ name: 'Infineon', hit: false, url: 'https://infineon.wd3.myworkdayjobs.com/Infineon' },
+{ name: 'Siemens', hit: false, url: 'https://siemens.wd3.myworkdayjobs.com/Siemens' },
+{ name: 'Airbus', hit: false, url: 'https://airbus.wd3.myworkdayjobs.com/Careers' },
+{ name: 'Carl Zeiss AG', hit: false, url: 'https://zeiss.wd3.myworkdayjobs.com/Karriere_Extern' },
+{ name: 'Knorr-Bremse', hit: false, url: 'https://knorr-bremse.wd3.myworkdayjobs.com/Knorr-Bremse-Careers' }
 ];
 let activeFilter = 'all', searchTerm = '';
 function gradeBadge(g) { return '<span class="badge badge-' + g.toLowerCase() + '">' + g + '</span>'; }
 function wMode(h) { return h === true ? 'Hybrid' : h === false ? 'On-site' : 'Unknown'; }
 function renderMeta() {
-  if (!SCAN_META.lastScan) return;
-  document.getElementById('scan-bar').style.display = 'flex';
-  document.getElementById('meta-date').textContent = SCAN_META.lastScan;
-  document.getElementById('meta-scraped').textContent = SCAN_META.totalScraped != null ? SCAN_META.totalScraped : '-';
-  document.getElementById('meta-verified').textContent = SCAN_META.passedVerification != null ? SCAN_META.passedVerification : '-';
-  document.getElementById('meta-dead').textContent = SCAN_META.deadLinks != null ? SCAN_META.deadLinks : '-';
-  document.getElementById('meta-cost').textContent = SCAN_META.estCostUSD != null ? '$' + SCAN_META.estCostUSD.toFixed(2) : '-';
+if (!SCAN_META.lastScan) return;
+document.getElementById('scan-bar').style.display = 'flex';
+document.getElementById('meta-date').textContent = SCAN_META.lastScan;
+document.getElementById('meta-scraped').textContent = SCAN_META.totalScraped != null ? SCAN_META.totalScraped : '-';
+document.getElementById('meta-verified').textContent = SCAN_META.passedVerification != null ? SCAN_META.passedVerification : '-';
+document.getElementById('meta-dead').textContent = SCAN_META.deadLinks != null ? SCAN_META.deadLinks : '-';
+document.getElementById('meta-cost').textContent = SCAN_META.estCostUSD != null ? '$' + SCAN_META.estCostUSD.toFixed(2) : '-';
 }
 function renderJobs() {
-  var c = document.getElementById('jobs-container');
-  var f = JOBS.filter(function(j) { return activeFilter === 'dream' ? j.dreamCompany : activeFilter !== 'all' ? j.grade === activeFilter : true; });
-  if (searchTerm) { var q = searchTerm.toLowerCase(); f = f.filter(function(j) { return j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || (j.source||'').toLowerCase().includes(q) || (j.notes||'').toLowerCase().includes(q) || (j.location||'').toLowerCase().includes(q); }); }
-  f.sort(function(a, b) { var m = {A:0,B:1,C:2}; if (m[a.grade] !== m[b.grade]) return m[a.grade] - m[b.grade]; if (a.dreamCompany !== b.dreamCompany) return a.dreamCompany ? -1 : 1; return new Date(b.scanDate) - new Date(a.scanDate); });
-  if (!f.length) { c.innerHTML = '<div class="empty-state"><h3>' + (JOBS.length === 0 ? 'No listings yet' : 'No matches') + '</h3><p>' + (JOBS.length === 0 ? 'The first scan will populate this board.' : 'Try clearing your filter or search.') + '</p></div>'; return; }
-  c.innerHTML = f.map(function(j) { return '<div class="job-card"><div class="job-card-header"><div class="job-title">' + j.title + '</div><div class="badges">' + (j.dreamCompany ? '<span class="badge badge-dream">Dream Co</span>' : '') + gradeBadge(j.grade) + '</div></div><div class="job-company">' + j.company + '</div><div class="job-meta"><span>' + (j.location||'Munich') + '</span><span>' + wMode(j.hybrid) + '</span><span>' + (j.source||'Unknown') + '</span></div>' + (j.notes ? '<div class="job-notes">' + j.notes + '</div>' : '') + '<div class="job-footer"><span class="job-date">Found ' + j.scanDate + '</span>' + (j.url ? '<a href="' + j.url + '" target="_blank" class="apply-btn">Apply â</a>' : '<span class="apply-btn disabled">No link</span>') + '</div></div>'; }).join('');
+var c = document.getElementById('jobs-container');
+var f = JOBS.filter(function(j) { return activeFilter === 'dream' ? j.dreamCompany : activeFilter !== 'all' ? j.grade === activeFilter : true; });
+if (searchTerm) { var q = searchTerm.toLowerCase(); f = f.filter(function(j) { return j.title.toLowerCase().includes(q) || j.company.toLowerCase().includes(q) || (j.source||'').toLowerCase().includes(q) || (j.notes||'').toLowerCase().includes(q) || (j.location||'').toLowerCase().includes(q); }); }
+f.sort(function(a, b) { var m = {A:0,B:1,C:2}; if (m[a.grade] !== m[b.grade]) return m[a.grade] - m[b.grade]; if (a.dreamCompany !== b.dreamCompany) return a.dreamCompany ? -1 : 1; return new Date(b.scanDate) - new Date(a.scanDate); });
+if (!f.length) { c.innerHTML = '<div class="empty-state"><h3>' + (JOBS.length === 0 ? 'No listings yet' : 'No matches') + '</h3><p>' + (JOBS.length === 0 ? 'The first scan will populate this board.' : 'Try clearing your filter or search.') + '</p></div>'; return; }
+c.innerHTML = f.map(function(j) { return '<div class="job-card"><div class="job-card-header"><div class="job-title">' + j.title + '</div><div class="badges">' + (j.dreamCompany ? '<span class="badge badge-dream">Dream Co</span>' : '') + gradeBadge(j.grade) + '</div></div><div class="job-company">' + j.company + '</div><div class="job-meta"><span>' + (j.location||'Munich') + '</span><span>' + wMode(j.hybrid) + '</span><span>' + (j.source||'Unknown') + '</span></div>' + (j.notes ? '<div class="job-notes">' + j.notes + '</div>' : '') + '<div class="job-footer"><span class="job-date">Found ' + j.scanDate + '</span>' + (j.url ? '<a href="' + j.url + '" target="_blank" class="apply-btn">Apply →</a>' : '<span class="apply-btn disabled">No link</span>') + '</div></div>'; }).join('');
 }
 function renderDreams() {
-  document.getElementById('dream-container').innerHTML = DREAM_COMPANIES.map(function(d) {
-    return '<div class="dream-card"><div class="dream-dot ' + (d.hit ? 'hit' : 'miss') + '"></div>' +
-      '<div><div class="dream-name">' + d.name + '</div>' +
-      '<div class="dream-status">' + (d.hit ? 'Role found' : 'No open roles') + '</div></div></div>';
-  }).join('');
+document.getElementById('dream-container').innerHTML = DREAM_COMPANIES.map(function(d) {
+return '<div class="dream-card"><div class="dream-dot ' + (d.hit ? 'hit' : 'miss') + '"></div>' +
+'<div><div class="dream-name">' + d.name + '</div>' +
+'<div class="dream-status">' + (d.hit ? 'Role found' : 'No open roles') + '</div></div></div>';
+}).join('');
 }
+function updateStats() {
+document.getElementById('count-a').textContent = JOBS.filter(function(j) { return j.grade === 'A'; }).length;
+document.getElementById('count-b').textContent = JOBS.filter(function(j) { return j.grade === 'B'; }).length;
+document.getElementById('count-c').textContent = JOBS.filter(function(j) { return j.grade === 'C'; }).length;
+document.getElementById('count-dream').textContent = JOBS.filter(function(j) { return j.dreamCompany; }).length;
+document.getElementById('count-total').textContent = JOBS.length;
+if (SCAN_META.lastScan) { document.getElementById('last-updated').textContent = 'Updated ' + SCAN_META.lastScan; }
+}
+document.getElementById('search').addEventListener('input', function(e) { searchTerm = e.target.value; renderJobs(); });
+document.querySelectorAll('.filter-btn').forEach(function(btn) {
+btn.addEventListener('click', function() {
+activeFilter = this.dataset.filter;
+document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active','active-a','active-b','active-c','active-dream'); });
+this.classList.add('active');
+if (activeFilter !== 'all' && activeFilter !== 'dream') this.classList.add('active-' + activeFilter.toLowerCase());
+if (activeFilter === 'dream') this.classList.add('active-dream');
+renderJobs();
+});
+});
+renderMeta(); renderJobs(); renderDreams(); updateStats();
+</script>
+</body>
+</html>
