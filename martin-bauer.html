@@ -2,14 +2,14 @@
 {
   "name": "Martin Bauer Job Board",
   "schemaVersion": 1,
-  "description": "Dr. Martin Bauer's daily job scan — verified live listings only. Pharma/biotech/medtech in-house legal roles, Munich & hybrid. Updated automatically each scan run."
+  "description": "Dr. Martin Bauer's daily job scan â verified live listings only. Pharma/biotech/medtech in-house legal roles, Munich & hybrid. Updated automatically each scan run."
 }
 </script>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Martin Bauer — Job Board</title>
+<title>Martin Bauer â Job Board</title>
 <style>
   :root { color-scheme: light; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -153,7 +153,7 @@
 
 <div class="header">
   <div class="header-top">
-    <div class="title">Martin Bauer — Job Board</div>
+    <div class="title">Martin Bauer â Job Board</div>
     <span class="last-scan" id="lastScanBadge">Last scan: -</span>
   </div>
   <div class="subtitle">Verified in-house pharma/biotech/medtech legal roles Munich and hybrid Senior level only</div>
@@ -193,17 +193,17 @@
 
 <script>
 const SCAN_META = {
-  lastScan:"2026-06-03",
-  totalScraped:250,
-  passedVerification:0,
-  deadLinks:3,
-  estCostUSD:1.80,
-  noNewMatches:true,
-  noMatchNote:"Quiet market day - 0 new verified matches. 3 dead dream-company links removed (Ipsen DACH, Gilead x2). Prior scan listings remain valid.",
-  sources:["Glassdoor","LinkedIn","StepStone","Indeed","XING","Arbeitsagentur","Workday","WebSearch"]
+  lastScan: "2026-06-15",
+  totalScraped: 303,
+  passedVerification: 0,
+  deadLinks: 3,
+  estCostUSD: 2.10,
+  noNewMatches: true,
+  noMatchNote: "Quiet week \u2014 303 listings scraped across 7 sources + 13 WebSearches. 3 candidates scored (Ipsen DACH, Gilead \u00d72) but all 3 URLs confirmed dead again. Medtronic Meerbusch role also dead. No new verified A/B/C matches. Prior board listings from May scans remain valid.",
+  sources: ["Glassdoor","LinkedIn","StepStone","Indeed","XING","Arbeitsagentur","Workday","WebSearch"]
 };
 const JOBS = [{id:"sandoz-2026-05-30",scanDate:"2026-05-30",grade:"B",title:"Senior Legal and Compliance Counsel",notes:"Pharma law + compliance + regulatory + litigation. Sandoz is the global biosimilars/generics leader spun off from Novartis. Holzkirchen is Sandoz DE HQ about 35km south of Munich.",company:"Sandoz",location:"Holzkirchen 35km from Munich",source:"Indeed and Glassdoor",url:"https://de.indeed.com/viewjob?jk=a707cc3cf798084e",hybrid:"On-site",dreamCompany:false,new:false,whyGrade:"Right industry pharma, right level, excellent practice area match. Minor location compromise."},{id:"wuxi-2026-05-31",scanDate:"2026-05-31",grade:"C",title:"Legal Counsel Commercial Contracts",notes:"WuXi AppTec is leading CDMO with European HQ in Munich. CONTRACT role, not permanent. Remote GerMany.",company:"WuXi AppTec",location:"Germany Remote",source:"LinkedIn",url:"https://www.linkedin.com/jobs/view/legal-counsel-commercial-contracts-at-wuxi-apptec-4408692569",hybrid:"Remote",dreamCompany:false,new:false,whyGrade:"Pharma CDMO context but contract role and not Munich specific."},{id:"careerwise-2026-05-30",scanDate:"2026-05-30",grade:"C",title:"Senior Legal Counsel Corporate EMEA",notes:"Senior Corporate Counsel reporting to GC EMEA. Undisclosed client mentions Munich or Oberhausen locations. Industry unclear.",company:"CareerWise Recruitment","location":"Munich",source:"LinkedIn",url:"https://de.linkedin.com/jobs/view/senior-legal-counsel-at-careerwise-recruitment-4418929719",hybrid:"On-site",dreamCompany:false,new:false,whyGrade:"Right seniority level Munich but industry unclear."}];
-const DREAM_COMPANIES=[{name:"BioNTech",status:"none",role:"No legal openings 06-03"},{name:"Takeda",status:"none",erole:"No Germany legal 06-03"},{name:"Pfizer",status:"none",role:"No Germany legal 06-03"},{name:"Roche",status:"none",role:"No Germany legal 06-03"},{name:"Moderna",status:"none",role:"No Germany results 06-03"},{name:"CSL Behring",status:"none",role:"US only 06-03"},{name:"Amgen",status:"none",role:"No Germany legal 06-03"},{name:"Eli Lilly",status:"none",role:"No Germany legal 06-03"},{name:"Gilead",status:"dead",role:"Senior Legal Counsel Germany - BOTH URLs dead 06-03"},{name:"Ipsen",status:"dead",role:"Legal Counsel DACH R-14802 dead 06-03"},{name:"Novo Nordisk",status:"none",role:"No Germany legal confirmed"},{name:"Bayer",status:"none",role:"Labor law Leverkusen - dealbreaker"},{name:"Teva",status:"none",role:"No confirmed Germany legal"},{name:"Stada",status:"none",role:"No legal roles 06-03"},{name:"Siemens Healthineers",status:"none",role:"US portal only"}];
+const DREAM_COMPANIES=[{name:"BioNTech",status:"none",role:"No legal openings 06-15"},{name:"Takeda",status:"none",erole:"No Germany legal 06-15"},{name:"Pfizer",status:"none",role:"No Germany legal 06-15"},{name:"Roche",status:"none",role:"No Germany legal 06-15"},{name:"Moderna",status:"none",role:"No Germany results 06-15"},{name:"CSL Behring",status:"none",role:"US only 06-15"},{name:"Amgen",status:"none",role:"No Germany legal 06-15"},{name:"Eli Lilly",status:"none",role:"No Germany legal 06-15"},{name:"Gilead",status:"dead",role:"Senior Legal Counsel Germany - BOTH URLs dead 06-15"},{name:"Ipsen",status:"dead",role:"Legal Counsel DACH R-14802 dead 06-15"},{name:"Novo Nordisk",status:"none",role:"No Germany legal confirmed"},{name:"Bayer",status:"none",role:"Labor law Leverkusen - dealbreaker"},{name:"Teva",status:"none",role:"No confirmed Germany legal"},{name:"Stada",status:"none",role:"No legal roles 06-15"},{name:"Siemens Healthineers",status:"none",role:"US portal only"}];
 const SCRAPE_HEALTH=[{source:"Glassdoor",queries:4,raw:0,scored:0,verified:0,dead:0,notes:"0 results all 4 queries"},{source:"LinkedIn",queries:4,raw:26,scored:1,verified:0,dead:0,notes:"FUTRUE mid-level 2-3 year req is dealbreaker"},{source:"StepStone",queries:3,raw:0,scored:0,verified:0,dead:0,notes:"396s ran 0 items"},{source:"Indeed",queries:2,raw:54,scored:0,verified:0,dead:0,notes:"US results only"},{source:"XING*,queries:2,raw:88,scored:0,verified:0,dead:0,notes:"Lawfirms machinery banking no pharma inhouse"},{source:"Arbeitsagentur",queries:2,raw:0,scored:0,verified:0,dead:0,notes:"0 results"},{source:"Workday 10 companies",queries:10,raw:"80",scored:0,verified:0,dead:0,notes:"BMS Merck failed. Pfizer India CSL US Roche Takeda Moderna Amgen no DE legal"},{source:"WebSearch Direct",queries:13,raw:15,scored:3,verified:0,dead:3,notes:"Ipsen R-14802 expired Gilead R0043703 dead Gilead R0012289 dead ITM excluded"}];
 let activeFilter="all";
 function renderMeta(){document.getElementById("lastScanBadge").textContent="Last scan: sCAU_META.lastScan;document.getElementById("cntA").textContent=JOBS.filter(j=>j.grade=="A").length;document.getElementById("cntB").textContent=JOBS.filter(j=>j.grade=="B").length;document.getElementById("cntC").textContent=JOBS.filter(j=>j.grade=="C").length;document.getElementById("cntDead").textContent=SCAN_META.deadLinks;document.getElementById("estCost").textContent="$"+SCAN_META.estCostUSD.toFixed(2);if(SCAN_META.noNewMatches){const n=document.getElementById("scanNotice");n.style.display="block";n.textContent=%CAN_META.noMatchNote}}
