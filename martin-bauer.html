@@ -1,15 +1,9 @@
-<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
-{
-  "name": "Martin Bauer Job Board",
-  "schemaVersion": 1,
-  "description": "Dr. Martin Bauer's daily job scan. Pharma/biotech/medtech in-house legal roles, Munich & hybrid."
-}
-</script>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Martin Bauer — Job Board</title>
+<title>Martin Bauer - Job Board</title>
 <style>
   :root { color-scheme: light; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,7 +32,7 @@
   .job-card:hover { border-color: #bbb; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
   .job-card.visible { display: block; }
   .job-header { display: flex; align-items: flex-start; gap: 12px; }
-  .grade-badge { flex-shrink: 0; width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; letter-spacing: 0.3px; }
+  .grade-badge { flex-shrink: 0; width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
   .grade-a { background: #dcfce7; color: #15803d; } .grade-b { background: #dbeafe; color: #1d4ed8; } .grade-c { background: #fef3c7; color: #b45309; }
   .job-meta { flex: 1; min-width: 0; }
   .job-title { font-size: 15px; font-weight: 600; color: #111; margin-bottom: 3px; }
@@ -47,13 +41,11 @@
   .tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; background: #f3f3f0; color: #666; border: 1px solid #e8e8e5; }
   .tag.dream { background: #fdf4ff; color: #7e22ce; border-color: #e9d5ff; }
   .tag.verified { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
-  .tag.new { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
   .tag.stale { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
   .job-actions { display: flex; gap: 8px; margin-top: 12px; }
-  .btn-apply { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: #111; color: #fff; font-size: 12px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: background 0.12s; }
+  .btn-apply { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: #111; color: #fff; font-size: 12px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; }
   .btn-apply:hover { background: #333; }
   .btn-apply.secondary { background: #fff; color: #333; border: 1px solid #e0e0db; }
-  .btn-apply.secondary:hover { background: #f5f5f3; }
   .job-note { margin-top: 10px; font-size: 12px; color: #666; background: #fafaf8; border-radius: 6px; padding: 8px 12px; border-left: 3px solid #e8e8e5; }
   .job-note.blue { border-left-color: #3b82f6; } .job-note.green { border-left-color: #22c55e; }
   .dream-section { margin-top: 32px; }
@@ -73,176 +65,173 @@
 <body>
 <div class="header">
   <div class="header-top">
-    <div class="title">Martin Bauer — Job Board</div>
-    <span class="last-scan" id="lastScanBadge">Last scan: —</span>
+    <div class="title">Martin Bauer &#8212; Job Board</div>
+    <span class="last-scan" id="lastScanBadge">Last scan: -</span>
   </div>
-  <div class="subtitle">Verified in-house pharma/biotech/medtech legal roles · Munich &amp; hybrid · Senior level only</div>
+  <div class="subtitle">Verified in-house pharma/biotech/medtech legal roles &middot; Munich &amp; hybrid &middot; Senior level only</div>
 </div>
 <div class="stats">
   <div class="stat-pill"><div class="dot-a"></div><strong id="cntA">0</strong>&nbsp;A-grade</div>
   <div class="stat-pill"><div class="dot-b"></div><strong id="cntB">0</strong>&nbsp;B-grade</div>
   <div class="stat-pill"><div class="dot-c"></div><strong id="cntC">0</strong>&nbsp;C-grade</div>
   <div class="stat-pill"><div class="dot-dead"></div><strong id="cntDead">0</strong>&nbsp;dead removed</div>
-  <div class="stat-pill"><div class="dot-all"></div>Est. cost: <strong id="estCost">—</strong></div>
+  <div class="stat-pill"><div class="dot-all"></div>Est. cost: <strong id="estCost">-</strong></div>
 </div>
 <div id="scanNotice" class="scan-notice" style="display:none"></div>
 <div class="filter-bar">
   <button class="filter-btn active" onclick="filterJobs('all', event)">All Verified</button>
-  <button class="filter-btn" onclick="filterJobs('A', event)">🟢 A-Grade</button>
-  <button class="filter-btn" onclick="filterJobs('B', event)">🔵 B-Grade</button>
-  <button class="filter-btn" onclick="filterJobs('C', event)">🟡 C-Grade</button>
+  <button class="filter-btn" onclick="filterJobs('A', event)">A-Grade</button>
+  <button class="filter-btn" onclick="filterJobs('B', event)">B-Grade</button>
+  <button class="filter-btn" onclick="filterJobs('C', event)">C-Grade</button>
 </div>
 <div class="jobs-list" id="jobsList"></div>
-<div class="empty-state" id="emptyState" style="display:none">No verified listings in this grade today.</div>
+<div class="empty-state" id="emptyState" style="display:none">No verified listings in this grade.</div>
 <div class="dream-section">
-  <div class="section-label">🏆 Dream Company Monitor</div>
+  <div class="section-label">Dream Company Monitor</div>
   <div class="dream-grid" id="dreamGrid"></div>
 </div>
 <div class="health-section">
-  <div class="section-label">🔧 Scraper Health — Latest Scan</div>
+  <div class="section-label">Scraper Health - Latest Scan</div>
   <table class="health-table">
-    <thead><tr><th>Source</th><th>Queries</th><th>Raw Items</th><th>Passed Scoring</th><th>Verified</th><th>Dead</th><th>Notes</th></tr></thead>
+    <thead><tr><th>Source</th><th>Queries</th><th>Raw</th><th>Scored</th><th>Verified</th><th>Dead</th><th>Notes</th></tr></thead>
     <tbody id="healthBody"></tbody>
   </table>
-</div><script>
-const SCAN_META = {
+</div>
+<script>
+var SCAN_META = {
   lastScan: "2026-06-15",
   totalScraped: 303,
   passedVerification: 0,
   deadLinks: 3,
   estCostUSD: 2.10,
   noNewMatches: true,
-  noMatchNote: "Quiet week — 303 listings scraped across 7 sources + 13 WebSearches. 3 candidates scored (Ipsen DACH, Gilead x2) but all 3 URLs confirmed dead again. Medtronic Meerbusch role also dead. No new verified A/B/C matches. Prior board listings from May scans remain valid.",
+  noMatchNote: "Quiet week - 303 listings scraped across 7 sources + 13 WebSearches. 3 candidates scored (Ipsen DACH, Gilead x2) but all 3 URLs confirmed dead again. Medtronic Meerbusch also dead. No new verified A/B/C matches. Prior board listings from May remain valid.",
   sources: ["Glassdoor","LinkedIn","StepStone","Indeed","XING","Arbeitsagentur","Workday","WebSearch"]
 };
 
-const JOBS = [
+var JOBS = [
   {
     id: "sandoz-senior-legal-compliance-2026-05-30", scanDate: "2026-05-30", grade: "B",
     title: "Senior Legal & Compliance Counsel (m/f/d)", company: "Sandoz",
     location: "Holzkirchen (~35km from Munich)", source: "Indeed + Glassdoor",
     url: "https://de.indeed.com/viewjob?jk=a707cc3cf798084e",
-    hybrid: "On-site (hybrid likely)", dreamCompany: false, new: false,
-    notes: "Pharma law + compliance + regulatory + litigation. Sandoz is the global biosimilars/generics leader, spun off from Novartis. Holzkirchen is Sandoz DE HQ, ~35km south of Munich. Posted May 29. Strong profile match on pharma regulatory & compliance law.",
+    hybrid: "On-site (hybrid likely)", dreamCompany: false,
+    notes: "Pharma law + compliance + regulatory + litigation. Sandoz is the global biosimilars/generics leader, spun off from Novartis. Holzkirchen is Sandoz DE HQ, ~35km south of Munich.",
     whyGrade: "Right industry (pharma), right level, excellent practice area match. Minor location compromise (35km), not a dream company, but serious candidate."
   },
   {
-    id: "wuxi-apptec-legal-counsel-commercial-2026-05-31", scanDate: "2026-05-31", grade: "C",
-    title: "Legal Counsel – Commercial Contracts", company: "WuXi AppTec",
+    id: "wuxi-apptec-legal-counsel-2026-05-31", scanDate: "2026-05-31", grade: "C",
+    title: "Legal Counsel - Commercial Contracts", company: "WuXi AppTec",
     location: "Germany (Remote)", source: "LinkedIn",
     url: "https://www.linkedin.com/jobs/view/legal-counsel-commercial-contracts-at-wuxi-apptec-4408692569",
-    hybrid: "Remote", dreamCompany: false, new: false,
-    notes: "WuXi AppTec is the world's leading CDMO/CRO with European HQ in Munich. CONTRACT (temporary) role, not permanent. Germany-wide remote.",
+    hybrid: "Remote", dreamCompany: false,
+    notes: "WuXi AppTec is the leading CDMO/CRO with European HQ in Munich. CONTRACT (temporary) role, not permanent.",
     whyGrade: "Right pharma CDMO industry context. But: contract/temporary, not permanent; commercial contracts not pharma regulatory/compliance core."
   },
   {
-    id: "careerwise-senior-legal-counsel-2026-05-30", scanDate: "2026-05-30", grade: "C",
+    id: "careerwise-senior-legal-2026-05-30", scanDate: "2026-05-30", grade: "C",
     title: "Senior Legal Counsel (Corporate EMEA & ANZ)", company: "CareerWise Recruitment (undisclosed client)",
     location: "Munich (on-site)", source: "LinkedIn",
     url: "https://de.linkedin.com/jobs/view/senior-legal-counsel-at-careerwise-recruitment-4418929719",
-    hybrid: "On-site", dreamCompany: false, new: false,
-    notes: "Senior Corporate Counsel, reporting to GC EMEA & ANZ. Client undisclosed. Oberhausen reference suggests industrial/engineering, not pharma.",
-    whyGrade: "Right seniority level, Munich-based. Industry unclear — likely not pharma/life sciences based on Oberhausen mention."
+    hybrid: "On-site", dreamCompany: false,
+    notes: "Senior Corporate Counsel, reporting to GC EMEA & ANZ. Client undisclosed. Oberhausen reference suggests industrial, not pharma.",
+    whyGrade: "Right seniority level, Munich-based. Industry unclear - likely not pharma/life sciences."
   }
 ];
-
-const DREAM_COMPANIES = [
-  { name: "BioNTech", status: "none", role: "No legal openings found (06-15 confirmed)", url: null },
-  { name: "Takeda", status: "none", role: "No Germany legal roles (06-15 confirmed)", url: null },
-  { name: "Pfizer", status: "none", role: "No Germany legal (Workday: India role only)", url: null },
-  { name: "Roche", status: "none", role: "No Germany legal roles (06-15 confirmed)", url: null },
-  { name: "Moderna", status: "none", role: "No Germany results (06-15 confirmed)", url: null },
-  { name: "CSL Behring", status: "none", role: "US roles only (06-15 Workday scan)", url: null },
-  { name: "Amgen", status: "none", role: "No Germany legal roles (06-15 confirmed)", url: null },
-  { name: "Eli Lilly", status: "none", role: "No Germany legal roles (06-15 confirmed)", url: null },
-  { name: "Gilead", status: "dead", role: "Senior Legal Counsel Germany — BOTH URLs dead (confirmed 06-15)", url: null },
-  { name: "Ipsen", status: "dead", role: "Legal Counsel DACH (R-14802) — dead redirect (confirmed 06-15)", url: null },
-  { name: "Novo Nordisk", status: "none", role: "No specific Germany legal openings confirmed", url: null },
-  { name: "Bayer", status: "none", role: "Labor law in Leverkusen — practice area dealbreaker", url: null },
+var DREAM_COMPANIES = [
+  { name: "BioNTech", status: "none", role: "No legal openings (06-15)", url: null },
+  { name: "Takeda", status: "none", role: "No Germany legal roles (06-15)", url: null },
+  { name: "Pfizer", status: "none", role: "No Germany legal (Workday: India only)", url: null },
+  { name: "Roche", status: "none", role: "No Germany legal roles (06-15)", url: null },
+  { name: "Moderna", status: "none", role: "No Germany results (06-15)", url: null },
+  { name: "CSL Behring", status: "none", role: "US roles only (06-15 Workday)", url: null },
+  { name: "Amgen", status: "none", role: "No Germany legal roles (06-15)", url: null },
+  { name: "Eli Lilly", status: "none", role: "No Germany legal roles (06-15)", url: null },
+  { name: "Gilead", status: "dead", role: "Senior Legal Counsel Germany - BOTH URLs dead (06-15)", url: null },
+  { name: "Ipsen", status: "dead", role: "Legal Counsel DACH (R-14802) - dead redirect (06-15)", url: null },
+  { name: "Novo Nordisk", status: "none", role: "No Germany legal openings confirmed", url: null },
+  { name: "Bayer", status: "none", role: "Labor law Leverkusen - practice area dealbreaker", url: null },
   { name: "Teva", status: "none", role: "No confirmed Germany legal openings", url: null },
   { name: "Stada", status: "none", role: "No legal roles confirmed (06-15)", url: null },
-  { name: "Siemens Healthineers", status: "none", role: "US/CA portal only — DE jobs not on this page", url: null }
+  { name: "Siemens Healthineers", status: "none", role: "US/CA portal only - DE jobs not listed", url: null }
 ];
 
-const SCRAPER_HEALTH = [
-  { source: "Glassdoor", queries: 4, raw: 1, scored: 0, verified: 0, dead: 0, notes: "1 result (yuri GmbH) — not relevant" },
-  { source: "LinkedIn", queries: 4, raw: 50, scored: 0, verified: 0, dead: 0, notes: "Consulting/law firm/tech roles only — no in-house pharma" },
+var SCRAPER_HEALTH = [
+  { source: "Glassdoor", queries: 4, raw: 1, scored: 0, verified: 0, dead: 0, notes: "1 result (yuri GmbH) - not relevant" },
+  { source: "LinkedIn", queries: 4, raw: 50, scored: 0, verified: 0, dead: 0, notes: "Consulting/law firm/tech only - no in-house pharma" },
   { source: "StepStone", queries: 3, raw: 0, scored: 0, verified: 0, dead: 0, notes: "Ran 412s, returned 0 items" },
-  { source: "Indeed", queries: 2, raw: 50, scored: 0, verified: 0, dead: 0, notes: "US results only — geo not resolved to Germany" },
-  { source: "XING", queries: 2, raw: 40, scored: 0, verified: 0, dead: 0, notes: "Machinery, banking, climate, patent firms — no pharma in-house" },
+  { source: "Indeed", queries: 2, raw: 50, scored: 0, verified: 0, dead: 0, notes: "US results only - geo not resolved to Germany" },
+  { source: "XING", queries: 2, raw: 40, scored: 0, verified: 0, dead: 0, notes: "Machinery, banking, climate, patent firms - no pharma" },
   { source: "Arbeitsagentur", queries: 2, raw: 0, scored: 0, verified: 0, dead: 0, notes: "0 results both queries" },
-  { source: "Workday (10 cos)", queries: 10, raw: 127, scored: 1, verified: 0, dead: 1, notes: "Medtronic Meerbusch dead. Pfizer=India, all others no DE legal" },
-  { source: "WebSearch / Direct", queries: 13, raw: 35, scored: 2, verified: 0, dead: 3, notes: "Ipsen R-14802 dead. Gilead R0043703 dead. Gilead R0012289 dead" }
+  { source: "Workday (10 cos)", queries: 10, raw: 127, scored: 1, verified: 0, dead: 1, notes: "Medtronic Meerbusch dead. Pfizer=India, rest no DE legal" },
+  { source: "WebSearch / Direct", queries: 13, raw: 35, scored: 2, verified: 0, dead: 3, notes: "Ipsen R-14802 dead / Gilead R0043703 dead / Gilead R0012289 dead" }
 ];
-let activeFilter = 'all';
+var activeFilter = "all";
 function renderMeta() {
-  document.getElementById('lastScanBadge').textContent = 'Last scan: ' + SCAN_META.lastScan;
-  document.getElementById('cntA').textContent = JOBS.filter(j => j.grade === 'A').length;
-  document.getElementById('cntB').textContent = JOBS.filter(j => j.grade === 'B').length;
-  document.getElementById('cntC').textContent = JOBS.filter(j => j.grade === 'C').length;
-  document.getElementById('cntDead').textContent = SCAN_META.deadLinks;
-  document.getElementById('estCost').textContent = '$' + SCAN_META.estCostUSD.toFixed(2);
+  document.getElementById("lastScanBadge").textContent = "Last scan: " + SCAN_META.lastScan;
+  document.getElementById("cntA").textContent = JOBS.filter(function(j){return j.grade==="A"}).length;
+  document.getElementById("cntB").textContent = JOBS.filter(function(j){return j.grade==="B"}).length;
+  document.getElementById("cntC").textContent = JOBS.filter(function(j){return j.grade==="C"}).length;
+  document.getElementById("cntDead").textContent = SCAN_META.deadLinks;
+  document.getElementById("estCost").textContent = "$" + SCAN_META.estCostUSD.toFixed(2);
   if (SCAN_META.noNewMatches) {
-    var notice = document.getElementById('scanNotice');
-    notice.style.display = 'block';
-    notice.textContent = '⚠️ ' + SCAN_META.noMatchNote;
+    var n = document.getElementById("scanNotice");
+    n.style.display = "block";
+    n.textContent = SCAN_META.noMatchNote;
   }
 }
 function renderJobs() {
-  var list = document.getElementById('jobsList');
-  var empty = document.getElementById('emptyState');
-  list.innerHTML = '';
-  var visible = JOBS.filter(function(j) { return activeFilter === 'all' || j.grade === activeFilter; });
-  ['A','B','C'].forEach(function(g) {
-    var gradeJobs = visible.filter(function(j) { return j.grade === g; });
-    if (!gradeJobs.length) return;
-    var label = {A:'🟢 A-Grade — Apply Now', B:'🔵 B-Grade', C:'🟡 C-Grade'}[g];
-    var sec = document.createElement('div');
-    sec.className = 'section-label'; sec.textContent = label;
+  var list = document.getElementById("jobsList");
+  var empty = document.getElementById("emptyState");
+  list.innerHTML = "";
+  var visible = JOBS.filter(function(j){return activeFilter==="all"||j.grade===activeFilter});
+  ["A","B","C"].forEach(function(g) {
+    var gj = visible.filter(function(j){return j.grade===g});
+    if (!gj.length) return;
+    var lab = {A:"A-Grade - Apply Now", B:"B-Grade", C:"C-Grade"}[g];
+    var sec = document.createElement("div");
+    sec.className = "section-label"; sec.textContent = lab;
     list.appendChild(sec);
-    gradeJobs.forEach(function(j) { list.appendChild(buildCard(j)); });
+    gj.forEach(function(j){list.appendChild(buildCard(j))});
   });
-  empty.style.display = visible.length ? 'none' : 'block';
+  empty.style.display = visible.length ? "none" : "block";
 }
 function buildCard(j) {
-  var card = document.createElement('div');
-  card.className = 'job-card visible';
-  var isStale = j.scanDate < '2026-06-01';
-  var tags = [
-    '<span class="tag verified">✅ Verified</span>',
-    j.new ? '<span class="tag new">NEW</span>' : '',
-    isStale ? '<span class="tag stale">Re-verify</span>' : '',
-    j.dreamCompany ? '<span class="tag dream">⭐ Dream Co.</span>' : '',
-    '<span class="tag">' + j.source + '</span>',
-    '<span class="tag">' + j.location + '</span>',
-    j.hybrid !== 'On-site' ? '<span class="tag">' + j.hybrid + '</span>' : ''
-  ].filter(Boolean).join('');
-  card.innerHTML = '<div class="job-header"><div class="grade-badge grade-' + j.grade.toLowerCase() + '">' + j.grade + '</div><div class="job-meta"><div class="job-title">' + j.title + '</div><div class="job-company">' + j.company + '</div><div class="job-tags">' + tags + '</div></div></div><div class="job-note ' + (j.grade === 'B' ? 'blue' : j.grade === 'A' ? 'green' : '') + '"><strong>Why ' + j.grade + '-grade:</strong> ' + j.whyGrade + '<br><br>' + j.notes + '</div><div class="job-actions"><a href="' + j.url + '" target="_blank" class="btn-apply">Apply →</a><span class="btn-apply secondary" style="cursor:default">Found: ' + j.scanDate + '</span></div>';
-  return card;
+  var c = document.createElement("div");
+  c.className = "job-card visible";
+  var stale = j.scanDate < "2026-06-01";
+  var tags = '<span class="tag verified">Verified</span>';
+  if (stale) tags += '<span class="tag stale">Re-verify</span>';
+  if (j.dreamCompany) tags += '<span class="tag dream">Dream Co.</span>';
+  tags += '<span class="tag">' + j.source + '</span>';
+  tags += '<span class="tag">' + j.location + '</span>';
+  if (j.hybrid !== "On-site") tags += '<span class="tag">' + j.hybrid + '</span>';
+  c.innerHTML = '<div class="job-header"><div class="grade-badge grade-' + j.grade.toLowerCase() + '">' + j.grade + '</div><div class="job-meta"><div class="job-title">' + j.title + '</div><div class="job-company">' + j.company + '</div><div class="job-tags">' + tags + '</div></div></div><div class="job-note ' + (j.grade==="B"?"blue":j.grade==="A"?"green":"") + '"><strong>Why ' + j.grade + '-grade:</strong> ' + j.whyGrade + '<br><br>' + j.notes + '</div><div class="job-actions"><a href="' + j.url + '" target="_blank" class="btn-apply">Apply</a><span class="btn-apply secondary" style="cursor:default">Found: ' + j.scanDate + '</span></div>';
+  return c;
 }
 function renderDream() {
-  var grid = document.getElementById('dreamGrid');
+  var grid = document.getElementById("dreamGrid");
   DREAM_COMPANIES.forEach(function(d) {
-    var card = document.createElement('div');
-    card.className = 'dream-card';
-    var sc = d.status === 'active' ? 'active' : d.status === 'dead' ? 'dead' : 'none';
-    var st = d.status === 'active' ? '● Role open' : d.status === 'dead' ? '✕ Just closed' : '○ No role';
-    card.innerHTML = '<div class="dream-name">' + d.name + '</div><div class="dream-status ' + sc + '">' + st + '</div>' + (d.role ? '<div style="font-size:11px;color:#999;margin-top:3px">' + d.role + '</div>' : '');
-    grid.appendChild(card);
+    var c = document.createElement("div");
+    c.className = "dream-card";
+    var sc = d.status==="active"?"active":d.status==="dead"?"dead":"none";
+    var st = d.status==="active"?"Role open":d.status==="dead"?"Just closed":"No role";
+    c.innerHTML = '<div class="dream-name">' + d.name + '</div><div class="dream-status ' + sc + '">' + st + '</div>' + (d.role ? '<div style="font-size:11px;color:#999;margin-top:3px">' + d.role + '</div>' : "");
+    grid.appendChild(c);
   });
 }
 function renderHealth() {
-  var body = document.getElementById('healthBody');
+  var body = document.getElementById("healthBody");
   SCRAPER_HEALTH.forEach(function(h) {
-    var row = document.createElement('tr');
-    row.innerHTML = '<td><strong>' + h.source + '</strong></td><td>' + h.queries + '</td><td>' + h.raw + '</td><td>' + h.scored + '</td><td>' + (h.verified > 0 ? '<span class="check">✓ ' + h.verified + '</span>' : '0') + '</td><td>' + (h.dead > 0 ? '<span class="cross">✗ ' + h.dead + '</span>' : '0') + '</td><td style="color:#888;font-size:11px">' + h.notes + '</td>';
+    var row = document.createElement("tr");
+    row.innerHTML = '<td><strong>' + h.source + '</strong></td><td>' + h.queries + '</td><td>' + h.raw + '</td><td>' + h.scored + '</td><td>' + (h.verified>0?'<span class="check">' + h.verified + '</span>':"0") + '</td><td>' + (h.dead>0?'<span class="cross">' + h.dead + '</span>':"0") + '</td><td style="color:#888;font-size:11px">' + h.notes + '</td>';
     body.appendChild(row);
   });
 }
 function filterJobs(grade, e) {
   activeFilter = grade;
-  document.querySelectorAll('.filter-btn').forEach(function(btn) { btn.classList.remove('active'); });
-  if (e && e.target) e.target.classList.add('active');
+  document.querySelectorAll(".filter-btn").forEach(function(b){b.classList.remove("active")});
+  if (e && e.target) e.target.classList.add("active");
   renderJobs();
 }
 renderMeta(); renderJobs(); renderDream(); renderHealth();
