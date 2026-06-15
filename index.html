@@ -297,6 +297,71 @@
   }
 
   .dream-chip.hit .indicator { background: #22c55e; }
+
+  .health-section {
+    margin-top: 48px;
+  }
+
+  .health-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+  }
+
+  .health-toggle:hover { border-color: var(--border-hover); }
+  .health-toggle .arrow { transition: transform 0.2s ease; font-size: 12px; color: var(--text-tertiary); }
+  .health-toggle.open .arrow { transform: rotate(90deg); }
+
+  .health-body {
+    display: none;
+    margin-top: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow-x: auto;
+  }
+
+  .health-body.open { display: block; }
+
+  .health-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .health-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .health-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-primary);
+  }
+
+  .health-table tr:last-child td { border-bottom: none; }
+
+  .status-ok { color: #16a34a; }
+  .status-warn { color: #ca8a04; }
+  .status-fail { color: #dc2626; }
   .dream-chip:not(.hit) .indicator { background: var(--text-tertiary); opacity: 0.4; }
   .dream-chip:not(.hit) { color: var(--text-tertiary); }
 
@@ -330,6 +395,21 @@
   <div class="dream-section" id="dreamSection">
     <h2>Dream Company Tracker</h2>
     <div class="dream-grid" id="dreamGrid"></div>
+  </div>
+
+  <div class="health-section" id="healthSection">
+    <button class="health-toggle" id="healthToggle">
+      <span class="arrow">&#9654;</span>
+      Scraper Health &amp; Cost
+    </button>
+    <div class="health-body" id="healthBody">
+      <table class="health-table">
+        <thead>
+          <tr><th>Source</th><th>Actor</th><th>Queries</th><th>Status</th><th>Items</th><th>Notes</th></tr>
+        </thead>
+        <tbody id="healthRows"></tbody>
+      </table>
+    </div>
   </div>
 </div>
 
@@ -372,7 +452,7 @@ const JOBS = [
     url: "https://job-boards.greenhouse.io/celonis/jobs/7626322003",
     salary: null,
     hybrid: null,
-    notes: "Dream company Celonis + VP level + Operations. GTM Operations at Celonis means optimizing go-to-market processes using their own technology.",
+    notes: "Dream company Celonis + VP level + Operations. GTM Operations at Celonis means optimizing go-to-market processes using their own technology. URL needs verification.",
     dreamCompany: true
   },
   {
@@ -559,6 +639,18 @@ const JOBS = [
   }
 ];
 
+const SCRAPER_HEALTH = [
+  { source: "Glassdoor", actor: "valig/glassdoor-jobs-scraper", queries: 5, status: "ok", items: 62, notes: "Good coverage" },
+  { source: "LinkedIn", actor: "curious_coder/linkedin-jobs-scraper", queries: 1, status: "ok", items: 25, notes: "Solid results" },
+  { source: "StepStone", actor: "easyapi/stepstone-jobs-scraper", queries: 4, status: "warn", items: null, notes: "Still running (16min+) — skipped" },
+  { source: "Indeed", actor: "misceres/indeed-scraper", queries: 3, status: "ok", items: 78, notes: "High overlap with Glassdoor" },
+  { source: "XING", actor: "shahidirfan/Xing-Jobs-Scraper", queries: 3, status: "ok", items: 60, notes: "Best German-market coverage" },
+  { source: "Arbeitsagentur", actor: "blackfalcondata/arbeitsagentur-jobs-feed", queries: 2, status: "ok", items: 1, notes: "Low yield as expected" },
+  { source: "Workday — Celonis", actor: "blackfalcondata/workday-scraper", queries: 1, status: "fail", items: 0, notes: "Timeout, then failure" },
+  { source: "Workday — Airbus", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: null, notes: "Large set, mostly non-Munich" },
+  { source: "Workday — Carl Zeiss", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "All non-Munich/non-Germany" }
+];
+
 const DREAM_COMPANIES = [
   { name: "Celonis", hit: true, roles: "VP GTM Ops; 2x Principal Consultant" },
   { name: "ServiceNow", hit: false, roles: null },
@@ -682,10 +774,33 @@ function renderDream() {
   `).join('');
 }
 
+function renderHealth() {
+  const rows = document.getElementById('healthRows');
+  const statusIcon = { ok: '<span class="status-ok">&#10003;</span>', warn: '<span class="status-warn">&#9679;</span>', fail: '<span class="status-fail">&#10007;</span>' };
+  rows.innerHTML = SCRAPER_HEALTH.map(s => `
+    <tr>
+      <td style="font-weight:500">${s.source}</td>
+      <td style="color:var(--text-secondary);font-size:12px">${s.actor}</td>
+      <td>${s.queries}</td>
+      <td>${statusIcon[s.status] || s.status}</td>
+      <td>${s.items !== null ? s.items : '—'}</td>
+      <td style="color:var(--text-secondary)">${s.notes}</td>
+    </tr>
+  `).join('');
+
+  const toggle = document.getElementById('healthToggle');
+  const body = document.getElementById('healthBody');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    body.classList.toggle('open');
+  });
+}
+
 renderMeta();
 renderFilters();
 renderJobs();
 renderDream();
+renderHealth();
 </script>
 </body>
 </html>
