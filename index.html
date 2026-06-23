@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Justus Job Board",
+  "schemaVersion": 1,
+  "description": "Justus Stähle's persistent job board — updated weekly with scored listings from 7+ job board sources. Filter by grade (A/B/C) and dream companies."
+}
+</script>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -415,15 +422,21 @@
 
 <script>
 const SCAN_META = {
-  scanDate: "2026-06-15",
+  lastScan: "2026-06-23",
+  totalScraped: 135,
+  passedVerification: 5,
+  deadLinks: 6,
+  estCostUSD: "$2.40",
+  sources: ["Glassdoor","LinkedIn","StepStone","Indeed","XING","Arbeitsagentur","Workday"],
+  scanDate: "2026-06-23",
   sourcesCount: 7,
-  scrapersRun: 9,
-  rawListings: 246,
-  scoredListings: 15,
-  gradeA: 2,
-  gradeB: 9,
-  gradeC: 4,
-  notes: "StepStone still running (skipped). Celonis Workday scraper failed."
+  scrapersRun: 16,
+  rawListings: 135,
+  scoredListings: 20,
+  gradeA: 3,
+  gradeB: 12,
+  gradeC: 5,
+  notes: "Verified: 5/11 confirmed live. 6 dead links removed. Est. cost: $2.40"
 };
 
 const JOBS = [
@@ -636,36 +649,107 @@ const JOBS = [
     hybrid: null,
     notes: "Perfect domain (Process Automation + Operations Excellence) but salary way too low and Manager title.",
     dreamCompany: false
+  },
+  {
+    id: "ge-healthcare-sr-director-ops-lean",
+    scanDate: "2026-06-23",
+    grade: "A",
+    title: "Senior Director, Operations and Lean",
+    company: "GE HealthCare",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://www.linkedin.com/jobs/view/senior-director-operations-and-lean-at-ge-healthcare-4430460461/",
+    salary: null,
+    hybrid: null,
+    notes: "Senior Director level + Operations + Lean — near-perfect domain match. GE HealthCare Munich. Posted 5 days ago, 100+ applicants. Verified live.",
+    dreamCompany: false
+  },
+  {
+    id: "harman-exec-dir-digital-supply-chain",
+    scanDate: "2026-06-23",
+    grade: "B",
+    title: "Executive Director, Digital Supply Chain & Manufacturing",
+    company: "HARMAN International",
+    location: "Garching",
+    source: "LinkedIn",
+    url: "https://www.linkedin.com/jobs/view/executive-director-digital-supply-chain-manufacturing-at-harman-international-4347561822/",
+    salary: null,
+    hybrid: null,
+    notes: "Exec Director level, digital transformation + supply chain + manufacturing. Garching (within commute). Reposted 6 days ago. Verified live.",
+    dreamCompany: false
+  },
+  {
+    id: "cascade-medtech-director-ops",
+    scanDate: "2026-06-23",
+    grade: "B",
+    title: "Director of Operations",
+    company: "Cascade MedTech",
+    location: "Greater Munich",
+    source: "LinkedIn",
+    url: "https://www.linkedin.com/jobs/view/director-of-operations-at-cascade-medtech-4431268485/",
+    salary: null,
+    hybrid: false,
+    notes: "Director level, operations, Greater Munich. Posted today — only 9 applicants. On-site. MedTech startup. Verified live.",
+    dreamCompany: false
+  },
+  {
+    id: "otera-transformation-program-director",
+    scanDate: "2026-06-23",
+    grade: "B",
+    title: "Transformation Program Director",
+    company: "Otera",
+    location: "Remote Europe (Munich listed)",
+    source: "LinkedIn",
+    url: "https://www.linkedin.com/jobs/view/transformation-program-director-f-m-d-remote-europe-at-otera-4429653505/",
+    salary: null,
+    hybrid: true,
+    notes: "Director level, transformation domain is a perfect match. Fully remote Europe, Munich-compatible. Energy sector. 100+ applicants. Verified live.",
+    dreamCompany: false
+  },
+  {
+    id: "regeneron-director-commercial-ops",
+    scanDate: "2026-06-23",
+    grade: "C",
+    title: "Director, Commercial Operations Lead",
+    company: "Regeneron",
+    location: "Munich (Hybrid)",
+    source: "LinkedIn",
+    url: "https://www.linkedin.com/jobs/view/director-commercial-operations-lead-at-regeneron-4371781624/",
+    salary: null,
+    hybrid: true,
+    notes: "Director level, operations, Munich, hybrid. Commercial operations in pharma is adjacent to process management. Reposted today. Verified live.",
+    dreamCompany: false
   }
 ];
 
 const SCRAPER_HEALTH = [
-  { source: "Glassdoor", actor: "valig/glassdoor-jobs-scraper", queries: 5, status: "ok", items: 62, notes: "Good coverage" },
-  { source: "LinkedIn", actor: "curious_coder/linkedin-jobs-scraper", queries: 1, status: "ok", items: 25, notes: "Solid results" },
-  { source: "StepStone", actor: "easyapi/stepstone-jobs-scraper", queries: 4, status: "warn", items: null, notes: "Still running (16min+) — skipped" },
-  { source: "Indeed", actor: "misceres/indeed-scraper", queries: 3, status: "ok", items: 78, notes: "High overlap with Glassdoor" },
-  { source: "XING", actor: "shahidirfan/Xing-Jobs-Scraper", queries: 3, status: "ok", items: 60, notes: "Best German-market coverage" },
-  { source: "Arbeitsagentur", actor: "blackfalcondata/arbeitsagentur-jobs-feed", queries: 2, status: "ok", items: 1, notes: "Low yield as expected" },
-  { source: "Workday — Celonis", actor: "blackfalcondata/workday-scraper", queries: 1, status: "fail", items: 0, notes: "Timeout, then failure" },
-  { source: "Workday — Airbus", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: null, notes: "Large set, mostly non-Munich" },
-  { source: "Workday — Carl Zeiss", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "All non-Munich/non-Germany" }
+  { source: "Glassdoor", actor: "valig/glassdoor-jobs-scraper", queries: 5, status: "ok", items: 22, notes: "Mostly irrelevant matches this week" },
+  { source: "LinkedIn", actor: "curious_coder/linkedin-jobs-scraper", queries: 6, status: "ok", items: 25, notes: "Best source — 4 verified matches" },
+  { source: "StepStone", actor: "easyapi/stepstone-jobs-scraper", queries: 4, status: "warn", items: 0, notes: "Stuck 4+ min, 0 pages crawled — skipped" },
+  { source: "Indeed", actor: "misceres/indeed-scraper", queries: 3, status: "fail", items: 0, notes: "Error in output, 0 results" },
+  { source: "XING", actor: "shahidirfan/Xing-Jobs-Scraper", queries: 3, status: "ok", items: 41, notes: "Good coverage, some company name mismatches" },
+  { source: "Arbeitsagentur", actor: "blackfalcondata/arbeitsagentur-jobs-feed", queries: 2, status: "ok", items: 6, notes: "Low yield, no matches" },
+  { source: "Workday — Celonis", actor: "blackfalcondata/workday-scraper", queries: 1, status: "fail", items: 0, notes: "WDY-2011: URL not found" },
+  { source: "Workday — Airbus", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "All non-Munich locations" },
+  { source: "Workday — Carl Zeiss", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "All non-Munich/Germany" },
+  { source: "Web Search (Dream Co.)", actor: "n/a", queries: 13, status: "ok", items: "—", notes: "Found ServiceNow & Celonis leads (both dead)" }
 ];
 
 const DREAM_COMPANIES = [
-  { name: "Celonis", hit: true, roles: "VP GTM Ops; 2x Principal Consultant" },
-  { name: "ServiceNow", hit: false, roles: null },
+  { name: "Celonis", hit: false, roles: "VP GTM Ops (dead link)" },
+  { name: "ServiceNow", hit: false, roles: "Head of Exec Exp (dead link)" },
   { name: "Helsing", hit: false, roles: null },
   { name: "Isar Aerospace", hit: false, roles: null },
   { name: "Quantum Systems", hit: false, roles: null },
   { name: "Forto", hit: false, roles: null },
   { name: "Personio", hit: false, roles: null },
-  { name: "Rohde & Schwarz", hit: true, roles: "Sr PMO Manager" },
+  { name: "Rohde & Schwarz", hit: false, roles: null },
   { name: "MTU Aero Engines", hit: false, roles: null },
   { name: "Infineon", hit: false, roles: null },
   { name: "Siemens", hit: false, roles: null },
-  { name: "Airbus", hit: true, roles: "Head of BCM" },
-  { name: "Carl Zeiss AG", hit: false, roles: null },
-  { name: "Knorr-Bremse", hit: true, roles: "Head Financial Planning" }
+  { name: "Airbus", hit: false, roles: "No Munich ops roles" },
+  { name: "Carl Zeiss AG", hit: false, roles: "No Munich ops roles" },
+  { name: "Knorr-Bremse", hit: false, roles: null }
 ];
 
 // Render
