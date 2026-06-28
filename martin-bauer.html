@@ -1,137 +1,158 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Job Board — Life Sciences Legal (Munich)</title>
+<title>Martin Bauer — Job Board</title>
 <style>
-:root{--bg:#fafafa;--card:#fff;--border:#e5e7eb;--text:#1a1a1a;--muted:#6b7280;--accent:#2563eb;--green:#16a34a;--yellow:#ca8a04;--red:#dc2626;--orange:#ea580c}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:24px;max-width:900px;margin:0 auto}
-h1{font-size:1.5rem;font-weight:600;margin-bottom:4px}
-.subtitle{color:var(--muted);font-size:.875rem;margin-bottom:24px}
-.summary{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:24px;font-size:.9rem}
-.summary strong{color:var(--accent)}
-.grade-badge{display:inline-block;padding:2px 10px;border-radius:6px;font-weight:600;font-size:.8rem;margin-right:6px}
-.grade-A{background:#dcfce7;color:#166534}.grade-B{background:#dbeafe;color:#1e40af}.grade-C{background:#fef9c3;color:#854d0e}.grade-D{background:#fee2e2;color:#991b1b}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:12px;transition:box-shadow .15s}
-.card:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.card-header{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.card h3{font-size:1rem;font-weight:600}
-.card .company{color:var(--accent);font-weight:500}
-.card .meta{color:var(--muted);font-size:.8rem;margin-top:4px}
-.card .meta span{margin-right:12px}
-.card .rationale{font-size:.85rem;color:var(--muted);margin-top:6px}
-.card a{color:var(--accent);text-decoration:none;font-size:.85rem}
-.card a:hover{text-decoration:underline}
-.section-title{font-size:1.1rem;font-weight:600;margin:24px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
-.dead-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-bottom:24px}
-.dead-table th{text-align:left;padding:6px 8px;border-bottom:2px solid var(--border);color:var(--muted);font-weight:500}
-.dead-table td{padding:6px 8px;border-bottom:1px solid var(--border)}
-.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
-.dot-green{background:var(--green)}.dot-yellow{background:var(--yellow)}.dot-red{background:var(--red)}.dot-orange{background:var(--orange)}
-.dream-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:24px}
-.dream-table th{text-align:left;padding:8px;border-bottom:2px solid var(--border);color:var(--muted);font-weight:500}
-.dream-table td{padding:8px;border-bottom:1px solid var(--border)}
-footer{text-align:center;color:var(--muted);font-size:.75rem;margin-top:32px;padding-top:16px;border-top:1px solid var(--border)}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8f9fa; color: #1a1a2e; line-height: 1.6; }
+  .container { max-width: 860px; margin: 0 auto; padding: 24px 16px; }
+  header { text-align: center; margin-bottom: 32px; }
+  header h1 { font-size: 24px; font-weight: 700; color: #1a1a2e; }
+  header p { color: #6b7280; font-size: 14px; margin-top: 4px; }
+  .meta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+  .meta-item { background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 8px 16px; font-size: 13px; }
+  .meta-item strong { color: #1a1a2e; }
+  .section-title { font-size: 16px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; margin: 28px 0 12px; }
+  .card { background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 20px 24px; margin-bottom: 12px; transition: box-shadow 0.2s; }
+  .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+  .card-title { font-size: 17px; font-weight: 600; }
+  .grade { display: inline-block; padding: 2px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; }
+  .grade-b { background: #dbeafe; color: #1e40af; }
+  .grade-c { background: #fef3c7; color: #92400e; }
+  .card-company { font-size: 14px; color: #6b7280; margin-top: 2px; }
+  .card-details { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; font-size: 13px; color: #4b5563; }
+  .card-note { margin-top: 10px; font-size: 13px; color: #6b7280; border-left: 3px solid #e5e7eb; padding-left: 12px; }
+  .apply-btn { display: inline-block; margin-top: 12px; padding: 8px 20px; background: #1a1a2e; color: white; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 600; transition: background 0.2s; }
+  .apply-btn:hover { background: #2d2d4e; }
+  .dead-section { margin-top: 32px; }
+  .dead-card { background: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; padding: 12px 16px; margin-bottom: 8px; font-size: 13px; }
+  .dead-card .company { font-weight: 600; color: #991b1b; }
+  .dead-card .reason { color: #6b7280; }
+  .dream-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+  .dream-table th { text-align: left; padding: 8px 12px; background: #f3f4f6; border-bottom: 1px solid #e5e7eb; color: #6b7280; font-weight: 600; }
+  .dream-table td { padding: 8px 12px; border-bottom: 1px solid #f3f4f6; }
+  .status-live { color: #059669; font-weight: 600; }
+  .status-dead { color: #dc2626; }
+  .status-none { color: #6b7280; }
+  footer { text-align: center; margin-top: 40px; padding: 20px; color: #9ca3af; font-size: 12px; }
 </style>
 </head>
 <body>
-<h1>Life Sciences Legal — Job Board</h1>
-<p class="subtitle">Updated 28 June 2026 · Munich focus · Senior in-house roles</p>
+<div class="container">
+  <header>
+    <h1>Job Board</h1>
+    <p>Life Sciences Legal — Munich Focus</p>
+    <div class="meta">
+      <div class="meta-item">Last scan: <strong>2026-06-28</strong></div>
+      <div class="meta-item">Verified: <strong>4 live</strong></div>
+      <div class="meta-item">Dead removed: <strong>5</strong></div>
+      <div class="meta-item">New today: <strong>0</strong></div>
+    </div>
+  </header>
 
-<div class="summary">
-<strong>This week:</strong> No new A or B-grade listings. 1 new C-grade (Takeda Zurich). 4 listings died. 6 active listings remain. Next scan: 29 June 2026.
+  <div class="section-title">B-Grade Matches</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Legal Counsel, Germany</div>
+        <div class="card-company">argenx</div>
+      </div>
+      <span class="grade grade-b">B</span>
+    </div>
+    <div class="card-details">
+      <span>📍 Germany (Remote)</span>
+      <span>🏢 Biotech (Immunology)</span>
+      <span>📅 Reposted 1 week ago</span>
+    </div>
+    <div class="card-note">Global immunology biotech (FcRn, VYVGART). Remote work makes Munich viable. Strong life sciences fit — pharma regulatory & compliance likely in scope. Over 100 applicants.</div>
+    <a class="apply-btn" href="https://www.linkedin.com/jobs/view/legal-counsel-germany-at-argenx-4354113822" target="_blank">View on LinkedIn →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">(Senior) Corporate Counsel (m/w/d)</div>
+        <div class="card-company">Brainlab</div>
+      </div>
+      <span class="grade grade-b">B</span>
+    </div>
+    <div class="card-details">
+      <span>📍 Munich, Bavaria</span>
+      <span>🏢 Medtech (Surgical Navigation)</span>
+      <span>📅 Reposted 1 week ago</span>
+    </div>
+    <div class="card-note">Leading medtech HQ'd in Munich. Senior-level in-house role. Adjacent industry (medtech vs pharma) but perfect Munich location. 15 applicants — less competitive.</div>
+    <a class="apply-btn" href="https://www.linkedin.com/jobs/view/senior-corporate-counsel-m-w-d-at-brainlab-4426554083" target="_blank">View on LinkedIn →</a>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Legal Counsel</div>
+        <div class="card-company">FUTRUE</div>
+      </div>
+      <span class="grade grade-b">B</span>
+    </div>
+    <div class="card-details">
+      <span>📍 Munich, Bavaria</span>
+      <span>🏢 Healthcare (Dental, Hearing, Vision)</span>
+      <span>📅 Reposted 6 days ago</span>
+    </div>
+    <div class="card-note">Healthcare holding group adjacent to pharma. Munich in-house. 56 applicants. First found 2026-05-22, still active — persistent opening. Less direct pharma but good location and seniority.</div>
+    <a class="apply-btn" href="https://www.linkedin.com/jobs/view/legal-counsel-at-futrue-4395591493" target="_blank">View on LinkedIn →</a>
+  </div>
+
+  <div class="section-title">Worth a Look (C-Grade)</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Legal Counsel (m/f/d)</div>
+        <div class="card-company">Medtronic</div>
+      </div>
+      <span class="grade grade-c">C</span>
+    </div>
+    <div class="card-details">
+      <span>📍 Meerbusch (Düsseldorf area)</span>
+      <span>🏢 Medtech</span>
+      <span>💰 €78,400–117,600 + bonus</span>
+    </div>
+    <div class="card-note">Dream company, flexible work arrangement. Medical device commercial & regulatory law, healthcare compliance, HWG. Location requires compromise (Meerbusch ≠ Munich). Salary top-end slightly below €120k floor but MIP bonus may bridge gap.</div>
+    <a class="apply-btn" href="https://medtronic.wd1.myworkdayjobs.com/MedtronicCareers/job/Mollsfeld-Meerbusch-Germany/Legal-Counsel--m-f-d-_R68703-1" target="_blank">View on Workday →</a>
+  </div>
+
+  <div class="section-title dead-section">Dead Links Removed</div>
+
+  <div class="dead-card"><span class="company">Ipsen</span> — Legal Counsel DACH, München <span class="reason">· Removed from portal</span></div>
+  <div class="dead-card"><span class="company">Gilead</span> — Senior Legal Counsel Germany, Munich (×2) <span class="reason">· Page doesn't exist</span></div>
+  <div class="dead-card"><span class="company">STADA</span> — Senior Legal Counsel BD&L, Bad Vilbel <span class="reason">· Not available</span></div>
+  <div class="dead-card"><span class="company">BioNTech</span> — Legal Counsel Clinical & R&D, Mainz <span class="reason">· Source site merged</span></div>
+  <div class="dead-card"><span class="company">Siemens Healthineers</span> — Legal Counsel, Erlangen (×2) <span class="reason">· Page not found</span></div>
+
+  <div class="section-title">Dream Company Monitor</div>
+  <table class="dream-table">
+    <tr><th>Company</th><th>Status</th><th>Notes</th></tr>
+    <tr><td>Brainlab</td><td class="status-live">✅ Live</td><td>(Senior) Corporate Counsel Munich</td></tr>
+    <tr><td>Medtronic</td><td class="status-live">✅ Live</td><td>Legal Counsel Meerbusch (C-grade)</td></tr>
+    <tr><td>BioNTech</td><td class="status-none">No legal DE</td><td>Director Legal in London only</td></tr>
+    <tr><td>Takeda</td><td class="status-none">No legal DE</td><td>Head Counsel roles Zurich/Cambridge</td></tr>
+    <tr><td>Pfizer</td><td class="status-none">No legal DE</td><td>—</td></tr>
+    <tr><td>CSL Behring</td><td class="status-none">No legal DE</td><td>Legal Counsel EMEA in UK</td></tr>
+    <tr><td>Moderna</td><td class="status-none">No legal DE</td><td>—</td></tr>
+    <tr><td>Novo Nordisk</td><td class="status-none">No roles found</td><td>—</td></tr>
+    <tr><td>Eli Lilly</td><td class="status-none">Blocked</td><td>Workday blocks scraping</td></tr>
+    <tr><td>Roche</td><td class="status-none">No legal DE</td><td>—</td></tr>
+    <tr><td>Gilead</td><td class="status-dead">Expired</td><td>Sr Legal Counsel Munich — removed</td></tr>
+    <tr><td>Ipsen</td><td class="status-dead">Expired</td><td>Legal Counsel DACH — removed</td></tr>
+    <tr><td>STADA</td><td class="status-dead">Expired</td><td>Sr Legal Counsel BD&L — filled</td></tr>
+    <tr><td>Siemens Healthineers</td><td class="status-dead">Expired</td><td>Both roles removed</td></tr>
+    <tr><td>Sandoz/Hexal</td><td class="status-none">Needs check</td><td>Holzkirchen near Munich, salary below floor</td></tr>
+  </table>
 </div>
-
-<h2 class="section-title">Active Listings</h2>
-
-<div class="card">
-<div class="card-header"><span class="grade-badge grade-A">A</span><h3>Legal Counsel Life Sciences (f/m/d)</h3></div>
-<p class="company">Company TBD · Garching bei München (Hybrid)</p>
-<div class="meta"><span>📍 Munich area</span><span>📅 First seen 22 May</span><span>🔗 beck-stellenmarkt</span></div>
-<p class="rationale">In-house life sciences, 7+ yr requirement, Munich area, hybrid. Perfect practice area match.</p>
-<a href="https://www.beck-stellenmarkt.de/job/legal-counsel-life-sciences-f-m-d-26650" target="_blank">View listing →</a>
-</div>
-
-<div class="card">
-<div class="card-header"><span class="grade-badge grade-B">B</span><h3>Legal Counsel, Germany</h3></div>
-<p class="company">argenx · Germany (Remote)</p>
-<div class="meta"><span>📍 Remote</span><span>📅 First seen 23 Jun</span><span>🔗 LinkedIn</span></div>
-<p class="rationale">Strong biotech (FcRn/VYVGART), remote from Munich viable. Not on dream list.</p>
-<a href="https://www.linkedin.com/jobs/view/legal-counsel-germany-at-argenx-4354113822" target="_blank">View listing →</a>
-</div>
-
-<div class="card">
-<div class="card-header"><span class="grade-badge grade-B">B</span><h3>(Senior) Corporate Counsel (m/w/d)</h3></div>
-<p class="company">Brainlab · Munich, Bavaria</p>
-<div class="meta"><span>📍 Munich</span><span>📅 First seen 23 Jun</span><span>🔗 LinkedIn</span></div>
-<p class="rationale">Dream company, Munich HQ, senior level. Adjacent industry (medtech vs pharma).</p>
-<a href="https://www.linkedin.com/jobs/view/senior-corporate-counsel-m-w-d-at-brainlab-4426554083" target="_blank">View listing →</a>
-</div>
-
-<div class="card">
-<div class="card-header"><span class="grade-badge grade-B">B</span><h3>Legal Counsel</h3></div>
-<p class="company">FUTRUE · Munich, Bavaria (Hybrid)</p>
-<div class="meta"><span>📍 Munich</span><span>📅 First seen 22 May</span><span>🔗 LinkedIn</span></div>
-<p class="rationale">Healthcare group, Munich in-house, hybrid. Less direct pharma overlap.</p>
-<a href="https://www.linkedin.com/jobs/view/legal-counsel-at-futrue-4395591493" target="_blank">View listing →</a>
-</div>
-
-<div class="card">
-<div class="card-header"><span class="grade-badge grade-B">B</span><h3>Senior Legal Counsel Healthcare/Pharma</h3></div>
-<p class="company">Hays (undisclosed pharma/biotech) · Germany-wide / Remote</p>
-<div class="meta"><span>📍 Remote</span><span>📅 First seen 23 May</span><span>🔗 Hays</span></div>
-<p class="rationale">Pharma/biotech client, remote, building European legal function. Recruiter listing; company undisclosed.</p>
-<a href="https://www.hays.de/jobsuche/stellenangebote-jobs-detail-senior-legal-counsel-healthcare-pharma-berlin-877601/1" target="_blank">View listing →</a>
-</div>
-
-<div class="card">
-<div class="card-header"><span class="grade-badge grade-B">B</span><h3>Legal Counsel (gn)</h3></div>
-<p class="company">Proteros Biostructures · Martinsried, München</p>
-<div class="meta"><span>📍 Near Munich</span><span>📅 First seen 22 May</span><span>🔗 Personio</span></div>
-<p class="rationale">Excellent location (Martinsried near Munich), right industry (biotech drug discovery). May be more junior (3+ yr).</p>
-<a href="https://proteros-biostructures-gmbh.jobs.personio.de/job/2026415" target="_blank">View listing →</a>
-</div>
-
-<h2 class="section-title">New This Week</h2>
-
-<div class="card">
-<div class="card-header"><span class="grade-badge grade-C">C</span><h3>Head Counsel, Global Transactions & Contracts Legal – GSQ</h3></div>
-<p class="company">Takeda · Zurich, Switzerland (mostly remote)</p>
-<div class="meta"><span>📍 Zurich</span><span>📅 First seen 28 Jun</span><span>🔗 Workday</span><span>💰 CHF 212k–292k</span></div>
-<p class="rationale">Dream company (Takeda), head counsel level. But: Zurich not Germany, supply chain focus not regulatory, 10+ yr PQE required (candidate has 8).</p>
-<a href="https://takeda.wd3.myworkdayjobs.com/External/job/Zurich-Switzerland/Head-Counsel--Global-Transactions---Contracts-Legal---Global-Supply---Quality_R0182665" target="_blank">View listing →</a>
-</div>
-
-<h2 class="section-title">Newly Dead Links</h2>
-<table class="dead-table">
-<tr><th>Company</th><th>Title</th><th>Reason</th></tr>
-<tr><td>STADA</td><td>Senior Legal Counsel BD&L</td><td>Not available at this time</td></tr>
-<tr><td>Ipsen</td><td>Legal Counsel Assets & Brands</td><td>Page doesn't exist</td></tr>
-<tr><td>Immunocore</td><td>Director of Legal</td><td>No longer accepting applications</td></tr>
-<tr><td>BioNTech</td><td>Director Legal Dispute Resolution</td><td>Position has been filled</td></tr>
-</table>
-
-<h2 class="section-title">Dream Company Monitor</h2>
-<table class="dream-table">
-<tr><th>Company</th><th>Status</th><th>Notes</th></tr>
-<tr><td>BioNTech</td><td><span class="status-dot dot-red"></span>No roles</td><td>Director Dispute Resolution filled</td></tr>
-<tr><td>Takeda</td><td><span class="status-dot dot-yellow"></span>C-grade</td><td>Head Counsel GSQ in Zurich</td></tr>
-<tr><td>Brainlab</td><td><span class="status-dot dot-green"></span>B-grade</td><td>Senior Corporate Counsel Munich — live</td></tr>
-<tr><td>Pfizer</td><td><span class="status-dot dot-red"></span>No roles</td><td>India taxation only</td></tr>
-<tr><td>CSL Behring</td><td><span class="status-dot dot-red"></span>No roles</td><td>UK Maidenhead only</td></tr>
-<tr><td>Moderna</td><td><span class="status-dot dot-red"></span>No roles</td><td>Warsaw only</td></tr>
-<tr><td>Novo Nordisk</td><td><span class="status-dot dot-red"></span>No roles</td><td>No legal roles in Germany</td></tr>
-<tr><td>Eli Lilly</td><td><span class="status-dot dot-orange"></span>Blocked</td><td>Workday blocks scraping</td></tr>
-<tr><td>Roche</td><td><span class="status-dot dot-red"></span>No roles</td><td>No legal roles in Germany</td></tr>
-<tr><td>Bayer</td><td><span class="status-dot dot-red"></span>No roles</td><td>Labor law only (dealbreaker)</td></tr>
-<tr><td>Stada</td><td><span class="status-dot dot-red"></span>Dead</td><td>Senior Legal Counsel BD&L — dead</td></tr>
-<tr><td>Gilead</td><td><span class="status-dot dot-red"></span>Dead</td><td>Both URLs dead</td></tr>
-<tr><td>Ipsen</td><td><span class="status-dot dot-red"></span>Dead</td><td>Both roles dead</td></tr>
-<tr><td>Sandoz/Hexal</td><td><span class="status-dot dot-yellow"></span>Check</td><td>11 legal roles globally, Holzkirchen near Munich</td></tr>
-</table>
-
-<footer>Auto-generated by daily job scan · Not for public distribution</footer>
+<footer>Automated scan by Kleen Hub Job Scan Agent · Updated 2026-06-28</footer>
 </body>
 </html>
