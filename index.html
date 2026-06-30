@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<script type="application/json" id="cowork-artifact-meta">
+<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
 {
   "name": "Justus Job Board",
   "schemaVersion": 1,
@@ -422,21 +421,21 @@
 
 <script>
 const SCAN_META = {
-  lastScan: "2026-06-23",
-  totalScraped: 135,
-  passedVerification: 5,
-  deadLinks: 6,
-  estCostUSD: "$2.40",
+  lastScan: "2026-06-30",
+  totalScraped: 148,
+  passedVerification: 6,
+  deadLinks: 1,
+  estCostUSD: "$2.10",
   sources: ["Glassdoor","LinkedIn","StepStone","Indeed","XING","Arbeitsagentur","Workday"],
-  scanDate: "2026-06-23",
+  scanDate: "2026-06-30",
   sourcesCount: 7,
   scrapersRun: 16,
-  rawListings: 135,
-  scoredListings: 20,
+  rawListings: 148,
+  scoredListings: 26,
   gradeA: 3,
-  gradeB: 12,
-  gradeC: 5,
-  notes: "Verified: 5/11 confirmed live. 6 dead links removed. Est. cost: $2.40"
+  gradeB: 15,
+  gradeC: 8,
+  notes: "Verified: 6/7 confirmed live. 1 dead link (ServiceNow 404). Est. cost: $2.10"
 };
 
 const JOBS = [
@@ -719,20 +718,104 @@ const JOBS = [
     hybrid: true,
     notes: "Director level, operations, Munich, hybrid. Commercial operations in pharma is adjacent to process management. Reposted today. Verified live.",
     dreamCompany: false
+  },
+  {
+    id: "knorr-bremse-senior-transformation-planning-excellence",
+    scanDate: "2026-06-30",
+    grade: "B",
+    title: "Senior Transformation Manager — Planning Excellence",
+    company: "Knorr-Bremse AG",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/senior-tranformation-manager-planning-excellence-m-w-d-at-knorr-bremse-ag-4402490852",
+    salary: null,
+    hybrid: null,
+    notes: "Dream company Knorr-Bremse + Transformation domain + Planning Excellence. Senior Manager title (not Head/Director) but bumped to B for dream company. Verified live.",
+    dreamCompany: true
+  },
+  {
+    id: "qinx-head-supply-chain-transformation-2",
+    scanDate: "2026-06-30",
+    grade: "B",
+    title: "Head of Supply Chain Transformation",
+    company: "qinX GmbH",
+    location: "Munich",
+    source: "XING",
+    url: "https://www.xing.com/jobs/muenchen-head-of-supply-chain-transformation-154763233",
+    salary: "€93K–€224K",
+    hybrid: null,
+    notes: "Head level + Transformation domain + Munich. Still live from prior scan. Wide salary range suggests senior hire. Re-verified.",
+    dreamCompany: false
+  },
+  {
+    id: "octopus-energy-leitung-marktkommunikation-prozessmanagement",
+    scanDate: "2026-06-30",
+    grade: "B",
+    title: "Leitung Marktkommunikation und Prozessmanagement",
+    company: "Octopus Energy Germany",
+    location: "Munich",
+    source: "Glassdoor",
+    url: "https://www.glassdoor.com/job-listing/j?jl=1010179698770",
+    salary: null,
+    hybrid: null,
+    notes: "Head-level role (Leitung) + Process Management domain. Octopus Energy is a fast-growing energy disruptor. Marktkommunikation adds market comms scope. Verified live.",
+    dreamCompany: false
+  },
+  {
+    id: "fnz-bank-leitung-operational-change",
+    scanDate: "2026-06-30",
+    grade: "C",
+    title: "Leitung Operational Change",
+    company: "FNZ Bank",
+    location: "Munich",
+    source: "XING",
+    url: "https://www.xing.com/jobs/muenchen-leitung-operational-change-155706711",
+    salary: null,
+    hybrid: null,
+    notes: "Head-level (Leitung) + Operational Change — strong domain match. FNZ Bank is fintech/wealth management. Banking sector may be less aligned with industrial background. Verified live.",
+    dreamCompany: false
+  },
+  {
+    id: "feld-energy-head-operations-maintenance-agri-pv",
+    scanDate: "2026-06-30",
+    grade: "C",
+    title: "Head of Operations and Maintenance — Agri-PV",
+    company: "feld.energy",
+    location: "Munich",
+    source: "XING",
+    url: "https://www.xing.com/jobs/muenchen-head-of-operations-and-maintenance-agri-pv-154715111",
+    salary: null,
+    hybrid: null,
+    notes: "Head level + Operations domain. Agri-PV (solar on farmland) is niche — very specific technical operations role. Startup energy sector. Verified live.",
+    dreamCompany: false
+  },
+  {
+    id: "adac-head-erp-plattform-operations",
+    scanDate: "2026-06-30",
+    grade: "C",
+    title: "Head of ERP Plattform Operations (w/m/d)",
+    company: "ADAC",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/head-of-erp-plattform-operations-w-m-d-at-adac-4414208033",
+    salary: null,
+    hybrid: null,
+    notes: "Head level + Operations at ADAC (large Munich institution). ERP Platform focus is IT-heavy, less process management. Well-known employer with good benefits. Verified live.",
+    dreamCompany: false
   }
 ];
 
 const SCRAPER_HEALTH = [
-  { source: "Glassdoor", actor: "valig/glassdoor-jobs-scraper", queries: 5, status: "ok", items: 22, notes: "Mostly irrelevant matches this week" },
-  { source: "LinkedIn", actor: "curious_coder/linkedin-jobs-scraper", queries: 6, status: "ok", items: 25, notes: "Best source — 4 verified matches" },
-  { source: "StepStone", actor: "easyapi/stepstone-jobs-scraper", queries: 4, status: "warn", items: 0, notes: "Stuck 4+ min, 0 pages crawled — skipped" },
-  { source: "Indeed", actor: "misceres/indeed-scraper", queries: 3, status: "fail", items: 0, notes: "Error in output, 0 results" },
-  { source: "XING", actor: "shahidirfan/Xing-Jobs-Scraper", queries: 3, status: "ok", items: 41, notes: "Good coverage, some company name mismatches" },
-  { source: "Arbeitsagentur", actor: "blackfalcondata/arbeitsagentur-jobs-feed", queries: 2, status: "ok", items: 6, notes: "Low yield, no matches" },
-  { source: "Workday — Celonis", actor: "blackfalcondata/workday-scraper", queries: 1, status: "fail", items: 0, notes: "WDY-2011: URL not found" },
+  { source: "Glassdoor", actor: "valig/glassdoor-jobs-scraper", queries: 5, status: "ok", items: 37, notes: "37 items across 5 queries, 1 match (Octopus Energy)" },
+  { source: "LinkedIn", actor: "curious_coder/linkedin-jobs-scraper", queries: 1, status: "ok", items: 25, notes: "25 items, 3 matches (Knorr-Bremse, ADAC, qinX dupe)" },
+  { source: "StepStone", actor: "easyapi/stepstone-jobs-scraper", queries: 1, status: "warn", items: 0, notes: "Stuck 3+ min, 0 pages crawled — skipped" },
+  { source: "Indeed", actor: "misceres/indeed-scraper", queries: 1, status: "fail", items: 0, notes: "Error in output, 0 useful results" },
+  { source: "XING", actor: "shahidirfan/Xing-Jobs-Scraper", queries: 3, status: "ok", items: 43, notes: "43 items, 3 matches (qinX, FNZ Bank, feld.energy)" },
+  { source: "Arbeitsagentur", actor: "blackfalcondata/arbeitsagentur-jobs-feed", queries: 2, status: "ok", items: 3, notes: "3 items, no matches" },
+  { source: "Workday — Celonis", actor: "blackfalcondata/workday-scraper", queries: 1, status: "fail", items: 0, notes: "WDY-2011: company URL no longer valid" },
   { source: "Workday — Airbus", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "All non-Munich locations" },
-  { source: "Workday — Carl Zeiss", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "All non-Munich/Germany" },
-  { source: "Web Search (Dream Co.)", actor: "n/a", queries: 13, status: "ok", items: "—", notes: "Found ServiceNow & Celonis leads (both dead)" }
+  { source: "Workday — Carl Zeiss", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "All non-Munich locations" },
+  { source: "Web Search (Dream Co.)", actor: "n/a", queries: 13, status: "ok", items: "—", notes: "ServiceNow 404 dead link. No new dream company hits." }
 ];
 
 const DREAM_COMPANIES = [
@@ -749,7 +832,7 @@ const DREAM_COMPANIES = [
   { name: "Siemens", hit: false, roles: null },
   { name: "Airbus", hit: false, roles: "No Munich ops roles" },
   { name: "Carl Zeiss AG", hit: false, roles: "No Munich ops roles" },
-  { name: "Knorr-Bremse", hit: false, roles: null }
+  { name: "Knorr-Bremse", hit: true, roles: "Sr. Transformation Mgr — Planning Excellence (B-grade, verified)" }
 ];
 
 // Render
