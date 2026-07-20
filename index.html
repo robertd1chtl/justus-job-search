@@ -421,24 +421,52 @@
 
 <script>
 const SCAN_META = {
-  lastScan: "2026-07-13",
-  totalScraped: 189,
-  passedVerification: 12,
-  deadLinks: 4,
-  estCostUSD: "$1.20",
+  lastScan: "2026-07-20",
+  totalScraped: 223,
+  passedVerification: 14,
+  deadLinks: 1,
+  estCostUSD: "$1.80",
   sources: ["Glassdoor","LinkedIn","StepStone","Indeed","XING","Arbeitsagentur","Workday"],
-  scanDate: "2026-07-13",
+  scanDate: "2026-07-20",
   sourcesCount: 7,
   scrapersRun: 18,
-  rawListings: 189,
-  scoredListings: 8,
-  gradeA: 3,
-  gradeB: 5,
-  gradeC: 0,
-  notes: "Verified 16 candidate URLs: 12 live, 4 dead/filled and removed (Knorr-Bremse Portfolio Transformation — position filled; qinX Supply Chain Transformation — expired; Giesecke+Devrient Lead Global Process Excellence & QuantumDiamonds Head of Operations — XING redirected to unrelated ads). Est. cost: $1.20"
+  rawListings: 223,
+  scoredListings: 14,
+  gradeA: 4,
+  gradeB: 8,
+  gradeC: 2,
+  notes: "Verified 15 candidate URLs via Chrome: 14 live, 1 dead (ServiceNow Head of Executive Experience — 404, excluded). Glassdoor recovered this week (31 items). StepStone ran 5 min and returned 0 items — 4th consecutive failing week. New A-grades: Knorr-Bremse VP Global Industrial Engineering + Siemens Mobility Head of Industrial Engineering (both dream companies). Est. cost: $1.80"
 };
 
 const JOBS = [
+  {
+    id: "knorr-bremse-vp-global-industrial-engineering",
+    scanDate: "2026-07-20",
+    grade: "A",
+    title: "Vice President Global Industrial Engineering (m/f/d)",
+    company: "Knorr-Bremse AG",
+    location: "Munich",
+    source: "XING",
+    url: "https://www.xing.com/jobs/muenchen-vice-president-global-industrial-engineering-156342020",
+    salary: null,
+    hybrid: null,
+    notes: "Dream company + VP level + global industrial engineering / process ownership at a €8bn Munich industrial group — directly maps to LHT process leadership at higher scale. Direct apply also via careers.knorr-bremse.com (Job 1414890933). Verified live 2026-07-20.",
+    dreamCompany: true
+  },
+  {
+    id: "siemens-mobility-head-industrial-engineering",
+    scanDate: "2026-07-20",
+    grade: "A",
+    title: "Head of (w/m/d) Industrial Engineering",
+    company: "Siemens Mobility",
+    location: "Munich-Allach",
+    source: "XING / jobs.siemens.com",
+    url: "https://jobs.siemens.com/de_DE/externaljobs/JobDetail/509785",
+    salary: "€92,000–€117,000 (XING est., likely higher)",
+    hybrid: null,
+    notes: "Dream company. Leads ~60 people in 4 teams at the Allach locomotive plant: production process design & standardization with LEAN, automation/digitalization/AI rollout across the value chain, and transformation to product-based manufacturing — near-perfect domain and leadership-scope match. Verified live 2026-07-20.",
+    dreamCompany: true
+  },
   {
     id: "montana-energie-head-process-management",
     scanDate: "2026-07-13",
@@ -450,7 +478,7 @@ const JOBS = [
     url: "https://de.indeed.com/viewjob?jk=22c568357fa4c5f5",
     salary: "€81,500–€120,000",
     hybrid: null,
-    notes: "Near-perfect domain match: strategic ownership of company-wide process & application management, BPMN/Lean/Six Sigma/process-mining tools explicitly required, leads an 8-person team, direct reporting line to Geschäftsleitung. Grünwald is a Munich suburb. Verified live.",
+    notes: "Near-perfect domain match: strategic ownership of company-wide process & application management, BPMN/Lean/Six Sigma/process-mining tools explicitly required, leads an 8-person team, direct reporting line to Geschäftsleitung. Grünwald is a Munich suburb. Re-verified live 2026-07-20.",
     dreamCompany: false
   },
   {
@@ -464,7 +492,7 @@ const JOBS = [
     url: "https://de.indeed.com/viewjob?jk=78baba3be8ce1efc",
     salary: null,
     hybrid: true,
-    notes: "Director level reporting directly to the Geschäftsführer, owns cross-departmental process improvement and digitalization initiatives across a ~350-person service organization. Starnberg is well within commute. Verified live.",
+    notes: "Director level reporting directly to the Geschäftsführer, owns cross-departmental process improvement and digitalization initiatives across a ~350-person service organization. Starnberg is well within commute. Note: 25–50% travel. Re-verified live 2026-07-20.",
     dreamCompany: false
   },
   {
@@ -478,7 +506,49 @@ const JOBS = [
     url: "https://de.indeed.com/viewjob?jk=8fd1d47eef644e7c",
     salary: null,
     hybrid: null,
-    notes: "COO mandate for a fast-scaling flexible storage/warehousing platform — full P&L, people leadership, and an explicit mandate to professionalize process design, automation, and KPI governance. Munich is one of the listed locations. Posted via recruiting agency PeopleX on behalf of client Storage24. Verified live.",
+    notes: "COO mandate for a fast-scaling flexible storage/warehousing platform — full P&L, people leadership, and an explicit mandate to professionalize process design, automation, and KPI governance. Munich is one of the listed locations. Posted via recruiting agency PeopleX on behalf of client Storage24. Not re-verified this week.",
+    dreamCompany: false
+  },
+  {
+    id: "exploration-company-site-director",
+    scanDate: "2026-07-20",
+    grade: "B",
+    title: "Site Director",
+    company: "The Exploration Company",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/site-director-at-the-exploration-company-4374600550",
+    salary: null,
+    hybrid: null,
+    notes: "Senior site leadership at Munich's reusable-spacecraft scale-up (Nyx) — running the Munich site end-to-end. Aerospace background is a direct fit. Reposted the day of this scan (77 applicants). Verified live 2026-07-20.",
+    dreamCompany: false
+  },
+  {
+    id: "knds-abteilungsleiter-qualitaetsmanagement",
+    scanDate: "2026-07-20",
+    grade: "B",
+    title: "Abteilungsleiter (m/w/d) Qualitätsmanagement",
+    company: "KNDS Deutschland",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/abteilungsleiter-m-w-d-qualit%C3%A4tsmanagement-at-knds-deutschland-4442120031",
+    salary: null,
+    hybrid: null,
+    notes: "Department-head level with direct reports at Munich's major defense OEM (Leopard 2). Quality management is adjacent to process management; defense sector is booming and pays well. Posted 3 days ago, only 14 applicants. Verified live 2026-07-20.",
+    dreamCompany: false
+  },
+  {
+    id: "quest-one-head-project-execution",
+    scanDate: "2026-07-20",
+    grade: "B",
+    title: "Head of Project Execution (f/m/d)",
+    company: "Quest One",
+    location: "Augsburg (within 45-min commute)",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/head-of-project-execution-f-m-d-at-quest-one-4424206877",
+    salary: null,
+    hybrid: null,
+    notes: "Head level at a scaling green-hydrogen electrolysis manufacturer — project execution / industrial ops leadership in advanced manufacturing. Augsburg is at the edge of the commute radius. Verified live 2026-07-20.",
     dreamCompany: false
   },
   {
@@ -492,64 +562,8 @@ const JOBS = [
     url: "https://de.indeed.com/viewjob?jk=91cc27d76053a22d",
     salary: null,
     hybrid: null,
-    notes: "Dream company bump — Lead level (not Head) but full PMO/process-governance ownership for a major defense programme. Requires German security clearance. Verified live.",
+    notes: "Dream company bump — Lead level (not Head) but full PMO/process-governance ownership for a major defense programme. Requires German security clearance. Re-verified live 2026-07-20.",
     dreamCompany: true
-  },
-  {
-    id: "develop-head-data-governance-augsburg",
-    scanDate: "2026-07-13",
-    grade: "B",
-    title: "Head of Data Governance (Master Data)",
-    company: "develop",
-    location: "Augsburg (within 45-min commute)",
-    source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/head-of-data-governance-master-data-at-develop-4440027969/",
-    salary: "€120,000–€135,000",
-    hybrid: true,
-    notes: "Head level, salary clears the €120k floor, hybrid. Data governance is adjacent to process management rather than a direct domain hit. Verified live.",
-    dreamCompany: false
-  },
-  {
-    id: "quantum-systems-head-controlling",
-    scanDate: "2026-07-13",
-    grade: "B",
-    title: "Head of Controlling (m/f/d)",
-    company: "Quantum-Systems GmbH",
-    location: "Gilching (Munich area)",
-    source: "Indeed",
-    url: "https://de.indeed.com/viewjob?jk=08d11a0ee37d792b",
-    salary: null,
-    hybrid: true,
-    notes: "Dream company bump — building the Controlling/FP&A function from scratch is a genuine domain gap (finance, not process/ops), but Quantum-Systems is a dream company. Verified live.",
-    dreamCompany: true
-  },
-  {
-    id: "tuv-sud-head-business-line-conveyor",
-    scanDate: "2026-07-13",
-    grade: "B",
-    title: "Head of Business Line – Conveyor Technology (m/f/d)",
-    company: "TÜV SÜD",
-    location: "Munich",
-    source: "Indeed",
-    url: "https://de.indeed.com/viewjob?jk=1c0bdc240a3e7a00",
-    salary: null,
-    hybrid: true,
-    notes: "Full P&L ownership of a 600-person business line, extended executive management team member, reports to Managing Directors — but this is a general-manager role for a technical inspection vertical rather than a core process/transformation mandate. Verified live.",
-    dreamCompany: false
-  },
-  {
-    id: "exergy3-head-supply-chain-partnerships",
-    scanDate: "2026-07-13",
-    grade: "B",
-    title: "Head of Supply Chain & Strategic Partnerships",
-    company: "Exergy3 Limited",
-    location: "Munich (Hybrid)",
-    source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/head-of-supply-chain-strategic-partnerships-at-exergy3-limited-4440061841/",
-    salary: null,
-    hybrid: true,
-    notes: "Head level, supply chain domain adjacent to process management, Munich hybrid, Easy Apply (16 applicants). Small/early-stage company with limited public track record. Verified live.",
-    dreamCompany: false
   },
   {
     id: "allianz-commercial-head-underwriting-process",
@@ -558,11 +572,11 @@ const JOBS = [
     title: "Head of Global Underwriting Process & Coordination",
     company: "Allianz Commercial",
     location: "Munich (Hybrid)",
-    source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/head-of-global-underwriting-process-coordination-at-allianz-commercial-4436726136/",
-    salary: null,
+    source: "LinkedIn / Indeed",
+    url: "https://de.indeed.com/viewjob?jk=a33afcda127fcec7",
+    salary: "€125,417–€218,467",
     hybrid: true,
-    notes: "Head level + global process ownership at Allianz — salary comfortably €120k+. Insurance domain is the gap vs. industrial background. Reappeared in this week's Indeed pull — still live.",
+    notes: "Head level + global process ownership at Allianz — salary now confirmed at €125k–€218k, Munich preferred location, hybrid. Insurance domain is the gap vs. industrial background. Re-verified live 2026-07-20.",
     dreamCompany: false
   },
   {
@@ -576,8 +590,36 @@ const JOBS = [
     url: "https://de.indeed.com/viewjob?jk=93c5d5206568eb63",
     salary: null,
     hybrid: null,
-    notes: "Munich space scale-up, reports to COO, owns cross-site ops incl. EN9100 process rollout — aerospace background fits. Gap: facilities/workplace-heavy scope. Reappeared in this week's Indeed pull — still live.",
+    notes: "Munich space scale-up, reports to COO, owns cross-site ops incl. EN9100 process rollout — aerospace background fits. Gap: facilities/workplace-heavy scope. Re-verified live 2026-07-20.",
     dreamCompany: false
+  },
+  {
+    id: "octopus-energy-leitung-marktkommunikation-prozessmanagement",
+    scanDate: "2026-06-30",
+    grade: "B",
+    title: "Leitung Marktkommunikation und Prozessmanagement",
+    company: "Octopus Energy Germany",
+    location: "Munich",
+    source: "Glassdoor / Indeed",
+    url: "https://de.indeed.com/viewjob?jk=ee132c644cd11a00",
+    salary: null,
+    hybrid: null,
+    notes: "Head-level role (Leitung) + Process Management domain + automation mandate (Kraken platform) + direct reports, reports to Director Operations. Re-verified live 2026-07-20.",
+    dreamCompany: false
+  },
+  {
+    id: "knorr-bremse-senior-transformation-planning-excellence",
+    scanDate: "2026-06-30",
+    grade: "B",
+    title: "Senior Transformation Manager — Planning Excellence",
+    company: "Knorr-Bremse AG",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/senior-tranformation-manager-planning-excellence-m-w-d-at-knorr-bremse-ag-4402490852",
+    salary: null,
+    hybrid: null,
+    notes: "Dream company Knorr-Bremse + Transformation domain + Planning Excellence. Senior Manager title (not Head/Director) but bumped to B for dream company. Reposted 3 days ago — re-verified live 2026-07-20.",
+    dreamCompany: true
   },
   {
     id: "helsing-industrialisation-rampup-manager",
@@ -590,8 +632,64 @@ const JOBS = [
     url: "https://www.linkedin.com/jobs/view/senior-industrialisation-ramp-up-manager-at-helsing-4431951834/",
     salary: null,
     hybrid: null,
-    notes: "Dream company bump C→B. Manager title (step below Head) but Europe's hottest defense-AI scale-up; industrialisation/ramp-up = process-heavy. Re-verified live this week.",
+    notes: "Dream company bump C→B. Manager title (step below Head) but Europe's hottest defense-AI scale-up; industrialisation/ramp-up = process-heavy. Not re-verified this week.",
     dreamCompany: true
+  },
+  {
+    id: "develop-head-data-governance-augsburg",
+    scanDate: "2026-07-13",
+    grade: "B",
+    title: "Head of Data Governance (Master Data)",
+    company: "develop",
+    location: "Augsburg (within 45-min commute)",
+    source: "LinkedIn",
+    url: "https://www.linkedin.com/jobs/view/head-of-data-governance-master-data-at-develop-4440027969/",
+    salary: "€120,000–€135,000",
+    hybrid: true,
+    notes: "Head level, salary clears the €120k floor, hybrid. Data governance is adjacent to process management rather than a direct domain hit. Not re-verified this week.",
+    dreamCompany: false
+  },
+  {
+    id: "quantum-systems-head-controlling",
+    scanDate: "2026-07-13",
+    grade: "B",
+    title: "Head of Controlling (m/f/d)",
+    company: "Quantum-Systems GmbH",
+    location: "Gilching (Munich area)",
+    source: "Indeed",
+    url: "https://de.indeed.com/viewjob?jk=08d11a0ee37d792b",
+    salary: null,
+    hybrid: true,
+    notes: "Dream company bump — building the Controlling/FP&A function from scratch is a genuine domain gap (finance, not process/ops), but Quantum-Systems is a dream company. Not re-verified this week.",
+    dreamCompany: true
+  },
+  {
+    id: "tuv-sud-head-business-line-conveyor",
+    scanDate: "2026-07-13",
+    grade: "B",
+    title: "Head of Business Line – Conveyor Technology (m/f/d)",
+    company: "TÜV SÜD",
+    location: "Munich",
+    source: "Indeed",
+    url: "https://de.indeed.com/viewjob?jk=1c0bdc240a3e7a00",
+    salary: null,
+    hybrid: true,
+    notes: "Full P&L ownership of a 600-person business line, extended executive management team member, reports to Managing Directors — but this is a general-manager role for a technical inspection vertical rather than a core process/transformation mandate. Still appearing in this week's Indeed pull.",
+    dreamCompany: false
+  },
+  {
+    id: "exergy3-head-supply-chain-partnerships",
+    scanDate: "2026-07-13",
+    grade: "B",
+    title: "Head of Supply Chain & Strategic Partnerships",
+    company: "Exergy3 Limited",
+    location: "Munich (Hybrid)",
+    source: "LinkedIn",
+    url: "https://www.linkedin.com/jobs/view/head-of-supply-chain-strategic-partnerships-at-exergy3-limited-4440061841/",
+    salary: null,
+    hybrid: true,
+    notes: "Head level, supply chain domain adjacent to process management, Munich hybrid, Easy Apply (16 applicants). Small/early-stage company with limited public track record. Not re-verified this week.",
+    dreamCompany: false
   },
   {
     id: "celonis-lead-principal-digital-transformation",
@@ -618,7 +716,7 @@ const JOBS = [
     url: "https://www.linkedin.com/jobs/view/head-of-supply-chain-management-f-m-d-at-itm-isotope-technologies-munich-se-4432737809/",
     salary: null,
     hybrid: null,
-    notes: "Head level at growing radiopharma company in Garching (commute OK). Supply chain is adjacent domain. Re-verified live this week (76 applicants).",
+    notes: "Head level at growing radiopharma company in Garching (commute OK). Supply chain is adjacent domain. Not re-verified this week.",
     dreamCompany: false
   },
   {
@@ -898,7 +996,7 @@ const JOBS = [
     url: "https://www.linkedin.com/jobs/view/transformation-program-director-f-m-d-remote-europe-at-otera-4429653505/",
     salary: null,
     hybrid: true,
-    notes: "Director level, transformation domain is a perfect match. Fully remote Europe, Munich-compatible. Energy sector. Not re-verified this week.",
+    notes: "Director level, transformation domain is a perfect match. Fully remote Europe, Munich-compatible. Energy sector. A new German-speaker variant of this posting was verified live 2026-07-20 (47 applicants).",
     dreamCompany: false
   },
   {
@@ -913,34 +1011,6 @@ const JOBS = [
     salary: null,
     hybrid: true,
     notes: "Director level, operations, Munich, hybrid. Commercial operations in pharma is adjacent to process management. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "knorr-bremse-senior-transformation-planning-excellence",
-    scanDate: "2026-06-30",
-    grade: "B",
-    title: "Senior Transformation Manager — Planning Excellence",
-    company: "Knorr-Bremse AG",
-    location: "Munich",
-    source: "LinkedIn",
-    url: "https://de.linkedin.com/jobs/view/senior-tranformation-manager-planning-excellence-m-w-d-at-knorr-bremse-ag-4402490852",
-    salary: null,
-    hybrid: null,
-    notes: "Dream company Knorr-Bremse + Transformation domain + Planning Excellence. Senior Manager title (not Head/Director) but bumped to B for dream company. Not re-verified this week.",
-    dreamCompany: true
-  },
-  {
-    id: "octopus-energy-leitung-marktkommunikation-prozessmanagement",
-    scanDate: "2026-06-30",
-    grade: "B",
-    title: "Leitung Marktkommunikation und Prozessmanagement",
-    company: "Octopus Energy Germany",
-    location: "Munich",
-    source: "Glassdoor / Indeed",
-    url: "https://de.indeed.com/viewjob?jk=ee132c644cd11a00",
-    salary: null,
-    hybrid: null,
-    notes: "Head-level role (Leitung) + Process Management domain + automation mandate (Kraken platform) + direct reports. Reappeared in this week's Indeed pull — still live.",
     dreamCompany: false
   },
   {
@@ -986,6 +1056,20 @@ const JOBS = [
     dreamCompany: false
   },
   {
+    id: "siemens-mobility-leiter-logistik-prozessplanung",
+    scanDate: "2026-07-20",
+    grade: "C",
+    title: "Leiter (w/m/d) Logistik- und Prozessplanung",
+    company: "Siemens Mobility",
+    location: "Munich-Allach",
+    source: "XING / jobs.siemens.com",
+    url: "https://jobs.siemens.com/de_DE/externaljobs/JobDetail/429622",
+    salary: "€63,000–€75,500 (XING est.)",
+    hybrid: null,
+    notes: "Dream company + strong domain (logistics & process planning, LEAN, team of up to 10) — but the posting targets first-time leaders ('idealerweise erste Führungserfahrung') and the indicated salary band is roughly half the €120k floor. A step down in seniority. Verified live 2026-07-20.",
+    dreamCompany: true
+  },
+  {
     id: "quantum-systems-head-production",
     scanDate: "2026-07-06",
     grade: "A",
@@ -996,7 +1080,7 @@ const JOBS = [
     url: "https://de.indeed.com/viewjob?jk=83741879b5eb2c18",
     salary: null,
     hybrid: null,
-    notes: "Dream company. End-to-end serial production ownership: Operational Excellence, CI, KPI governance, process standardization — maps directly to LHT process leadership. Reappeared in this week's Indeed pull — still live.",
+    notes: "Dream company. End-to-end serial production ownership: Operational Excellence, CI, KPI governance, process standardization — maps directly to LHT process leadership. Not re-verified this week.",
     dreamCompany: true
   },
   {
@@ -1010,39 +1094,39 @@ const JOBS = [
     url: "https://www.glassdoor.com/job-listing/j?jl=1010188236013",
     salary: null,
     hybrid: null,
-    notes: "Dream company bump B→A. End-to-end logistics org build-out with governance, KPIs, process standardization in regulated high-tech/defense. Re-verified live this week.",
+    notes: "Dream company bump B→A. End-to-end logistics org build-out with governance, KPIs, process standardization in regulated high-tech/defense. Not re-verified this week.",
     dreamCompany: true
   }
 ];
 
 const SCRAPER_HEALTH = [
-  { source: "Glassdoor", actor: "valig/glassdoor-jobs-scraper", queries: 5, status: "fail", items: 0, notes: "All 5 queries returned 0 items — crawler stalled at 'Starting the crawler' or hit a single failed request each time. 2nd consecutive week of degraded performance." },
-  { source: "LinkedIn", actor: "curious_coder/linkedin-jobs-scraper", queries: 6, status: "ok", items: 26, notes: "26 items; new matches: Airbus PMO Lead, develop (Augsburg), Exergy3" },
-  { source: "StepStone", actor: "easyapi/stepstone-jobs-scraper", queries: 4, status: "fail", items: 0, notes: "Run hung 5+ minutes with 0 items, manually aborted — 3rd week in a row failing. Recommend swapping this actor." },
-  { source: "Indeed", actor: "misceres/indeed-scraper", queries: 3, status: "ok", items: 55, notes: "55 items; new matches: MONTANA, PHARMATECHNIK, Storage24/COO, Quantum Controlling, TÜV SÜD" },
-  { source: "XING", actor: "shahidirfan/Xing-Jobs-Scraper", queries: 3, status: "warn", items: 58, notes: "58 items, but 2 direct-link checks (Giesecke+Devrient, QuantumDiamonds) redirected to an unrelated 'top job' ad — confirmed dead, excluded" },
-  { source: "Arbeitsagentur", actor: "blackfalcondata/arbeitsagentur-jobs-feed", queries: 2, status: "ok", items: 10, notes: "10 items, no leadership-level matches" },
-  { source: "Workday — Celonis", actor: "blackfalcondata/workday-scraper", queries: 1, status: "fail", items: 0, notes: "WDY-2011: company URL still invalid — needs corrected subdomain in skill config" },
-  { source: "Workday — Airbus", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "All non-Munich locations (Portugal/Canada/France/UK/US)" },
-  { source: "Workday — Carl Zeiss", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "No Munich ops roles" },
-  { source: "Web Search (Dream Co.)", actor: "n/a", queries: 14, status: "ok", items: "—", notes: "ServiceNow Head of Executive Experience reposted in a German-speaking variant — still needs Chrome verification; Personio Head of Finance & Operations remains unconfirmed" }
+  { source: "Glassdoor", actor: "valig/glassdoor-jobs-scraper", queries: 5, status: "ok", items: 31, notes: "Recovered after 2 failing weeks — 31 items across 5 queries, but mostly off-target roles; no unique A/B matches this week" },
+  { source: "LinkedIn", actor: "curious_coder/linkedin-jobs-scraper", queries: 6, status: "warn", items: 25, notes: "25 items (single run capped at 25 across all 6 URLs); new matches: TEC Site Director, KNDS Abteilungsleiter QM, Quest One, KB Sr Transformation Mgr (repost)" },
+  { source: "StepStone", actor: "easyapi/stepstone-jobs-scraper", queries: 4, status: "fail", items: 0, notes: "Ran 4m49s, SUCCEEDED with 0 items — 4th consecutive failing week. Strongly recommend replacing this actor." },
+  { source: "Indeed", actor: "misceres/indeed-scraper", queries: 3, status: "ok", items: 76, notes: "76 items; re-confirmed MONTANA, PHARMATECHNIK, Allianz, Airbus PMO, TEC Head of Ops, Octopus" },
+  { source: "XING", actor: "shahidirfan/Xing-Jobs-Scraper", queries: 3, status: "ok", items: 42, notes: "42 items; new matches: Knorr-Bremse VP Global IE (A), Siemens Mobility Head of IE (A), Leiter Logistik- und Prozessplanung (C)" },
+  { source: "Arbeitsagentur", actor: "blackfalcondata/arbeitsagentur-jobs-feed", queries: 2, status: "ok", items: 9, notes: "9 items, no leadership-level matches" },
+  { source: "Workday — Celonis", actor: "blackfalcondata/workday-scraper", queries: 1, status: "fail", items: 0, notes: "WDY-2011: company URL still invalid — 2nd week; skill config needs corrected Celonis Workday subdomain" },
+  { source: "Workday — Airbus", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "20 items, all non-Munich (US/Canada/France/Taiwan/Philippines)" },
+  { source: "Workday — Carl Zeiss", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "20 items, no Munich/Germany ops leadership roles" },
+  { source: "Web Search (Dream Co.)", actor: "n/a", queries: 14, status: "ok", items: "—", notes: "ServiceNow Head of Executive Experience confirmed DEAD (404) and removed. No new verified dream-company roles from web search this week." }
 ];
 
 const DREAM_COMPANIES = [
-  { name: "Celonis", hit: true, roles: "Lead/Principal DT & Process Optimisation Consultant (B); Head of Controlling role now at Quantum Systems, not Celonis" },
-  { name: "ServiceNow", hit: false, roles: "Head of Exec Exp (dead link, reposted German-speaking variant unverified)" },
-  { name: "Helsing", hit: true, roles: "(Senior) Industrialisation & Ramp-Up Manager (B, re-verified live)" },
+  { name: "Celonis", hit: true, roles: "Lead/Principal DT & Process Optimisation Consultant (B, not re-verified); Workday scraper still failing — no new roles surfaced" },
+  { name: "ServiceNow", hit: false, roles: "Head of Exec Experience confirmed dead (404) on 2026-07-20 — removed" },
+  { name: "Helsing", hit: true, roles: "(Senior) Industrialisation & Ramp-Up Manager (B, not re-verified this week)" },
   { name: "Isar Aerospace", hit: false, roles: null },
-  { name: "Quantum Systems", hit: true, roles: "Head of Production (A) + Head of Logistics (A) re-verified live; Head of Controlling (B, finance domain) new this week" },
+  { name: "Quantum Systems", hit: true, roles: "Head of Production (A) + Head of Logistics (A) + Head of Controlling (B) — not re-verified this week" },
   { name: "Forto", hit: false, roles: null },
-  { name: "Personio", hit: false, roles: "Possible Head of Finance & Ops — still unverified" },
-  { name: "Rohde & Schwarz", hit: false, roles: "No matching leadership roles this scan" },
-  { name: "MTU Aero Engines", hit: false, roles: null },
+  { name: "Personio", hit: false, roles: "No verified leadership ops roles" },
+  { name: "Rohde & Schwarz", hit: false, roles: "Only SCM Projektmanager-level roles this scan — below target level" },
+  { name: "MTU Aero Engines", hit: false, roles: "Only Werkstudent/Praktikum roles in this week's pull" },
   { name: "Infineon", hit: false, roles: null },
-  { name: "Siemens", hit: false, roles: null },
-  { name: "Airbus", hit: true, roles: "Project Management Office Lead (PMO Lead) (B, verified) — new this week" },
+  { name: "Siemens", hit: true, roles: "NEW: Head of Industrial Engineering, Munich-Allach (A, verified live) + Leiter Logistik- und Prozessplanung (C, junior-level)" },
+  { name: "Airbus", hit: true, roles: "PMO Lead Ottobrunn (B, re-verified live 2026-07-20)" },
   { name: "Carl Zeiss AG", hit: false, roles: "No Munich ops roles" },
-  { name: "Knorr-Bremse", hit: true, roles: "Head of Portfolio Transformation & Restructuring now FILLED — but Senior Transformation Manager, Planning Excellence (B) still open" }
+  { name: "Knorr-Bremse", hit: true, roles: "NEW: VP Global Industrial Engineering (A, verified live) + Senior Transformation Manager Planning Excellence (B, re-verified)" }
 ];
 
 // Render
