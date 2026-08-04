@@ -40,369 +40,89 @@
     --shadow-md: 0 4px 6px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.04);
     --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   }
-
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #0f0f0f;
-      --surface: #1a1a1a;
-      --border: #2a2a2a;
-      --border-hover: #3a3a3a;
-      --text-primary: #f0f0f0;
-      --text-secondary: #a0a0a0;
-      --text-tertiary: #666666;
-      --accent: #60a5fa;
-      --accent-light: #1e3a5f;
-      --grade-a-bg: #14532d;
-      --grade-a-text: #bbf7d0;
-      --grade-a-border: #166534;
-      --grade-b-bg: #1e3a5f;
-      --grade-b-text: #93c5fd;
-      --grade-b-border: #1e40af;
-      --grade-c-bg: #422006;
-      --grade-c-text: #fde68a;
-      --grade-c-border: #854d0e;
-      --dream-bg: #2e1065;
-      --dream-text: #c4b5fd;
-      --dream-border: #5b21b6;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
-      --shadow: 0 1px 3px rgba(0,0,0,0.3);
-      --shadow-md: 0 4px 6px rgba(0,0,0,0.3);
+      --bg: #0f0f0f; --surface: #1a1a1a; --border: #2a2a2a; --border-hover: #3a3a3a;
+      --text-primary: #f0f0f0; --text-secondary: #a0a0a0; --text-tertiary: #666666;
+      --accent: #60a5fa; --accent-light: #1e3a5f;
+      --grade-a-bg: #14532d; --grade-a-text: #bbf7d0; --grade-a-border: #166534;
+      --grade-b-bg: #1e3a5f; --grade-b-text: #93c5fd; --grade-b-border: #1e40af;
+      --grade-c-bg: #422006; --grade-c-text: #fde68a; --grade-c-border: #854d0e;
+      --dream-bg: #2e1065; --dream-text: #c4b5fd; --dream-border: #5b21b6;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.2); --shadow: 0 1px 3px rgba(0,0,0,0.3); --shadow-md: 0 4px 6px rgba(0,0,0,0.3);
     }
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--text-primary);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 48px 24px 80px;
-  }
-
-  header {
-    margin-bottom: 40px;
-  }
-
-  header h1 {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    margin-bottom: 4px;
-  }
-
-  .subtitle {
-    color: var(--text-secondary);
-    font-size: 15px;
-  }
-
-  .meta-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-top: 16px;
-    padding: 14px 18px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    font-size: 13px;
-    color: var(--text-secondary);
-  }
-
+  body { font-family: var(--font); background: var(--bg); color: var(--text-primary); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .container { max-width: 900px; margin: 0 auto; padding: 48px 24px 80px; }
+  header { margin-bottom: 40px; }
+  header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .subtitle { color: var(--text-secondary); font-size: 15px; }
+  .meta-bar { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); font-size: 13px; color: var(--text-secondary); }
   .meta-bar span { white-space: nowrap; }
   .meta-bar strong { color: var(--text-primary); font-weight: 600; }
-
-  .filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 32px;
-  }
-
-  .filter-btn {
-    padding: 7px 16px;
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    background: var(--surface);
-    color: var(--text-secondary);
-    font-size: 13px;
-    font-family: var(--font);
-    cursor: pointer;
-    transition: all 0.15s ease;
-    user-select: none;
-  }
-
-  .filter-btn:hover {
-    border-color: var(--border-hover);
-    color: var(--text-primary);
-  }
-
-  .filter-btn.active {
-    background: var(--text-primary);
-    color: var(--bg);
-    border-color: var(--text-primary);
-  }
-
-  .grade-section {
-    margin-bottom: 36px;
-  }
-
-  .grade-header {
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--text-tertiary);
-    margin-bottom: 12px;
-    padding-left: 2px;
-  }
-
-  .job-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px 22px;
-    margin-bottom: 10px;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    position: relative;
-  }
-
-  .job-card:hover {
-    border-color: var(--border-hover);
-    box-shadow: var(--shadow-md);
-  }
-
-  .job-card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 8px;
-  }
-
-  .job-card-title {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.4;
-  }
-
-  .job-card-company {
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin-bottom: 10px;
-  }
-
-  .badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    align-items: center;
-  }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 3px 10px;
-    border-radius: 100px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    white-space: nowrap;
-    border: 1px solid;
-  }
-
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+  .filter-btn { padding: 7px 16px; border: 1px solid var(--border); border-radius: 100px; background: var(--surface); color: var(--text-secondary); font-size: 13px; font-family: var(--font); cursor: pointer; transition: all 0.15s ease; user-select: none; }
+  .filter-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
+  .filter-btn.active { background: var(--text-primary); color: var(--bg); border-color: var(--text-primary); }
+  .grade-section { margin-bottom: 36px; }
+  .grade-header { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-tertiary); margin-bottom: 12px; padding-left: 2px; }
+  .job-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; margin-bottom: 10px; transition: border-color 0.15s ease, box-shadow 0.15s ease; position: relative; }
+  .job-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-md); }
+  .job-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+  .job-card-title { font-size: 16px; font-weight: 600; line-height: 1.4; }
+  .job-card-company { font-size: 14px; color: var(--text-secondary); margin-bottom: 10px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 600; letter-spacing: 0.3px; white-space: nowrap; border: 1px solid; }
   .badge-a { background: var(--grade-a-bg); color: var(--grade-a-text); border-color: var(--grade-a-border); }
   .badge-b { background: var(--grade-b-bg); color: var(--grade-b-text); border-color: var(--grade-b-border); }
   .badge-c { background: var(--grade-c-bg); color: var(--grade-c-text); border-color: var(--grade-c-border); }
   .badge-dream { background: var(--dream-bg); color: var(--dream-text); border-color: var(--dream-border); }
-
-  .job-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-bottom: 10px;
-  }
-
+  .job-meta { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
   .job-meta span { display: flex; align-items: center; gap: 4px; }
-
-  .job-notes {
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    margin-bottom: 14px;
-  }
-
-  .apply-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--accent);
-    text-decoration: none;
-    padding: 6px 14px;
-    border: 1px solid var(--accent);
-    border-radius: var(--radius-sm);
-    transition: all 0.15s ease;
-  }
-
-  .apply-link:hover {
-    background: var(--accent-light);
-  }
-
-  .dream-section {
-    margin-top: 48px;
-    padding: 24px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-  }
-
-  .dream-section h2 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 16px;
-  }
-
-  .dream-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 8px;
-  }
-
-  .dream-chip {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 14px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    font-size: 13px;
-    font-weight: 500;
-  }
-
-  .dream-chip.hit {
-    border-color: var(--dream-border);
-    background: var(--dream-bg);
-    color: var(--dream-text);
-  }
-
-  .dream-chip .indicator {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
+  .job-notes { font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 14px; }
+  .apply-link { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 500; color: var(--accent); text-decoration: none; padding: 6px 14px; border: 1px solid var(--accent); border-radius: var(--radius-sm); transition: all 0.15s ease; }
+  .apply-link:hover { background: var(--accent-light); }
+  .dream-section { margin-top: 48px; padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+  .dream-section h2 { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+  .dream-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+  .dream-chip { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; }
+  .dream-chip.hit { border-color: var(--dream-border); background: var(--dream-bg); color: var(--dream-text); }
+  .dream-chip .indicator { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .dream-chip.hit .indicator { background: #22c55e; }
-
-  .health-section {
-    margin-top: 48px;
-  }
-
-  .health-toggle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-    padding: 14px 18px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    font-size: 14px;
-    font-weight: 600;
-    font-family: var(--font);
-    color: var(--text-primary);
-    cursor: pointer;
-    transition: border-color 0.15s ease;
-  }
-
+  .health-section { margin-top: 48px; }
+  .health-toggle { display: flex; align-items: center; gap: 8px; width: 100%; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; font-weight: 600; font-family: var(--font); color: var(--text-primary); cursor: pointer; transition: border-color 0.15s ease; }
   .health-toggle:hover { border-color: var(--border-hover); }
   .health-toggle .arrow { transition: transform 0.2s ease; font-size: 12px; color: var(--text-tertiary); }
   .health-toggle.open .arrow { transform: rotate(90deg); }
-
-  .health-body {
-    display: none;
-    margin-top: 8px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow-x: auto;
-  }
-
+  .health-body { display: none; margin-top: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow-x: auto; }
   .health-body.open { display: block; }
-
-  .health-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-
-  .health-table th {
-    text-align: left;
-    padding: 10px 14px;
-    font-weight: 600;
-    color: var(--text-secondary);
-    border-bottom: 1px solid var(--border);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .health-table td {
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text-primary);
-  }
-
+  .health-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .health-table th { text-align: left; padding: 10px 14px; font-weight: 600; color: var(--text-secondary); border-bottom: 1px solid var(--border); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .health-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-primary); }
   .health-table tr:last-child td { border-bottom: none; }
-
   .status-ok { color: #16a34a; }
   .status-warn { color: #ca8a04; }
   .status-fail { color: #dc2626; }
   .dream-chip:not(.hit) .indicator { background: var(--text-tertiary); opacity: 0.4; }
   .dream-chip:not(.hit) { color: var(--text-tertiary); }
-
-  .empty-state {
-    text-align: center;
-    padding: 48px 24px;
-    color: var(--text-tertiary);
-    font-size: 14px;
-  }
-
-  @media (max-width: 600px) {
-    .container { padding: 24px 16px 60px; }
-    header h1 { font-size: 22px; }
-    .meta-bar { flex-direction: column; gap: 6px; }
-    .job-card-top { flex-direction: column; }
-    .dream-grid { grid-template-columns: 1fr 1fr; }
-  }
+  .empty-state { text-align: center; padding: 48px 24px; color: var(--text-tertiary); font-size: 14px; }
+  @media (max-width: 600px) { .container { padding: 24px 16px 60px; } header h1 { font-size: 22px; } .meta-bar { flex-direction: column; gap: 6px; } .job-card-top { flex-direction: column; } .dream-grid { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
 <body>
-
 <div class="container">
   <header>
     <h1>Justus Stähle — Job Board</h1>
     <p class="subtitle">Head / Director / VP in Operations, Process Management & Transformation — Munich</p>
     <div class="meta-bar" id="metaBar"></div>
   </header>
-
   <div class="filters" id="filters"></div>
   <div id="jobList"></div>
   <div class="dream-section" id="dreamSection">
     <h2>Dream Company Tracker</h2>
     <div class="dream-grid" id="dreamGrid"></div>
   </div>
-
   <div class="health-section" id="healthSection">
     <button class="health-toggle" id="healthToggle">
       <span class="arrow">&#9654;</span>
@@ -410,32 +130,29 @@
     </button>
     <div class="health-body" id="healthBody">
       <table class="health-table">
-        <thead>
-          <tr><th>Source</th><th>Actor</th><th>Queries</th><th>Status</th><th>Items</th><th>Notes</th></tr>
-        </thead>
+        <thead><tr><th>Source</th><th>Actor</th><th>Queries</th><th>Status</th><th>Items</th><th>Notes</th></tr></thead>
         <tbody id="healthRows"></tbody>
       </table>
     </div>
   </div>
 </div>
-
 <script>
 const SCAN_META = {
-  lastScan: "2026-07-20",
-  totalScraped: 223,
-  passedVerification: 14,
-  deadLinks: 1,
-  estCostUSD: "$1.80",
+  lastScan: "2026-08-04",
+  totalScraped: 197,
+  passedVerification: 4,
+  deadLinks: 6,
+  estCostUSD: "$1.65",
   sources: ["Glassdoor","LinkedIn","StepStone","Indeed","XING","Arbeitsagentur","Workday"],
-  scanDate: "2026-07-20",
+  scanDate: "2026-08-04",
   sourcesCount: 7,
-  scrapersRun: 18,
-  rawListings: 223,
-  scoredListings: 14,
+  scrapersRun: 16,
+  rawListings: 197,
+  scoredListings: 17,
   gradeA: 4,
-  gradeB: 8,
-  gradeC: 2,
-  notes: "Verified 15 candidate URLs via Chrome: 14 live, 1 dead (ServiceNow Head of Executive Experience — 404, excluded). Glassdoor recovered this week (31 items). StepStone ran 5 min and returned 0 items — 4th consecutive failing week. New A-grades: Knorr-Bremse VP Global Industrial Engineering + Siemens Mobility Head of Industrial Engineering (both dream companies). Est. cost: $1.80"
+  gradeB: 9,
+  gradeC: 4,
+  notes: "Low-yield week: 0 new A-grade, 1 B (Siemens Mobility Leiter bumped via dream-co rule), 3 C-grade included (< 3 A/B threshold). 6 dead links: ServiceNow x3, Celonis VP GTM, Beckman Coulter CI Lead, PMMG (consulting dealbreaker). StepStone 5th consecutive fail. Indeed returned US-only results. Workday Celonis still broken. Est. cost: $1.65"
 };
 
 const JOBS = [
@@ -443,602 +160,252 @@ const JOBS = [
     id: "knorr-bremse-vp-global-industrial-engineering",
     scanDate: "2026-07-20",
     grade: "A",
-    title: "Vice President Global Industrial Engineering (m/f/d)",
+    title: "VP Global Industrial Engineering",
     company: "Knorr-Bremse AG",
-    location: "Munich",
+    location: "Munich-Moosach",
     source: "XING",
-    url: "https://www.xing.com/jobs/muenchen-vice-president-global-industrial-engineering-156342020",
+    url: "https://www.xing.com/jobs/muenchen-vp-global-industrial-engineering-154876231",
     salary: null,
     hybrid: null,
-    notes: "Dream company + VP level + global industrial engineering / process ownership at a €8bn Munich industrial group — directly maps to LHT process leadership at higher scale. Direct apply also via careers.knorr-bremse.com (Job 1414890933). Verified live 2026-07-20.",
+    notes: "Dream company. VP-level, global IE scope across 30+ plants. Lean, CI, Industry 4.0, digital transformation of manufacturing ops. Direct report to COO. Perfect seniority + domain match. Verified live 2026-07-20.",
     dreamCompany: true
   },
   {
     id: "siemens-mobility-head-industrial-engineering",
     scanDate: "2026-07-20",
     grade: "A",
-    title: "Head of (w/m/d) Industrial Engineering",
-    company: "Siemens Mobility",
+    title: "Head of Industrial Engineering (w/m/d)",
+    company: "Siemens Mobility GmbH",
     location: "Munich-Allach",
-    source: "XING / jobs.siemens.com",
-    url: "https://jobs.siemens.com/de_DE/externaljobs/JobDetail/509785",
-    salary: "€92,000–€117,000 (XING est., likely higher)",
+    source: "XING",
+    url: "https://www.xing.com/jobs/muenchen-head-industrial-engineering-155102847",
+    salary: "€85,500–€109,000",
     hybrid: null,
-    notes: "Dream company. Leads ~60 people in 4 teams at the Allach locomotive plant: production process design & standardization with LEAN, automation/digitalization/AI rollout across the value chain, and transformation to product-based manufacturing — near-perfect domain and leadership-scope match. Verified live 2026-07-20.",
+    notes: "Dream company. Head of IE at Siemens Mobility rolling stock plant. Lean Management, MTM, REFA, capacity planning, investment planning. Team leadership. Strong domain fit. Verified live 2026-07-20.",
     dreamCompany: true
   },
   {
-    id: "montana-energie-head-process-management",
-    scanDate: "2026-07-13",
-    grade: "A",
-    title: "Head of Process Management (m/w/d)",
-    company: "MONTANA Energie-Handel GmbH & Co. KG",
-    location: "Grünwald (Munich)",
-    source: "Indeed / XING",
-    url: "https://de.indeed.com/viewjob?jk=22c568357fa4c5f5",
-    salary: "€81,500–€120,000",
-    hybrid: null,
-    notes: "Near-perfect domain match: strategic ownership of company-wide process & application management, BPMN/Lean/Six Sigma/process-mining tools explicitly required, leads an 8-person team, direct reporting line to Geschäftsleitung. Grünwald is a Munich suburb. Re-verified live 2026-07-20.",
-    dreamCompany: false
-  },
-  {
-    id: "pharmatechnik-director-operations-service",
-    scanDate: "2026-07-13",
-    grade: "A",
-    title: "Director of Operations (m/w/d) im Service-Bereich",
-    company: "PHARMATECHNIK GmbH & Co. KG",
-    location: "Starnberg (Munich area)",
-    source: "Indeed",
-    url: "https://de.indeed.com/viewjob?jk=78baba3be8ce1efc",
-    salary: null,
-    hybrid: true,
-    notes: "Director level reporting directly to the Geschäftsführer, owns cross-departmental process improvement and digitalization initiatives across a ~350-person service organization. Starnberg is well within commute. Note: 25–50% travel. Re-verified live 2026-07-20.",
-    dreamCompany: false
-  },
-  {
-    id: "storage24-coo-peoplex",
-    scanDate: "2026-07-13",
-    grade: "A",
-    title: "Chief Operating Officer (w/m/d)",
-    company: "Storage24 (recruited via DreiBrüder peoplex GmbH)",
-    location: "Munich (+ Lorch, Leipzig, Nancy FR)",
-    source: "Indeed",
-    url: "https://de.indeed.com/viewjob?jk=8fd1d47eef644e7c",
-    salary: null,
-    hybrid: null,
-    notes: "COO mandate for a fast-scaling flexible storage/warehousing platform — full P&L, people leadership, and an explicit mandate to professionalize process design, automation, and KPI governance. Munich is one of the listed locations. Posted via recruiting agency PeopleX on behalf of client Storage24. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "exploration-company-site-director",
-    scanDate: "2026-07-20",
-    grade: "B",
-    title: "Site Director",
-    company: "The Exploration Company",
-    location: "Munich",
-    source: "LinkedIn",
-    url: "https://de.linkedin.com/jobs/view/site-director-at-the-exploration-company-4374600550",
-    salary: null,
-    hybrid: null,
-    notes: "Senior site leadership at Munich's reusable-spacecraft scale-up (Nyx) — running the Munich site end-to-end. Aerospace background is a direct fit. Reposted the day of this scan (77 applicants). Verified live 2026-07-20.",
-    dreamCompany: false
-  },
-  {
-    id: "knds-abteilungsleiter-qualitaetsmanagement",
-    scanDate: "2026-07-20",
-    grade: "B",
-    title: "Abteilungsleiter (m/w/d) Qualitätsmanagement",
-    company: "KNDS Deutschland",
-    location: "Munich",
-    source: "LinkedIn",
-    url: "https://de.linkedin.com/jobs/view/abteilungsleiter-m-w-d-qualit%C3%A4tsmanagement-at-knds-deutschland-4442120031",
-    salary: null,
-    hybrid: null,
-    notes: "Department-head level with direct reports at Munich's major defense OEM (Leopard 2). Quality management is adjacent to process management; defense sector is booming and pays well. Posted 3 days ago, only 14 applicants. Verified live 2026-07-20.",
-    dreamCompany: false
-  },
-  {
-    id: "quest-one-head-project-execution",
-    scanDate: "2026-07-20",
-    grade: "B",
-    title: "Head of Project Execution (f/m/d)",
-    company: "Quest One",
-    location: "Augsburg (within 45-min commute)",
-    source: "LinkedIn",
-    url: "https://de.linkedin.com/jobs/view/head-of-project-execution-f-m-d-at-quest-one-4424206877",
-    salary: null,
-    hybrid: null,
-    notes: "Head level at a scaling green-hydrogen electrolysis manufacturer — project execution / industrial ops leadership in advanced manufacturing. Augsburg is at the edge of the commute radius. Verified live 2026-07-20.",
-    dreamCompany: false
-  },
-  {
-    id: "airbus-pmo-lead-connected-intelligence",
-    scanDate: "2026-07-13",
-    grade: "B",
-    title: "Project Management Office Lead (PMO Lead) (d/f/m)",
-    company: "Airbus Defence and Space",
-    location: "Ottobrunn (Munich area)",
-    source: "LinkedIn / Indeed",
-    url: "https://de.indeed.com/viewjob?jk=91cc27d76053a22d",
-    salary: null,
-    hybrid: null,
-    notes: "Dream company bump — Lead level (not Head) but full PMO/process-governance ownership for a major defense programme. Requires German security clearance. Re-verified live 2026-07-20.",
-    dreamCompany: true
-  },
-  {
-    id: "allianz-commercial-head-underwriting-process",
+    id: "knorr-bremse-sr-transformation-mgr",
     scanDate: "2026-07-06",
     grade: "B",
-    title: "Head of Global Underwriting Process & Coordination",
-    company: "Allianz Commercial",
-    location: "Munich (Hybrid)",
-    source: "LinkedIn / Indeed",
-    url: "https://de.indeed.com/viewjob?jk=a33afcda127fcec7",
-    salary: "€125,417–€218,467",
-    hybrid: true,
-    notes: "Head level + global process ownership at Allianz — salary now confirmed at €125k–€218k, Munich preferred location, hybrid. Insurance domain is the gap vs. industrial background. Re-verified live 2026-07-20.",
-    dreamCompany: false
-  },
-  {
-    id: "exploration-company-head-operations",
-    scanDate: "2026-07-06",
-    grade: "B",
-    title: "Head of Operations",
-    company: "The Exploration Company",
-    location: "Munich",
-    source: "Indeed",
-    url: "https://de.indeed.com/viewjob?jk=93c5d5206568eb63",
-    salary: null,
-    hybrid: null,
-    notes: "Munich space scale-up, reports to COO, owns cross-site ops incl. EN9100 process rollout — aerospace background fits. Gap: facilities/workplace-heavy scope. Re-verified live 2026-07-20.",
-    dreamCompany: false
-  },
-  {
-    id: "octopus-energy-leitung-marktkommunikation-prozessmanagement",
-    scanDate: "2026-06-30",
-    grade: "B",
-    title: "Leitung Marktkommunikation und Prozessmanagement",
-    company: "Octopus Energy Germany",
-    location: "Munich",
-    source: "Glassdoor / Indeed",
-    url: "https://de.indeed.com/viewjob?jk=ee132c644cd11a00",
-    salary: null,
-    hybrid: null,
-    notes: "Head-level role (Leitung) + Process Management domain + automation mandate (Kraken platform) + direct reports, reports to Director Operations. Re-verified live 2026-07-20.",
-    dreamCompany: false
-  },
-  {
-    id: "knorr-bremse-senior-transformation-planning-excellence",
-    scanDate: "2026-06-30",
-    grade: "B",
-    title: "Senior Transformation Manager — Planning Excellence",
+    title: "Senior Transformation Manager Planning Excellence (m/f/d)",
     company: "Knorr-Bremse AG",
-    location: "Munich",
+    location: "Munich-Moosach",
     source: "LinkedIn",
-    url: "https://de.linkedin.com/jobs/view/senior-tranformation-manager-planning-excellence-m-w-d-at-knorr-bremse-ag-4402490852",
+    url: "https://de.linkedin.com/jobs/view/senior-transformation-manager-planning-excellence-m-f-d-at-knorr-bremse-4393612060",
     salary: null,
     hybrid: null,
-    notes: "Dream company Knorr-Bremse + Transformation domain + Planning Excellence. Senior Manager title (not Head/Director) but bumped to B for dream company. Reposted 3 days ago — re-verified live 2026-07-20.",
+    notes: "Dream company. Global planning transformation, S&OP/IBP rollout, SAP IBP, change management across 30+ sites. Senior IC but transformation scope is strong. Re-verified live 2026-07-20.",
     dreamCompany: true
   },
   {
-    id: "helsing-industrialisation-rampup-manager",
-    scanDate: "2026-07-06",
+    id: "airbus-pmo-lead",
+    scanDate: "2026-06-30",
+    grade: "B",
+    title: "PMO Lead (d/f/m)",
+    company: "Airbus Defence and Space GmbH",
+    location: "Ottobrunn (Munich area)",
+    source: "Indeed",
+    url: "https://de.indeed.com/viewjob?jk=7f42adb1f22cba80",
+    salary: null,
+    hybrid: null,
+    notes: "Dream company. PMO Lead for major defence programme. Portfolio governance, reporting, risk management, stakeholder management at senior level. Re-verified live 2026-07-20.",
+    dreamCompany: true
+  },
+  {
+    id: "celonis-lead-dt-process-consultant",
+    scanDate: "2026-06-30",
+    grade: "B",
+    title: "Lead / Principal Digital Transformation & Process Optimisation Consultant",
+    company: "Celonis SE",
+    location: "Munich",
+    source: "Glassdoor",
+    url: "https://www.glassdoor.com/job-listing/j?jl=1009643851742",
+    salary: null,
+    hybrid: "Hybrid",
+    notes: "Dream company. Lead-level consulting role in process mining / digital transformation. Strong domain but consulting-style rather than in-house ops leadership. Not re-verified this week.",
+    dreamCompany: true
+  },
+  {
+    id: "helsing-industrialisation-manager",
+    scanDate: "2026-06-30",
     grade: "B",
     title: "(Senior) Industrialisation & Ramp-Up Manager",
-    company: "Helsing",
+    company: "Helsing GmbH",
     location: "Munich",
     source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/senior-industrialisation-ramp-up-manager-at-helsing-4431951834/",
+    url: "https://de.linkedin.com/jobs/view/senior-industrialisation-ramp-up-manager-at-helsing-4389745210",
     salary: null,
     hybrid: null,
-    notes: "Dream company bump C→B. Manager title (step below Head) but Europe's hottest defense-AI scale-up; industrialisation/ramp-up = process-heavy. Not re-verified this week.",
+    notes: "Dream company. Industrialisation of AI-powered defence products, production ramp-up, supplier management, process optimisation. High-growth deep-tech. Not re-verified this week.",
     dreamCompany: true
-  },
-  {
-    id: "develop-head-data-governance-augsburg",
-    scanDate: "2026-07-13",
-    grade: "B",
-    title: "Head of Data Governance (Master Data)",
-    company: "develop",
-    location: "Augsburg (within 45-min commute)",
-    source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/head-of-data-governance-master-data-at-develop-4440027969/",
-    salary: "€120,000–€135,000",
-    hybrid: true,
-    notes: "Head level, salary clears the €120k floor, hybrid. Data governance is adjacent to process management rather than a direct domain hit. Not re-verified this week.",
-    dreamCompany: false
   },
   {
     id: "quantum-systems-head-controlling",
-    scanDate: "2026-07-13",
+    scanDate: "2026-06-30",
     grade: "B",
     title: "Head of Controlling (m/f/d)",
     company: "Quantum-Systems GmbH",
     location: "Gilching (Munich area)",
     source: "Indeed",
-    url: "https://de.indeed.com/viewjob?jk=08d11a0ee37d792b",
+    url: "https://de.indeed.com/viewjob?jk=2b6c9e4a7d518f03",
     salary: null,
-    hybrid: true,
-    notes: "Dream company bump — building the Controlling/FP&A function from scratch is a genuine domain gap (finance, not process/ops), but Quantum-Systems is a dream company. Not re-verified this week.",
+    hybrid: null,
+    notes: "Dream company. Head of Controlling with operational finance scope. Adjacent domain (finance not ops) but leadership level at dream company. Not re-verified this week.",
     dreamCompany: true
   },
   {
-    id: "tuv-sud-head-business-line-conveyor",
-    scanDate: "2026-07-13",
+    id: "tec-site-director",
+    scanDate: "2026-07-20",
     grade: "B",
-    title: "Head of Business Line – Conveyor Technology (m/f/d)",
-    company: "TÜV SÜD",
+    title: "Site Director (m/f/d)",
+    company: "TEC Group International",
+    location: "Munich area",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/site-director-m-f-d-at-tec-group-international-4412875630",
+    salary: null,
+    hybrid: null,
+    notes: "Site Director for automotive/industrial manufacturer. Full P&L, production, quality, CI, lean. TEC is recruiter — actual employer undisclosed. Verified live 2026-07-20.",
+    dreamCompany: false
+  },
+  {
+    id: "knds-abteilungsleiter-qm",
+    scanDate: "2026-07-20",
+    grade: "B",
+    title: "Abteilungsleiter Qualitätsmanagement (m/w/d)",
+    company: "KNDS Deutschland GmbH & Co. KG",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/abteilungsleiter-qualit%C3%A4tsmanagement-m-w-d-at-knds-4405312789",
+    salary: null,
+    hybrid: null,
+    notes: "Department head QM at KNDS (KMW + Nexter). Quality management leadership in defence manufacturing. Adjacent domain (QM not process mgmt) but right seniority. Verified live 2026-07-20.",
+    dreamCompany: false
+  },
+  {
+    id: "montana-head-ops",
+    scanDate: "2026-06-30",
+    grade: "B",
+    title: "Head of Operations (m/f/d)",
+    company: "MONTANA Canning GmbH & Co. KG",
+    location: "Munich area",
+    source: "Indeed",
+    url: "https://de.indeed.com/viewjob?jk=a3f41bc922e3c157",
+    salary: null,
+    hybrid: null,
+    notes: "Head of Ops at food/beverage manufacturer. Full operations leadership. Not re-verified this week.",
+    dreamCompany: false
+  },
+  {
+    id: "pharmatechnik-head-ops",
+    scanDate: "2026-06-30",
+    grade: "B",
+    title: "Head of Operations (m/w/d)",
+    company: "PHARMATECHNIK GmbH & Co. KG",
+    location: "Munich area",
+    source: "Indeed",
+    url: "https://de.indeed.com/viewjob?jk=fc823b5e1d4a76c9",
+    salary: null,
+    hybrid: null,
+    notes: "Head of Ops at pharma-tech company. Operations leadership including process optimization, team management, KPIs. Not re-verified this week.",
+    dreamCompany: false
+  },
+  {
+    id: "siemens-mobility-leiter-logistik-prozessplanung",
+    scanDate: "2026-08-04",
+    grade: "B",
+    title: "Leiter (w/m/d) Logistik- und Prozessplanung",
+    company: "Siemens Mobility",
+    location: "Munich-Allach",
+    source: "XING / jobs.siemens.com",
+    url: "https://www.xing.com/jobs/muenchen-leiter-logistik-prozessplanung-156440184",
+    salary: "€63,000–75,500 (XING est.)",
+    hybrid: null,
+    notes: "Dream company bump C→B. Logistics & process planning leadership, LEAN, team of up to 10. Posting targets first-time leaders and salary band (€63–75k) is below €120k floor — but dream company rule applies. Re-verified live 2026-08-04 via XING.",
+    dreamCompany: true
+  },
+  {
+    id: "allianz-head-ops-excellence",
+    scanDate: "2026-06-30",
+    grade: "B",
+    title: "Head of Operational Excellence (m/f/d)",
+    company: "Allianz SE",
     location: "Munich",
     source: "Indeed",
-    url: "https://de.indeed.com/viewjob?jk=1c0bdc240a3e7a00",
+    url: "https://de.indeed.com/viewjob?jk=d5e82f3c7a419b60",
     salary: null,
-    hybrid: true,
-    notes: "Full P&L ownership of a 600-person business line, extended executive management team member, reports to Managing Directors — but this is a general-manager role for a technical inspection vertical rather than a core process/transformation mandate. Still appearing in this week's Indeed pull.",
+    hybrid: "Hybrid",
+    notes: "Head of OpEx at Allianz. Lean Six Sigma, process improvement, digital transformation across insurance operations. Not re-verified this week.",
     dreamCompany: false
   },
   {
-    id: "exergy3-head-supply-chain-partnerships",
-    scanDate: "2026-07-13",
-    grade: "B",
-    title: "Head of Supply Chain & Strategic Partnerships",
-    company: "Exergy3 Limited",
-    location: "Munich (Hybrid)",
-    source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/head-of-supply-chain-strategic-partnerships-at-exergy3-limited-4440061841/",
-    salary: null,
-    hybrid: true,
-    notes: "Head level, supply chain domain adjacent to process management, Munich hybrid, Easy Apply (16 applicants). Small/early-stage company with limited public track record. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "celonis-lead-principal-digital-transformation",
-    scanDate: "2026-07-06",
-    grade: "B",
-    title: "Lead/Principal Digital Transformation & Process Optimisation Consultant — Manufacturing/Production",
-    company: "Celonis",
-    location: "Munich (Hybrid)",
-    source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/lead-principal-digital-transformation-process-optimisation-consultant-manufacturing-production-at-celonis-4423681383/",
-    salary: null,
-    hybrid: true,
-    notes: "Dream company + explicit process mining/Celonis domain + manufacturing focus. Gap: consultant IC track, not line leadership. Not re-verified this week — recommend re-check next scan.",
-    dreamCompany: true
-  },
-  {
-    id: "itm-head-supply-chain-management",
-    scanDate: "2026-07-06",
-    grade: "B",
-    title: "Head of Supply Chain Management (f/m/d)",
-    company: "ITM Isotope Technologies Munich SE",
-    location: "Garching (Munich area)",
-    source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/head-of-supply-chain-management-f-m-d-at-itm-isotope-technologies-munich-se-4432737809/",
-    salary: null,
-    hybrid: null,
-    notes: "Head level at growing radiopharma company in Garching (commute OK). Supply chain is adjacent domain. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "xiaomi-head-commercial-operations",
-    scanDate: "2026-07-06",
-    grade: "B",
-    title: "Head of Commercial Operations — Xiaomi EV",
-    company: "Xiaomi Technology",
-    location: "Munich (On-site)",
-    source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/head-of-commercial-operations-xiaomi-ev-at-xiaomi-technology-4435408787/",
-    salary: null,
-    hybrid: false,
-    notes: "Head level + operations build-out for Xiaomi EV's European launch — big-company comp likely. Gap: commercial (not industrial) ops; 100+ applicants. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "repa-director-digital-customer-operations",
-    scanDate: "2026-07-06",
-    grade: "B",
-    title: "Director Digital Customer Operations & Automation (m/f/d)",
-    company: "REPA Deutschland",
-    location: "Bergkirchen (Munich area)",
-    source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/director-digital-customer-operations-automation-m-f-d-at-repa-deutschland-4436314506/",
-    salary: null,
-    hybrid: null,
-    notes: "Director level + digital ops + automation — strong process/digitalization overlap. Bergkirchen within commute. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "autodesk-vp-org-effectiveness",
-    scanDate: "2026-06-15",
-    grade: "A",
-    title: "Vice President, Organization Effectiveness and Workforce Strategy",
-    company: "Autodesk",
-    location: "Munich",
-    source: "LinkedIn",
-    url: "https://de.linkedin.com/jobs/view/vice-president-organization-effectiveness-and-workforce-strategy-at-autodesk-4427224525",
-    salary: null,
-    hybrid: null,
-    notes: "VP level, Organization Effectiveness & Workforce Strategy = transformation/organizational development. Autodesk is a major tech company with competitive comp. Perfect seniority match. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "celonis-vp-gtm-operations",
-    scanDate: "2026-06-15",
-    grade: "A",
-    title: "VP GTM Operations",
-    company: "Celonis",
-    location: "Munich",
-    source: "Web Search",
-    url: "https://job-boards.greenhouse.io/celonis/jobs/7626322003",
-    salary: null,
-    hybrid: null,
-    notes: "Dream company Celonis + VP level + Operations. GTM Operations at Celonis means optimizing go-to-market processes using their own technology. Not re-verified this week.",
-    dreamCompany: true
-  },
-  {
-    id: "celonis-principal-process-intelligence",
-    scanDate: "2026-06-15",
-    grade: "B",
-    title: "Principal Process Intelligence & Supply Chain Transformation Consultant",
-    company: "Celonis",
-    location: "Munich",
-    source: "LinkedIn",
-    url: "https://de.linkedin.com/jobs/view/principal-process-intelligence-supply-chain-transformation-consultant-manufacturing-at-celonis-4423681384",
-    salary: null,
-    hybrid: null,
-    notes: "Dream company Celonis + Process Intelligence domain. Principal level is senior. Consultant title suggests IC role. Not re-verified this week.",
-    dreamCompany: true
-  },
-  {
-    id: "celonis-principal-strategic-value",
-    scanDate: "2026-06-15",
-    grade: "B",
-    title: "Principal Strategic Value & Process Optimisation Consultant",
-    company: "Celonis",
-    location: "Munich",
-    source: "LinkedIn",
-    url: "https://de.linkedin.com/jobs/view/principal-strategic-value-process-optimisation-consultant-manufacturing-at-celonis-4423681383",
-    salary: null,
-    hybrid: null,
-    notes: "Dream company + Process Optimisation. Manufacturing focus aligns with industrial engineering background. Consultant title, likely IC. Not re-verified this week.",
-    dreamCompany: true
-  },
-  {
-    id: "pafnow-celonis-principal-digital-transformation",
-    scanDate: "2026-06-15",
-    grade: "B",
-    title: "Principal Digital Transformation & Process Optimisation Consultant",
-    company: "Process Analytics Factory (PAFnow by Celonis)",
-    location: "Munich",
-    source: "LinkedIn",
-    url: "https://de.linkedin.com/jobs/view/principal-digital-transformation-process-optimisation-consultant-manufacturing-production-at-process-analytics-factory-pafnow-by-celonis-4426646419",
-    salary: null,
-    hybrid: null,
-    notes: "Celonis ecosystem company. Digital Transformation + Process Optimisation, Manufacturing/Production focus. Consultant role, not leadership title. Not re-verified this week.",
-    dreamCompany: true
-  },
-  {
-    id: "biontech-associate-director-logistics-ci",
-    scanDate: "2026-06-15",
-    grade: "B",
-    title: "Associate Director Logistics CI & Project Management",
-    company: "BioNTech",
-    location: "Munich",
-    source: "LinkedIn",
-    url: "https://de.linkedin.com/jobs/view/associate-director-logistics-ci-project-management-at-biontech-se-4371415736",
-    salary: null,
-    hybrid: null,
-    notes: "Associate Director level, CI (Continuous Improvement) target domain. BioNTech is high-profile. Logistics-focused, one step below Director. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "rohde-schwarz-senior-pmo-manager",
-    scanDate: "2026-06-15",
-    grade: "B",
-    title: "Senior PMO Manager Project Portfolio & Governance",
-    company: "Rohde & Schwarz",
-    location: "Munich",
-    source: "LinkedIn",
-    url: "https://de.linkedin.com/jobs/view/senior-pmo-manager-project-portfolio-governance-m-w-d-at-rohde-schwarz-4426964762",
-    salary: null,
-    hybrid: null,
-    notes: "Dream company Rohde & Schwarz. PMO/Portfolio governance is adjacent. Senior Manager not Head/Director level. Not re-verified this week.",
-    dreamCompany: true
-  },
-  {
-    id: "tuev-sued-strategic-transformation-manager",
-    scanDate: "2026-06-15",
-    grade: "B",
-    title: "Strategic Transformation Manager - OPEn Core",
-    company: "TÜV SÜD",
-    location: "Munich",
-    source: "LinkedIn",
-    url: "https://de.linkedin.com/jobs/view/strategic-transformation-manager-open-core-f-m-d-at-t%C3%BCv-s%C3%BCd-4423181693",
-    salary: null,
-    hybrid: null,
-    notes: "Strategic Transformation is a core target domain. TÜV SÜD is reputable Munich company. OPEn Core suggests operational excellence program. Manager title, not Head/Director. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "knorr-bremse-head-financial-planning",
-    scanDate: "2026-06-15",
-    grade: "B",
-    title: "Head of Financial Planning & Performance",
-    company: "Knorr-Bremse",
-    location: "Munich",
-    source: "XING",
-    url: "https://www.xing.com/jobs/muenchen-head-of-financial-planning-performance-152263842",
-    salary: "€99K–€144K",
-    hybrid: null,
-    notes: "Dream company Knorr-Bremse + Head level + Munich. Financial Planning domain is far from process management/operations. Not re-verified this week.",
-    dreamCompany: true
-  },
-  {
-    id: "airbus-head-business-continuity",
-    scanDate: "2026-06-15",
-    grade: "B",
-    title: "Head of Business Continuity Manager",
-    company: "Airbus",
-    location: "Munich",
-    source: "Glassdoor",
-    url: "https://www.glassdoor.de/job-listing/head-of-business-continuity-manager-mwd-airbus-JV_IC4990924_KO0,39_KE40,46.htm?jl=1010162723588",
-    salary: null,
-    hybrid: null,
-    notes: "Dream company Airbus + Head level + Munich. BCM involves process design and risk management. Specialized domain. Not re-verified this week.",
-    dreamCompany: true
-  },
-  {
-    id: "workwise-director-process-mining",
-    scanDate: "2026-06-15",
-    grade: "C",
-    title: "Director Process Mining / BPM / Data Science",
-    company: "Workwise GmbH",
-    location: "Munich",
-    source: "XING",
-    url: "https://www.xing.com/jobs/muenchen-director-process-mining-bpm-data-science-155212788",
-    salary: "€78K–€104K",
-    hybrid: null,
-    notes: "PERFECT domain match (Process Mining + BPM + Director). But salary €78K–€104K is well below €120K floor. May be negotiable. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "gsk-head-clinical-operations",
-    scanDate: "2026-06-15",
-    grade: "C",
-    title: "Head of Clinical Operations – Germany & Associated Countries",
-    company: "GSK",
-    location: "Munich",
-    source: "Glassdoor",
-    url: "https://www.glassdoor.de/job-listing/head-of-clinical-operations-germany-associated-countries-mfd-gsk-JV_IC4990924_KO0,60_KE61,64.htm?jl=1010164538164",
-    salary: "€138K–€230K",
-    hybrid: null,
-    notes: "Head level, Operations, excellent salary. Clinical operations in pharma requires heavy domain expertise. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "brainlab-head-business-applications",
-    scanDate: "2026-06-15",
-    grade: "C",
-    title: "Head of Business Applications",
-    company: "Brainlab",
-    location: "Munich",
-    source: "Glassdoor",
-    url: "https://www.glassdoor.de/job-listing/head-of-business-applications-brainlab-JV_IC4990924_KO0,29_KE30,38.htm?jl=1010162574015",
-    salary: null,
-    hybrid: null,
-    notes: "Head level, Munich, MedTech. Business Applications could involve process digitalization. IT/applications focus, not process management. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "vispiron-process-automation-opex",
-    scanDate: "2026-06-15",
-    grade: "C",
-    title: "Process Automation & Operations Excellence Manager",
-    company: "VISPIRON",
-    location: "Munich",
-    source: "XING",
-    url: "https://www.xing.com/jobs/muenchen-process-automation-operations-excellence-manager-setrade-154875301",
-    salary: "€65K–€85K",
-    hybrid: null,
-    notes: "Perfect domain (Process Automation + Operations Excellence) but salary way too low and Manager title. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "ge-healthcare-sr-director-ops-lean",
-    scanDate: "2026-06-23",
-    grade: "A",
-    title: "Senior Director, Operations and Lean",
-    company: "GE HealthCare",
-    location: "Munich",
-    source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/senior-director-operations-and-lean-at-ge-healthcare-4430460461/",
-    salary: null,
-    hybrid: null,
-    notes: "Senior Director level + Operations + Lean — near-perfect domain match. GE HealthCare Munich. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "harman-exec-dir-digital-supply-chain",
-    scanDate: "2026-06-23",
-    grade: "B",
-    title: "Executive Director, Digital Supply Chain & Manufacturing",
-    company: "HARMAN International",
-    location: "Garching",
-    source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/executive-director-digital-supply-chain-manufacturing-at-harman-international-4347561822/",
-    salary: null,
-    hybrid: null,
-    notes: "Exec Director level, digital transformation + supply chain + manufacturing. Garching (within commute). Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "cascade-medtech-director-ops",
-    scanDate: "2026-06-23",
-    grade: "B",
-    title: "Director of Operations",
-    company: "Cascade MedTech",
-    location: "Greater Munich",
-    source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/director-of-operations-at-cascade-medtech-4431268485/",
-    salary: null,
-    hybrid: false,
-    notes: "Director level, operations, Greater Munich. On-site. MedTech startup. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "otera-transformation-program-director",
-    scanDate: "2026-06-23",
-    grade: "B",
-    title: "Transformation Program Director",
-    company: "Otera",
-    location: "Remote Europe (Munich listed)",
-    source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/transformation-program-director-f-m-d-remote-europe-at-otera-4429653505/",
-    salary: null,
-    hybrid: true,
-    notes: "Director level, transformation domain is a perfect match. Fully remote Europe, Munich-compatible. Energy sector. A new German-speaker variant of this posting was verified live 2026-07-20 (47 applicants).",
-    dreamCompany: false
-  },
-  {
-    id: "regeneron-director-commercial-ops",
-    scanDate: "2026-06-23",
-    grade: "C",
-    title: "Director, Commercial Operations Lead",
-    company: "Regeneron",
-    location: "Munich (Hybrid)",
-    source: "LinkedIn",
-    url: "https://www.linkedin.com/jobs/view/director-commercial-operations-lead-at-regeneron-4371781624/",
-    salary: null,
-    hybrid: true,
-    notes: "Director level, operations, Munich, hybrid. Commercial operations in pharma is adjacent to process management. Not re-verified this week.",
-    dreamCompany: false
-  },
-  {
-    id: "fnz-bank-leitung-operational-change",
+    id: "tec-head-ops-automotive",
     scanDate: "2026-06-30",
-    grade: "C",
-    title: "Leitung Operational Change",
-    company: "FNZ Bank",
-    location: "Munich",
-    source: "XING",
-    url: "https://www.xing.com/jobs/muenchen-leitung-operational-change-155706711",
+    grade: "B",
+    title: "Head of Operations — Automotive (m/f/d)",
+    company: "TEC Group International",
+    location: "Munich area",
+    source: "Indeed",
+    url: "https://de.indeed.com/viewjob?jk=b9c54e82d13a7f60",
     salary: null,
     hybrid: null,
-    notes: "Head-level (Leitung) + Operational Change — strong domain match. FNZ Bank is fintech/wealth management. Banking sector may be less aligned with industrial background. Not re-verified this week.",
+    notes: "Head of Ops at automotive manufacturer (actual employer undisclosed, TEC is recruiter). Not re-verified this week.",
     dreamCompany: false
   },
   {
-    id: "feld-energy-head-operations-maintenance-agri-pv",
+    id: "octopus-head-process-mgmt",
     scanDate: "2026-06-30",
-    grade: "C",
-    title: "Head of Operations and Maintenance — Agri-PV",
-    company: "feld.energy",
+    grade: "B",
+    title: "Head of Process Management (m/f/d)",
+    company: "Octopus GmbH",
     location: "Munich",
-    source: "XING",
-    url: "https://www.xing.com/jobs/muenchen-head-of-operations-and-maintenance-agri-pv-154715111",
+    source: "Indeed",
+    url: "https://de.indeed.com/viewjob?jk=4f6a7b29c8d5e130",
+    salary: null,
+    hybrid: "Hybrid",
+    notes: "Head of Process Management at mid-size tech company. Process design, optimization, governance, BPM tools. Core domain match. Not re-verified this week.",
+    dreamCompany: false
+  },
+  {
+    id: "verifone-director-first-line-operations",
+    scanDate: "2026-08-04",
+    grade: "C",
+    title: "Director of First Line Operations - AML, PTM, CB, Fraud",
+    company: "Verifone",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/director-of-first-line-operations-aml-ptm-cb-fraud-at-verifone-4446581662",
+    salary: null,
+    hybrid: "Hybrid",
+    notes: "Director level at Verifone (payment tech). First Line Operations covering AML, fraud, compliance — domain mismatch (financial crime ops, not process management). Included because < 3 A/B this week. Verified live 2026-08-04.",
+    dreamCompany: false
+  },
+  {
+    id: "yunex-traffic-head-master-data-governance",
+    scanDate: "2026-08-04",
+    grade: "C",
+    title: "Head of Master Data Governance (f/m/d)",
+    company: "Yunex Traffic",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/head-of-master-data-governance-f-m-d-at-yunex-traffic-4436703603",
     salary: null,
     hybrid: null,
-    notes: "Head level + Operations domain. Agri-PV (solar on farmland) is niche — very specific technical operations role. Startup energy sector. Reappeared in this week's XING pull — still live.",
+    notes: "Head level at Yunex Traffic (Siemens spin-off, intelligent traffic systems). Master data governance is adjacent to process management but more data/IT-focused. Verified live 2026-08-04.",
+    dreamCompany: false
+  },
+  {
+    id: "alvarium-talent-director-digital-transformation",
+    scanDate: "2026-08-04",
+    grade: "C",
+    title: "Director - Digital Transformation & Private Equity | Germany",
+    company: "Alvarium Talent (recruiter)",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/director-digital-transformation-private-equity-germany-at-alvarium-talent-4447504795",
+    salary: null,
+    hybrid: "Hybrid",
+    notes: "Director-level digital transformation role placed by Alvarium Talent (recruiter). PE-backed portfolio company, actual employer undisclosed. Transformation domain matches but details sparse. Verified live 2026-08-04.",
     dreamCompany: false
   },
   {
@@ -1052,22 +419,8 @@ const JOBS = [
     url: "https://de.linkedin.com/jobs/view/head-of-erp-plattform-operations-w-m-d-at-adac-4414208033",
     salary: null,
     hybrid: null,
-    notes: "Head level + Operations at ADAC (large Munich institution). ERP Platform focus is IT-heavy, less process management. Well-known employer with good benefits. Not re-verified this week.",
+    notes: "Head level + Operations at ADAC (large Munich institution). ERP Platform focus is IT-heavy, less process management. Not re-verified this week.",
     dreamCompany: false
-  },
-  {
-    id: "siemens-mobility-leiter-logistik-prozessplanung",
-    scanDate: "2026-07-20",
-    grade: "C",
-    title: "Leiter (w/m/d) Logistik- und Prozessplanung",
-    company: "Siemens Mobility",
-    location: "Munich-Allach",
-    source: "XING / jobs.siemens.com",
-    url: "https://jobs.siemens.com/de_DE/externaljobs/JobDetail/429622",
-    salary: "€63,000–€75,500 (XING est.)",
-    hybrid: null,
-    notes: "Dream company + strong domain (logistics & process planning, LEAN, team of up to 10) — but the posting targets first-time leaders ('idealerweise erste Führungserfahrung') and the indicated salary band is roughly half the €120k floor. A step down in seniority. Verified live 2026-07-20.",
-    dreamCompany: true
   },
   {
     id: "quantum-systems-head-production",
@@ -1080,7 +433,7 @@ const JOBS = [
     url: "https://de.indeed.com/viewjob?jk=83741879b5eb2c18",
     salary: null,
     hybrid: null,
-    notes: "Dream company. End-to-end serial production ownership: Operational Excellence, CI, KPI governance, process standardization — maps directly to LHT process leadership. Not re-verified this week.",
+    notes: "Dream company. End-to-end serial production ownership: Operational Excellence, CI, KPI governance, process standardization. Not re-verified this week.",
     dreamCompany: true
   },
   {
@@ -1100,168 +453,88 @@ const JOBS = [
 ];
 
 const SCRAPER_HEALTH = [
-  { source: "Glassdoor", actor: "valig/glassdoor-jobs-scraper", queries: 5, status: "ok", items: 31, notes: "Recovered after 2 failing weeks — 31 items across 5 queries, but mostly off-target roles; no unique A/B matches this week" },
-  { source: "LinkedIn", actor: "curious_coder/linkedin-jobs-scraper", queries: 6, status: "warn", items: 25, notes: "25 items (single run capped at 25 across all 6 URLs); new matches: TEC Site Director, KNDS Abteilungsleiter QM, Quest One, KB Sr Transformation Mgr (repost)" },
-  { source: "StepStone", actor: "easyapi/stepstone-jobs-scraper", queries: 4, status: "fail", items: 0, notes: "Ran 4m49s, SUCCEEDED with 0 items — 4th consecutive failing week. Strongly recommend replacing this actor." },
-  { source: "Indeed", actor: "misceres/indeed-scraper", queries: 3, status: "ok", items: 76, notes: "76 items; re-confirmed MONTANA, PHARMATECHNIK, Allianz, Airbus PMO, TEC Head of Ops, Octopus" },
-  { source: "XING", actor: "shahidirfan/Xing-Jobs-Scraper", queries: 3, status: "ok", items: 42, notes: "42 items; new matches: Knorr-Bremse VP Global IE (A), Siemens Mobility Head of IE (A), Leiter Logistik- und Prozessplanung (C)" },
-  { source: "Arbeitsagentur", actor: "blackfalcondata/arbeitsagentur-jobs-feed", queries: 2, status: "ok", items: 9, notes: "9 items, no leadership-level matches" },
-  { source: "Workday — Celonis", actor: "blackfalcondata/workday-scraper", queries: 1, status: "fail", items: 0, notes: "WDY-2011: company URL still invalid — 2nd week; skill config needs corrected Celonis Workday subdomain" },
-  { source: "Workday — Airbus", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "20 items, all non-Munich (US/Canada/France/Taiwan/Philippines)" },
-  { source: "Workday — Carl Zeiss", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "20 items, no Munich/Germany ops leadership roles" },
-  { source: "Web Search (Dream Co.)", actor: "n/a", queries: 14, status: "ok", items: "—", notes: "ServiceNow Head of Executive Experience confirmed DEAD (404) and removed. No new verified dream-company roles from web search this week." }
+  { source: "Glassdoor", actor: "valig/glassdoor-jobs-scraper", queries: 5, status: "ok", items: 33, notes: "33 items across 5 queries. Mostly off-target roles; no new unique A/B matches." },
+  { source: "LinkedIn", actor: "curious_coder/linkedin-jobs-scraper", queries: 6, status: "ok", items: 25, notes: "25 items. New: Verifone Director (C), Yunex Traffic Head MDG (C), Alvarium Director DT (C)." },
+  { source: "StepStone", actor: "easyapi/stepstone-jobs-scraper", queries: 4, status: "fail", items: 0, notes: "5th consecutive failing week — 0 items. Recommend replacing this actor." },
+  { source: "Indeed", actor: "misceres/indeed-scraper", queries: 3, status: "warn", items: 24, notes: "24 items but ALL from US (Cando/Langdon ND). Location defaulted to US. Needs country fix." },
+  { source: "XING", actor: "shahidirfan/Xing-Jobs-Scraper", queries: 3, status: "ok", items: 53, notes: "53 items. Re-confirmed Siemens Mobility Leiter (bumped C→B via dream-co rule)." },
+  { source: "Arbeitsagentur", actor: "blackfalcondata/arbeitsagentur-jobs-feed", queries: 2, status: "ok", items: 2, notes: "2 items, no leadership-level matches." },
+  { source: "Workday — Celonis", actor: "blackfalcondata/workday-scraper", queries: 1, status: "fail", items: 0, notes: "WDY-2011 error — 3rd consecutive week. Celonis Workday subdomain invalid." },
+  { source: "Workday — Airbus", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "20 items, all non-Munich global locations." },
+  { source: "Workday — Carl Zeiss", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "20 items, no Munich ops leadership roles." },
+  { source: "Web Search (Dream Co.)", actor: "n/a", queries: 14, status: "ok", items: "—", notes: "No new verified dream-company roles. ServiceNow x3 confirmed dead. PMMG rejected (consulting)." }
 ];
 
 const DREAM_COMPANIES = [
-  { name: "Celonis", hit: true, roles: "Lead/Principal DT & Process Optimisation Consultant (B, not re-verified); Workday scraper still failing — no new roles surfaced" },
-  { name: "ServiceNow", hit: false, roles: "Head of Exec Experience confirmed dead (404) on 2026-07-20 — removed" },
-  { name: "Helsing", hit: true, roles: "(Senior) Industrialisation & Ramp-Up Manager (B, not re-verified this week)" },
+  { name: "Celonis", hit: true, roles: "Lead/Principal DT & Process Optimisation Consultant (B, not re-verified); Workday scraper still failing" },
+  { name: "ServiceNow", hit: false, roles: "3 previously tracked URLs confirmed dead (404) on 2026-08-04" },
+  { name: "Helsing", hit: true, roles: "(Senior) Industrialisation & Ramp-Up Manager (B, not re-verified)" },
   { name: "Isar Aerospace", hit: false, roles: null },
-  { name: "Quantum Systems", hit: true, roles: "Head of Production (A) + Head of Logistics (A) + Head of Controlling (B) — not re-verified this week" },
+  { name: "Quantum Systems", hit: true, roles: "Head of Production (A) + Head of Logistics (A) + Head of Controlling (B)" },
   { name: "Forto", hit: false, roles: null },
   { name: "Personio", hit: false, roles: "No verified leadership ops roles" },
-  { name: "Rohde & Schwarz", hit: false, roles: "Only SCM Projektmanager-level roles this scan — below target level" },
-  { name: "MTU Aero Engines", hit: false, roles: "Only Werkstudent/Praktikum roles in this week's pull" },
+  { name: "Rohde & Schwarz", hit: false, roles: null },
+  { name: "MTU Aero Engines", hit: false, roles: null },
   { name: "Infineon", hit: false, roles: null },
-  { name: "Siemens", hit: true, roles: "NEW: Head of Industrial Engineering, Munich-Allach (A, verified live) + Leiter Logistik- und Prozessplanung (C, junior-level)" },
-  { name: "Airbus", hit: true, roles: "PMO Lead Ottobrunn (B, re-verified live 2026-07-20)" },
+  { name: "Siemens", hit: true, roles: "Head of Industrial Engineering (A, verified 2026-07-20) + Leiter Logistik- und Prozessplanung (B, dream bump, re-verified 2026-08-04)" },
+  { name: "Airbus", hit: true, roles: "PMO Lead Ottobrunn (B, verified 2026-07-20)" },
   { name: "Carl Zeiss AG", hit: false, roles: "No Munich ops roles" },
-  { name: "Knorr-Bremse", hit: true, roles: "NEW: VP Global Industrial Engineering (A, verified live) + Senior Transformation Manager Planning Excellence (B, re-verified)" }
+  { name: "Knorr-Bremse", hit: true, roles: "VP Global Industrial Engineering (A) + Senior Transformation Manager Planning Excellence (B)" }
 ];
 
-// Render
 function renderMeta() {
   const el = document.getElementById('metaBar');
-  el.innerHTML = `
-    <span>Scanned <strong>${SCAN_META.scanDate}</strong></span>
-    <span>${SCAN_META.sourcesCount} sources, ${SCAN_META.scrapersRun} scrapers</span>
-    <span>${SCAN_META.rawListings} raw &rarr; <strong>${SCAN_META.scoredListings} scored</strong></span>
-    <span style="color:var(--grade-a-text)">${SCAN_META.gradeA} A-grade</span>
-    <span style="color:var(--grade-b-text)">${SCAN_META.gradeB} B-grade</span>
-    <span style="color:var(--grade-c-text)">${SCAN_META.gradeC} C-grade</span>
-  `;
+  el.innerHTML = '<span>Scanned <strong>' + SCAN_META.scanDate + '</strong></span>' +
+    '<span>' + SCAN_META.sourcesCount + ' sources, ' + SCAN_META.scrapersRun + ' scrapers</span>' +
+    '<span>' + SCAN_META.rawListings + ' raw &rarr; <strong>' + SCAN_META.scoredListings + ' scored</strong></span>' +
+    '<span style="color:var(--grade-a-text)">' + SCAN_META.gradeA + ' A-grade</span>' +
+    '<span style="color:var(--grade-b-text)">' + SCAN_META.gradeB + ' B-grade</span>' +
+    '<span style="color:var(--grade-c-text)">' + SCAN_META.gradeC + ' C-grade</span>';
 }
-
 let activeFilter = 'all';
-
 function renderFilters() {
   const el = document.getElementById('filters');
-  const filters = [
-    { key: 'all', label: 'All' },
-    { key: 'A', label: 'A-Grade' },
-    { key: 'B', label: 'B-Grade' },
-    { key: 'C', label: 'C-Grade' },
-    { key: 'dream', label: 'Dream Companies' }
-  ];
-  el.innerHTML = filters.map(f =>
-    `<button class="filter-btn ${activeFilter === f.key ? 'active' : ''}" data-filter="${f.key}">${f.label}</button>`
-  ).join('');
-
-  el.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      activeFilter = btn.dataset.filter;
-      renderFilters();
-      renderJobs();
-    });
-  });
+  const filters = [{key:'all',label:'All'},{key:'A',label:'A-Grade'},{key:'B',label:'B-Grade'},{key:'C',label:'C-Grade'},{key:'dream',label:'Dream Companies'}];
+  el.innerHTML = filters.map(f => '<button class="filter-btn ' + (activeFilter === f.key ? 'active' : '') + '" data-filter="' + f.key + '">' + f.label + '</button>').join('');
+  el.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => { activeFilter = btn.dataset.filter; renderFilters(); renderJobs(); }); });
 }
-
 function renderJobs() {
   const el = document.getElementById('jobList');
   let filtered = JOBS;
-  if (activeFilter === 'dream') {
-    filtered = JOBS.filter(j => j.dreamCompany);
-  } else if (activeFilter !== 'all') {
-    filtered = JOBS.filter(j => j.grade === activeFilter);
-  }
-
-  if (filtered.length === 0) {
-    el.innerHTML = '<div class="empty-state">No listings match this filter.</div>';
-    return;
-  }
-
-  const grades = ['A', 'B', 'C'];
-  const gradeLabels = { A: 'A-Grade — Apply Immediately', B: 'B-Grade — Strong', C: 'C-Grade — Worth a Look' };
-
+  if (activeFilter === 'dream') filtered = JOBS.filter(j => j.dreamCompany);
+  else if (activeFilter !== 'all') filtered = JOBS.filter(j => j.grade === activeFilter);
+  if (filtered.length === 0) { el.innerHTML = '<div class="empty-state">No listings match this filter.</div>'; return; }
+  const grades = ['A','B','C'];
+  const gradeLabels = {A:'A-Grade — Apply Immediately',B:'B-Grade — Strong',C:'C-Grade — Worth a Look'};
   let html = '';
   for (const g of grades) {
     const items = filtered.filter(j => j.grade === g);
     if (items.length === 0) continue;
-    html += `<div class="grade-section">`;
-    html += `<div class="grade-header">${gradeLabels[g]}</div>`;
-    for (const job of items) {
-      html += renderCard(job);
-    }
-    html += `</div>`;
+    html += '<div class="grade-section"><div class="grade-header">' + gradeLabels[g] + '</div>';
+    for (const job of items) html += renderCard(job);
+    html += '</div>';
   }
   el.innerHTML = html;
 }
-
 function renderCard(job) {
-  const badgeClass = { A: 'badge-a', B: 'badge-b', C: 'badge-c' }[job.grade];
-  const dreamBadge = job.dreamCompany ? `<span class="badge badge-dream">Dream Company</span>` : '';
-  const salaryHtml = job.salary ? `<span>${job.salary}</span>` : '';
-
-  return `
-    <div class="job-card">
-      <div class="job-card-top">
-        <div>
-          <div class="job-card-title">${job.title}</div>
-          <div class="job-card-company">${job.company}</div>
-        </div>
-        <div class="badges">
-          <span class="badge ${badgeClass}">${job.grade}</span>
-          ${dreamBadge}
-        </div>
-      </div>
-      <div class="job-meta">
-        <span>${job.location}</span>
-        <span>${job.source}</span>
-        ${salaryHtml}
-      </div>
-      <div class="job-notes">${job.notes}</div>
-      <a class="apply-link" href="${job.url}" target="_blank" rel="noopener">View Listing &rarr;</a>
-    </div>
-  `;
+  const badgeClass = {A:'badge-a',B:'badge-b',C:'badge-c'}[job.grade];
+  const dreamBadge = job.dreamCompany ? '<span class="badge badge-dream">Dream Company</span>' : '';
+  const salaryHtml = job.salary ? '<span>' + job.salary + '</span>' : '';
+  return '<div class="job-card"><div class="job-card-top"><div><div class="job-card-title">' + job.title + '</div><div class="job-card-company">' + job.company + '</div></div><div class="badges"><span class="badge ' + badgeClass + '">' + job.grade + '</span>' + dreamBadge + '</div></div><div class="job-meta"><span>' + job.location + '</span><span>' + job.source + '</span>' + salaryHtml + '</div><div class="job-notes">' + job.notes + '</div><a class="apply-link" href="' + job.url + '" target="_blank" rel="noopener">View Listing &rarr;</a></div>';
 }
-
 function renderDream() {
   const grid = document.getElementById('dreamGrid');
-  grid.innerHTML = DREAM_COMPANIES.map(dc => `
-    <div class="dream-chip ${dc.hit ? 'hit' : ''}">
-      <span class="indicator"></span>
-      <span>${dc.name}</span>
-    </div>
-  `).join('');
+  grid.innerHTML = DREAM_COMPANIES.map(dc => '<div class="dream-chip ' + (dc.hit ? 'hit' : '') + '"><span class="indicator"></span><span>' + dc.name + '</span></div>').join('');
 }
-
 function renderHealth() {
   const rows = document.getElementById('healthRows');
-  const statusIcon = { ok: '<span class="status-ok">&#10003;</span>', warn: '<span class="status-warn">&#9679;</span>', fail: '<span class="status-fail">&#10007;</span>' };
-  rows.innerHTML = SCRAPER_HEALTH.map(s => `
-    <tr>
-      <td style="font-weight:500">${s.source}</td>
-      <td style="color:var(--text-secondary);font-size:12px">${s.actor}</td>
-      <td>${s.queries}</td>
-      <td>${statusIcon[s.status] || s.status}</td>
-      <td>${s.items !== null ? s.items : '—'}</td>
-      <td style="color:var(--text-secondary)">${s.notes}</td>
-    </tr>
-  `).join('');
-
+  const statusIcon = {ok:'<span class="status-ok">&#10003;</span>',warn:'<span class="status-warn">&#9679;</span>',fail:'<span class="status-fail">&#10007;</span>'};
+  rows.innerHTML = SCRAPER_HEALTH.map(s => '<tr><td style="font-weight:500">' + s.source + '</td><td style="color:var(--text-secondary);font-size:12px">' + s.actor + '</td><td>' + s.queries + '</td><td>' + (statusIcon[s.status]||s.status) + '</td><td>' + (s.items !== null ? s.items : '—') + '</td><td style="color:var(--text-secondary)">' + s.notes + '</td></tr>').join('');
   const toggle = document.getElementById('healthToggle');
   const body = document.getElementById('healthBody');
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('open');
-    body.classList.toggle('open');
-  });
+  toggle.addEventListener('click', () => { toggle.classList.toggle('open'); body.classList.toggle('open'); });
 }
-
-renderMeta();
-renderFilters();
-renderJobs();
-renderDream();
-renderHealth();
+renderMeta(); renderFilters(); renderJobs(); renderDream(); renderHealth();
 </script>
 </body>
 </html>
