@@ -12,6 +12,7 @@
 <title>Justus Stähle — Job Board</title>
 <style>
   :root {
+    color-scheme: light;
     --bg: #fafafa;
     --surface: #ffffff;
     --border: #e8e8e8;
@@ -40,18 +41,6 @@
     --shadow-md: 0 4px 6px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.04);
     --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0f0f0f; --surface: #1a1a1a; --border: #2a2a2a; --border-hover: #3a3a3a;
-      --text-primary: #f0f0f0; --text-secondary: #a0a0a0; --text-tertiary: #666666;
-      --accent: #60a5fa; --accent-light: #1e3a5f;
-      --grade-a-bg: #14532d; --grade-a-text: #bbf7d0; --grade-a-border: #166534;
-      --grade-b-bg: #1e3a5f; --grade-b-text: #93c5fd; --grade-b-border: #1e40af;
-      --grade-c-bg: #422006; --grade-c-text: #fde68a; --grade-c-border: #854d0e;
-      --dream-bg: #2e1065; --dream-text: #c4b5fd; --dream-border: #5b21b6;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.2); --shadow: 0 1px 3px rgba(0,0,0,0.3); --shadow-md: 0 4px 6px rgba(0,0,0,0.3);
-    }
-  }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: var(--font); background: var(--bg); color: var(--text-primary); line-height: 1.6; -webkit-font-smoothing: antialiased; }
   .container { max-width: 900px; margin: 0 auto; padding: 48px 24px 80px; }
@@ -78,6 +67,7 @@
   .badge-b { background: var(--grade-b-bg); color: var(--grade-b-text); border-color: var(--grade-b-border); }
   .badge-c { background: var(--grade-c-bg); color: var(--grade-c-text); border-color: var(--grade-c-border); }
   .badge-dream { background: var(--dream-bg); color: var(--dream-text); border-color: var(--dream-border); }
+  .badge-new { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
   .job-meta { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
   .job-meta span { display: flex; align-items: center; gap: 4px; }
   .job-notes { font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 14px; }
@@ -114,7 +104,7 @@
 <div class="container">
   <header>
     <h1>Justus Stähle — Job Board</h1>
-    <p class="subtitle">Head / Director / VP in Operations, Process Management & Transformation — Munich</p>
+    <p class="subtitle">Head / Director / VP in Operations, Process Management &amp; Transformation — Munich</p>
     <div class="meta-bar" id="metaBar"></div>
   </header>
   <div class="filters" id="filters"></div>
@@ -138,37 +128,219 @@
 </div>
 <script>
 const SCAN_META = {
-  lastScan: "2026-08-04",
-  totalScraped: 197,
-  passedVerification: 4,
-  deadLinks: 6,
-  estCostUSD: "$1.65",
+  lastScan: "2026-08-12",
+  totalScraped: 258,
+  passedVerification: 14,
+  deadLinks: 0,
+  estCostUSD: "$3.50",
   sources: ["Glassdoor","LinkedIn","StepStone","Indeed","XING","Arbeitsagentur","Workday"],
-  scanDate: "2026-08-04",
+  scanDate: "2026-08-12",
   sourcesCount: 7,
-  scrapersRun: 16,
-  rawListings: 197,
-  scoredListings: 17,
+  scrapersRun: 18,
+  rawListings: 258,
+  scoredListings: 14,
   gradeA: 4,
-  gradeB: 9,
-  gradeC: 4,
-  notes: "Low-yield week: 0 new A-grade, 1 B (Siemens Mobility Leiter bumped via dream-co rule), 3 C-grade included (< 3 A/B threshold). 6 dead links: ServiceNow x3, Celonis VP GTM, Beckman Coulter CI Lead, PMMG (consulting dealbreaker). StepStone 5th consecutive fail. Indeed returned US-only results. Workday Celonis still broken. Est. cost: $1.65"
+  gradeB: 10,
+  gradeC: 0,
+  notes: "Strongest week of the search so far. 14 of 14 shortlisted URLs verified live via Chrome, zero dead links. Headline find: Webasto Director Digital Transformation & Process Excellence (Munich/Stockdorf) — closest match to Justus's LHT profile seen to date. Knorr-Bremse VP Global Industrial Engineering is live again (reposted 6 days ago) with a fresh LinkedIn URL. Isar Aerospace is now a double dream-company hit. Rohde & Schwarz posted two hybrid transformation roles within 24 hours. XING returned a title/content mismatch on the Webasto ad (the page rendered a different PMMG listing) — resolved by re-verifying via Glassdoor, which carried the full live description. StepStone failed for the 6th consecutive week (0 items) — recommend replacing the actor. Workday Celonis threw WDY-2011 for the 4th week. Est. cost: $3.50"
 };
 
 const JOBS = [
   {
-    id: "knorr-bremse-vp-global-industrial-engineering",
-    scanDate: "2026-07-20",
+    id: "webasto-director-digital-transformation-process-excellence",
+    scanDate: "2026-08-12",
     grade: "A",
-    title: "VP Global Industrial Engineering",
-    company: "Knorr-Bremse AG",
-    location: "Munich-Moosach",
-    source: "XING",
-    url: "https://www.xing.com/jobs/muenchen-vp-global-industrial-engineering-154876231",
+    title: "Director Digital Transformation & Process Excellence (f/m/x)",
+    company: "Webasto Group",
+    location: "Munich (Stockdorf HQ)",
+    source: "XING → verified via Glassdoor",
+    url: "https://www.glassdoor.de/job-listing/director-digital-transformation-process-excellence-fmx-webasto-JV_IC4990924_KO0,54_KE55,62.htm?jl=1010069950490",
     salary: null,
     hybrid: null,
-    notes: "Dream company. VP-level, global IE scope across 30+ plants. Lean, CI, Industry 4.0, digital transformation of manufacturing ops. Direct report to COO. Perfect seniority + domain match. Verified live 2026-07-20.",
+    notes: "Best match of this scan. Director level, owns a global strategy for process harmonisation and optimisation, data-driven decision processes, governance and change management, and company-wide transformation programmes including ERP rollouts and M&A integration. Explicitly wants deep understanding of cross-functional business processes from automotive or manufacturing — exactly Justus's LHT profile. Leads international teams. Top-100 automotive supplier at Stockdorf HQ, ~20 min from central Munich. Verified live 2026-08-12 with full job description.",
+    dreamCompany: false
+  },
+  {
+    id: "knorr-bremse-vp-global-industrial-engineering",
+    scanDate: "2026-08-12",
+    grade: "A",
+    title: "Vice President Global Industrial Engineering (m/w/d)",
+    company: "Knorr-Bremse AG",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/vice-president-global-industrial-engineering-m-w-d-at-knorr-bremse-ag-4438006780",
+    salary: null,
+    hybrid: null,
+    notes: "Dream company. Still open — reposted 6 days ago, over 100 people clicked apply, so move fast. VP-level global industrial engineering scope across 30+ plants: lean, continuous improvement, Industry 4.0, digital transformation of manufacturing operations. Highest-seniority role on the board. Re-verified live 2026-08-12 on a fresh LinkedIn URL (previous XING link superseded).",
     dreamCompany: true
+  },
+  {
+    id: "isar-aerospace-director-value-stream",
+    scanDate: "2026-08-12",
+    grade: "A",
+    title: "Director Value Stream (m/f/d)",
+    company: "Isar Aerospace",
+    location: "Ottobrunn (Munich area)",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/director-value-stream-m-f-d-at-isar-aerospace-4451505273",
+    salary: null,
+    hybrid: null,
+    notes: "Dream company, first Isar Aerospace hit of this search. Director-level ownership of an end-to-end value stream at a launch-vehicle manufacturer — value stream design, flow, throughput and cross-functional process ownership is the direct industrial-engineering analogue of Justus's process modeling work at Lufthansa Technik. Ottobrunn is inside the 45-minute commute radius. Posted 2 days ago, only 34 clicks so far. Verified live 2026-08-12.",
+    dreamCompany: true
+  },
+  {
+    id: "helsing-head-production-quality",
+    scanDate: "2026-08-12",
+    grade: "A",
+    title: "Head of Production Quality",
+    company: "Helsing",
+    location: "Munich",
+    source: "LinkedIn / XING",
+    url: "https://de.linkedin.com/jobs/view/head-of-production-quality-at-helsing-4449216196",
+    salary: null,
+    hybrid: null,
+    notes: "Dream company, bumped B→A. Head-level with direct reports at Europe's highest-profile defence AI company, building out serial production in Munich. Domain gap to flag: this is quality rather than process management, though production quality at ramp-up stage is heavily process-system work (QMS design, process capability, audits). Aviation MRO quality background transfers well. Posted 4 days ago. Verified live 2026-08-12.",
+    dreamCompany: true
+  },
+  {
+    id: "knds-abteilungsleiter-projektmanagement-transformation",
+    scanDate: "2026-08-12",
+    grade: "B",
+    title: "Abteilungsleiter (m/w/d) Projektmanagement Transformation",
+    company: "KNDS Deutschland",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/abteilungsleiter-m-w-d-projektmanagement-transformation-at-knds-deutschland-4449655244",
+    salary: null,
+    hybrid: null,
+    notes: "Department head (Abteilungsleiter = direct reports, budget, Geschäftsleitung exposure) owning transformation project management at KNDS, the KMW/Nexter defence group. Right seniority, transformation domain, Munich. Gap to watch: project-management framing may be more delivery than strategic process ownership, and defence primes can be slow-moving. Posted 6 days ago, 38 clicks. Verified live 2026-08-12.",
+    dreamCompany: false
+  },
+  {
+    id: "rohde-schwarz-senior-transformation-manager",
+    scanDate: "2026-08-12",
+    grade: "B",
+    title: "Senior Transformation Manager (m/w/d)",
+    company: "Rohde & Schwarz",
+    location: "Munich (Hybrid)",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/senior-transformation-manager-m-w-d-at-rohde-schwarz-4451907082",
+    salary: null,
+    hybrid: true,
+    notes: "Dream company, first Rohde & Schwarz hit. Hybrid, Munich HQ, posted 15 hours ago — apply early. Transformation domain is a direct match. Gap to watch: senior individual-contributor framing rather than a Head/Leiter title, so confirm scope and reporting line before investing. Verified live 2026-08-12.",
+    dreamCompany: true
+  },
+  {
+    id: "rohde-schwarz-lean-engineering-transformation-manager",
+    scanDate: "2026-08-12",
+    grade: "B",
+    title: "Lean Engineering Transformation Manager (m/w/d)",
+    company: "Rohde & Schwarz",
+    location: "Munich (Hybrid)",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/lean-engineering-transformation-manager-m-w-d-at-rohde-schwarz-4451404384",
+    salary: null,
+    hybrid: true,
+    notes: "Dream company. Companion posting to the Senior Transformation Manager role, hybrid Munich, posted 1 day ago. Lean engineering transformation maps closely to Justus's process modeling and continuous-improvement work. Same caveat: manager rather than Head title, so clarify team size. Worth applying to both R&S roles and letting the recruiter route him. Verified live 2026-08-12.",
+    dreamCompany: true
+  },
+  {
+    id: "isar-aerospace-director-enterprise-it-data",
+    scanDate: "2026-08-12",
+    grade: "B",
+    title: "Director Enterprise IT & Data (m/f/d)",
+    company: "Isar Aerospace",
+    location: "Munich / Parsdorf",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/director-enterprise-it-data-m-f-d-at-isar-aerospace-4449570836",
+    salary: null,
+    hybrid: null,
+    notes: "Dream company, second Isar Aerospace role. Director level owning enterprise systems and data — adjacent to Justus's core domain but a strong fit for the Celonis/SQL/SAP half of his toolkit. Gap to watch: this is an IT leadership seat, so day-to-day is systems and architecture rather than process design. 58 clicks in 1 day, moving fast. Verified live 2026-08-12.",
+    dreamCompany: true
+  },
+  {
+    id: "ats-director-abm-corporate",
+    scanDate: "2026-08-12",
+    grade: "B",
+    title: "Director, ABM (Corporate)",
+    company: "ATS Corporation",
+    location: "Kirchheim bei München",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/director-abm-corporate-at-ats-corporation-4433246757",
+    salary: null,
+    hybrid: null,
+    notes: "Director-level owner of the ATS Business Model — the company's internal operational excellence and continuous improvement system, ATS's equivalent of the Danaher Business System. Corporate scope across sites. Kirchheim is a short commute east of Munich. Gap to watch: heavy travel is typical for corporate OpEx roles at multi-site industrials. Reposted 3 days ago. Verified live 2026-08-12.",
+    dreamCompany: false
+  },
+  {
+    id: "octopus-energy-leitung-marktkommunikation-prozessmanagement",
+    scanDate: "2026-08-12",
+    grade: "B",
+    title: "Leitung Marktkommunikation und Prozessmanagement (m/w/d)",
+    company: "Octopus Energy",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/leitung-marktkommunikation-und-prozessmanagement-m-w-d-at-octopus-energy-4452339579",
+    salary: null,
+    hybrid: false,
+    notes: "Leitung (Head) with process management explicitly in the title, at a fast-growing energy scale-up. Posted 3 hours ago with 0 applicants — the freshest listing on the board and the best first-mover opportunity this week. Gaps to watch: tagged on-site rather than hybrid, and the market-communication half of the remit is energy-industry specific (regulatory data exchange), so there is a domain learning curve. Verified live 2026-08-12.",
+    dreamCompany: false
+  },
+  {
+    id: "beckman-coulter-continuous-improvement-lead",
+    scanDate: "2026-08-12",
+    grade: "B",
+    title: "Continuous Improvement Lead (Innovation DBS Leader) (f/m/d)",
+    company: "Beckman Coulter Diagnostics",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/continuous-improvement-lead-innovation-dbs-leader-f-m-d-at-beckman-coulter-diagnostics-4440450696",
+    salary: null,
+    hybrid: false,
+    notes: "Lead role driving the Danaher Business System — one of the most respected operational excellence systems in industry, and strong CV currency. Continuous improvement is a named target domain. Previously appeared as a dead link on the 2026-08-04 scan; this reposting is confirmed live (reposted 16 hours ago, 54 clicks). Gaps: tagged on-site, and Lead may sit below Head level.",
+    dreamCompany: false
+  },
+  {
+    id: "europrop-head-supply-chain-quality",
+    scanDate: "2026-08-12",
+    grade: "B",
+    title: "Head of Supply Chain Quality (m/f/d)",
+    company: "Europrop International",
+    location: "Munich (Hybrid)",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/head-of-supply-chain-quality-m-f-d-at-europrop-international-4450221961",
+    salary: null,
+    hybrid: true,
+    notes: "Head level, hybrid, Munich, in aero-engines — Europrop is the MTU/Safran/Rolls-Royce/ITP joint venture behind the A400M TP400 engine. Closest industry adjacency to Lufthansa Technik of anything on this board, and the aviation supply-chain quality domain is one Justus can speak to natively. Gap to watch: supply chain quality rather than process management, and JV structures can mean complex multi-parent governance. Posted 5 days ago. Verified live 2026-08-12.",
+    dreamCompany: false
+  },
+  {
+    id: "daiichi-sankyo-director-rd-business-systems-ops",
+    scanDate: "2026-08-12",
+    grade: "B",
+    title: "Director (m/f/d), R&D Business Systems & Ops Management",
+    company: "Daiichi Sankyo Europe",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/director-m-f-d-r-d-business-systems-ops-management-at-daiichi-sankyo-europe-gmbh-4449763517",
+    salary: null,
+    hybrid: false,
+    notes: "Director level combining business systems and operations management at a large pharma R&D organisation — process governance, systems landscape and operational management in one seat, which suits the Celonis/SAP/BPMN toolkit. Well-funded, Munich-based, salary comfortably in band at Director level. Gaps: on-site tag, and life sciences regulatory context is new territory. Posted 5 days ago. Verified live 2026-08-12.",
+    dreamCompany: false
+  },
+  {
+    id: "exploration-company-site-director",
+    scanDate: "2026-08-12",
+    grade: "B",
+    title: "Site Director",
+    company: "The Exploration Company",
+    location: "Munich",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/site-director-at-the-exploration-company-4374600550",
+    salary: null,
+    hybrid: null,
+    notes: "Site-level general management at a well-funded European space capsule startup (Nyx programme). Broad operational ownership: site build-out, production, facilities, cross-functional coordination. Gap to watch: 89 people have clicked apply and it has been reposted, suggesting the role has been open a while and may be hard to fill or highly contested. Also a generalist GM seat rather than a process-management specialism. Verified live 2026-08-12.",
+    dreamCompany: false
   },
   {
     id: "siemens-mobility-head-industrial-engineering",
@@ -181,7 +353,35 @@ const JOBS = [
     url: "https://www.xing.com/jobs/muenchen-head-industrial-engineering-155102847",
     salary: "€85,500–€109,000",
     hybrid: null,
-    notes: "Dream company. Head of IE at Siemens Mobility rolling stock plant. Lean Management, MTM, REFA, capacity planning, investment planning. Team leadership. Strong domain fit. Verified live 2026-07-20.",
+    notes: "Dream company. Head of IE at Siemens Mobility rolling stock plant. Lean Management, MTM, REFA, capacity planning, investment planning. Team leadership. Strong domain fit. Verified live 2026-07-20; not re-verified this week.",
+    dreamCompany: true
+  },
+  {
+    id: "quantum-systems-head-production",
+    scanDate: "2026-07-06",
+    grade: "A",
+    title: "Head of Production / Serial Production (m/f/d)",
+    company: "Quantum-Systems GmbH",
+    location: "Gilching (Munich area)",
+    source: "Indeed / Glassdoor",
+    url: "https://de.indeed.com/viewjob?jk=83741879b5eb2c18",
+    salary: null,
+    hybrid: null,
+    notes: "Dream company. End-to-end serial production ownership: Operational Excellence, CI, KPI governance, process standardization. Not re-verified this week.",
+    dreamCompany: true
+  },
+  {
+    id: "quantum-systems-head-logistics",
+    scanDate: "2026-07-06",
+    grade: "A",
+    title: "Head of Logistics (m/f/d)",
+    company: "Quantum-Systems GmbH",
+    location: "Gilching (Munich area)",
+    source: "Glassdoor",
+    url: "https://www.glassdoor.com/job-listing/j?jl=1010188236013",
+    salary: null,
+    hybrid: null,
+    notes: "Dream company bump B→A. End-to-end logistics org build-out with governance, KPIs, process standardization in regulated high-tech/defense. Not re-verified this week.",
     dreamCompany: true
   },
   {
@@ -195,7 +395,7 @@ const JOBS = [
     url: "https://de.linkedin.com/jobs/view/senior-transformation-manager-planning-excellence-m-f-d-at-knorr-bremse-4393612060",
     salary: null,
     hybrid: null,
-    notes: "Dream company. Global planning transformation, S&OP/IBP rollout, SAP IBP, change management across 30+ sites. Senior IC but transformation scope is strong. Re-verified live 2026-07-20.",
+    notes: "Dream company. Global planning transformation, S&OP/IBP rollout, SAP IBP, change management across 30+ sites. Senior IC but transformation scope is strong. Re-verified live 2026-07-20; not re-verified this week.",
     dreamCompany: true
   },
   {
@@ -209,7 +409,7 @@ const JOBS = [
     url: "https://de.indeed.com/viewjob?jk=7f42adb1f22cba80",
     salary: null,
     hybrid: null,
-    notes: "Dream company. PMO Lead for major defence programme. Portfolio governance, reporting, risk management, stakeholder management at senior level. Re-verified live 2026-07-20.",
+    notes: "Dream company. PMO Lead for major defence programme. Portfolio governance, reporting, risk management, stakeholder management at senior level. Re-verified live 2026-07-20; not re-verified this week.",
     dreamCompany: true
   },
   {
@@ -265,7 +465,7 @@ const JOBS = [
     url: "https://de.linkedin.com/jobs/view/site-director-m-f-d-at-tec-group-international-4412875630",
     salary: null,
     hybrid: null,
-    notes: "Site Director for automotive/industrial manufacturer. Full P&L, production, quality, CI, lean. TEC is recruiter — actual employer undisclosed. Verified live 2026-07-20.",
+    notes: "Site Director for automotive/industrial manufacturer. Full P&L, production, quality, CI, lean. TEC is recruiter — actual employer undisclosed. Verified live 2026-07-20; not re-verified this week.",
     dreamCompany: false
   },
   {
@@ -279,7 +479,7 @@ const JOBS = [
     url: "https://de.linkedin.com/jobs/view/abteilungsleiter-qualit%C3%A4tsmanagement-m-w-d-at-knds-4405312789",
     salary: null,
     hybrid: null,
-    notes: "Department head QM at KNDS (KMW + Nexter). Quality management leadership in defence manufacturing. Adjacent domain (QM not process mgmt) but right seniority. Verified live 2026-07-20.",
+    notes: "Department head QM at KNDS (KMW + Nexter). Quality management leadership in defence manufacturing. Adjacent domain (QM not process mgmt) but right seniority. Verified live 2026-07-20; not re-verified this week.",
     dreamCompany: false
   },
   {
@@ -321,7 +521,7 @@ const JOBS = [
     url: "https://www.xing.com/jobs/muenchen-leiter-logistik-prozessplanung-156440184",
     salary: "€63,000–75,500 (XING est.)",
     hybrid: null,
-    notes: "Dream company bump C→B. Logistics & process planning leadership, LEAN, team of up to 10. Posting targets first-time leaders and salary band (€63–75k) is below €120k floor — but dream company rule applies. Re-verified live 2026-08-04 via XING.",
+    notes: "Dream company bump C→B. Logistics & process planning leadership, LEAN, team of up to 10. Posting targets first-time leaders and salary band (€63–75k) is below €120k floor — but dream company rule applies. Verified live 2026-08-04; not re-verified this week.",
     dreamCompany: true
   },
   {
@@ -377,7 +577,7 @@ const JOBS = [
     url: "https://de.linkedin.com/jobs/view/director-of-first-line-operations-aml-ptm-cb-fraud-at-verifone-4446581662",
     salary: null,
     hybrid: "Hybrid",
-    notes: "Director level at Verifone (payment tech). First Line Operations covering AML, fraud, compliance — domain mismatch (financial crime ops, not process management). Included because < 3 A/B this week. Verified live 2026-08-04.",
+    notes: "Director level at Verifone (payment tech). First Line Operations covering AML, fraud, compliance — domain mismatch (financial crime ops, not process management). Verified live 2026-08-04.",
     dreamCompany: false
   },
   {
@@ -405,7 +605,7 @@ const JOBS = [
     url: "https://de.linkedin.com/jobs/view/director-digital-transformation-private-equity-germany-at-alvarium-talent-4447504795",
     salary: null,
     hybrid: "Hybrid",
-    notes: "Director-level digital transformation role placed by Alvarium Talent (recruiter). PE-backed portfolio company, actual employer undisclosed. Transformation domain matches but details sparse. Verified live 2026-08-04.",
+    notes: "Director-level digital transformation role placed by Alvarium Talent (recruiter). PE-backed portfolio company, actual employer undisclosed. Verified live 2026-08-04.",
     dreamCompany: false
   },
   {
@@ -421,65 +621,37 @@ const JOBS = [
     hybrid: null,
     notes: "Head level + Operations at ADAC (large Munich institution). ERP Platform focus is IT-heavy, less process management. Not re-verified this week.",
     dreamCompany: false
-  },
-  {
-    id: "quantum-systems-head-production",
-    scanDate: "2026-07-06",
-    grade: "A",
-    title: "Head of Production / Serial Production (m/f/d)",
-    company: "Quantum-Systems GmbH",
-    location: "Gilching (Munich area)",
-    source: "Indeed / Glassdoor",
-    url: "https://de.indeed.com/viewjob?jk=83741879b5eb2c18",
-    salary: null,
-    hybrid: null,
-    notes: "Dream company. End-to-end serial production ownership: Operational Excellence, CI, KPI governance, process standardization. Not re-verified this week.",
-    dreamCompany: true
-  },
-  {
-    id: "quantum-systems-head-logistics",
-    scanDate: "2026-07-06",
-    grade: "A",
-    title: "Head of Logistics (m/f/d)",
-    company: "Quantum-Systems GmbH",
-    location: "Gilching (Munich area)",
-    source: "Glassdoor",
-    url: "https://www.glassdoor.com/job-listing/j?jl=1010188236013",
-    salary: null,
-    hybrid: null,
-    notes: "Dream company bump B→A. End-to-end logistics org build-out with governance, KPIs, process standardization in regulated high-tech/defense. Not re-verified this week.",
-    dreamCompany: true
   }
 ];
 
 const SCRAPER_HEALTH = [
-  { source: "Glassdoor", actor: "valig/glassdoor-jobs-scraper", queries: 5, status: "ok", items: 33, notes: "33 items across 5 queries. Mostly off-target roles; no new unique A/B matches." },
-  { source: "LinkedIn", actor: "curious_coder/linkedin-jobs-scraper", queries: 6, status: "ok", items: 25, notes: "25 items. New: Verifone Director (C), Yunex Traffic Head MDG (C), Alvarium Director DT (C)." },
-  { source: "StepStone", actor: "easyapi/stepstone-jobs-scraper", queries: 4, status: "fail", items: 0, notes: "5th consecutive failing week — 0 items. Recommend replacing this actor." },
-  { source: "Indeed", actor: "misceres/indeed-scraper", queries: 3, status: "warn", items: 24, notes: "24 items but ALL from US (Cando/Langdon ND). Location defaulted to US. Needs country fix." },
-  { source: "XING", actor: "shahidirfan/Xing-Jobs-Scraper", queries: 3, status: "ok", items: 53, notes: "53 items. Re-confirmed Siemens Mobility Leiter (bumped C→B via dream-co rule)." },
-  { source: "Arbeitsagentur", actor: "blackfalcondata/arbeitsagentur-jobs-feed", queries: 2, status: "ok", items: 2, notes: "2 items, no leadership-level matches." },
-  { source: "Workday — Celonis", actor: "blackfalcondata/workday-scraper", queries: 1, status: "fail", items: 0, notes: "WDY-2011 error — 3rd consecutive week. Celonis Workday subdomain invalid." },
-  { source: "Workday — Airbus", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "20 items, all non-Munich global locations." },
-  { source: "Workday — Carl Zeiss", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "20 items, no Munich ops leadership roles." },
-  { source: "Web Search (Dream Co.)", actor: "n/a", queries: 14, status: "ok", items: "—", notes: "No new verified dream-company roles. ServiceNow x3 confirmed dead. PMMG rejected (consulting)." }
+  { source: "Glassdoor", actor: "valig/glassdoor-jobs-scraper", queries: 5, status: "ok", items: 33, notes: "33 items across 5 queries. Mostly off-target; used as the verification fallback that rescued the Webasto listing." },
+  { source: "LinkedIn", actor: "curious_coder/linkedin-jobs-scraper", queries: 6, status: "ok", items: 111, notes: "Best week yet — 111 items, source of 12 of the 14 shortlisted roles. scrapeCompany enabled." },
+  { source: "StepStone", actor: "easyapi/stepstone-jobs-scraper", queries: 4, status: "fail", items: 0, notes: "6th consecutive failing week. Ran 270s, exited SUCCEEDED with 0 items. Replace this actor." },
+  { source: "Indeed", actor: "misceres/indeed-scraper", queries: 3, status: "ok", items: 47, notes: "country:DE fix from last week worked — all results now German. 33 of 61 requests failed internally but output was usable." },
+  { source: "XING", actor: "shahidirfan/Xing-Jobs-Scraper", queries: 3, status: "warn", items: 62, notes: "62 items but title/content mismatch on the Webasto ad — page rendered a different PMMG listing. Confirms the standing rule: always re-verify XING hits." },
+  { source: "Arbeitsagentur", actor: "blackfalcondata/arbeitsagentur-jobs-feed", queries: 2, status: "warn", items: 1, notes: "1 item across both queries, not relevant. Consistently low yield — consider dropping." },
+  { source: "Workday — Celonis", actor: "blackfalcondata/workday-scraper", queries: 1, status: "fail", items: 0, notes: "WDY-2011 error — 4th consecutive week. The celonis.wd3.myworkdayjobs.com/Jobs URL is wrong; needs the real subdomain and path." },
+  { source: "Workday — Airbus", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "20 items, all non-Munich (Copenhagen, Montreal, Singapore, Toulouse, Getafe)." },
+  { source: "Workday — Carl Zeiss", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "20 items, only Munich hit was a working-student communications role." },
+  { source: "Web Search (Dream Co.)", actor: "n/a", queries: 14, status: "ok", items: "—", notes: "Confirmed Webasto role independently. No new dream-company leadership roles beyond what the scrapers surfaced." }
 ];
 
 const DREAM_COMPANIES = [
-  { name: "Celonis", hit: true, roles: "Lead/Principal DT & Process Optimisation Consultant (B, not re-verified); Workday scraper still failing" },
-  { name: "ServiceNow", hit: false, roles: "3 previously tracked URLs confirmed dead (404) on 2026-08-04" },
-  { name: "Helsing", hit: true, roles: "(Senior) Industrialisation & Ramp-Up Manager (B, not re-verified)" },
-  { name: "Isar Aerospace", hit: false, roles: null },
-  { name: "Quantum Systems", hit: true, roles: "Head of Production (A) + Head of Logistics (A) + Head of Controlling (B)" },
-  { name: "Forto", hit: false, roles: null },
-  { name: "Personio", hit: false, roles: "No verified leadership ops roles" },
-  { name: "Rohde & Schwarz", hit: false, roles: null },
-  { name: "MTU Aero Engines", hit: false, roles: null },
-  { name: "Infineon", hit: false, roles: null },
-  { name: "Siemens", hit: true, roles: "Head of Industrial Engineering (A, verified 2026-07-20) + Leiter Logistik- und Prozessplanung (B, dream bump, re-verified 2026-08-04)" },
-  { name: "Airbus", hit: true, roles: "PMO Lead Ottobrunn (B, verified 2026-07-20)" },
+  { name: "Celonis", hit: false, roles: "Only a Client Value Partner (Retail) GTM role in Munich this week — not an ops/process seat. Workday scraper still failing." },
+  { name: "ServiceNow", hit: false, roles: "Head of Executive Experience Munich exists but is a GTM/experience seat, not ops or process." },
+  { name: "Helsing", hit: true, roles: "Head of Production Quality (A, verified 2026-08-12)" },
+  { name: "Isar Aerospace", hit: true, roles: "Director Value Stream, Ottobrunn (A) + Director Enterprise IT & Data, Munich (B) — both verified 2026-08-12" },
+  { name: "Quantum Systems", hit: true, roles: "Head of Production (A) + Head of Logistics (A) + Head of Controlling (B) — carried over, not re-verified" },
+  { name: "Forto", hit: false, roles: "No Munich leadership roles" },
+  { name: "Personio", hit: false, roles: "Only a Senior Business Automation Specialist (individual contributor)" },
+  { name: "Rohde & Schwarz", hit: true, roles: "Senior Transformation Manager (B) + Lean Engineering Transformation Manager (B) — both hybrid, both verified 2026-08-12" },
+  { name: "MTU Aero Engines", hit: false, roles: "Only Praktikum and Werkstudent postings" },
+  { name: "Infineon", hit: false, roles: "No Munich ops leadership roles surfaced this week" },
+  { name: "Siemens", hit: true, roles: "Head of Industrial Engineering (A) + Leiter Logistik- und Prozessplanung (B) — carried over, not re-verified" },
+  { name: "Airbus", hit: true, roles: "PMO Lead Ottobrunn (B, carried over). New Head of Compliance Analysis Office Munich is compliance, not process." },
   { name: "Carl Zeiss AG", hit: false, roles: "No Munich ops roles" },
-  { name: "Knorr-Bremse", hit: true, roles: "VP Global Industrial Engineering (A) + Senior Transformation Manager Planning Excellence (B)" }
+  { name: "Knorr-Bremse", hit: true, roles: "VP Global Industrial Engineering (A, re-verified live 2026-08-12) + Senior Transformation Manager Planning Excellence (B)" }
 ];
 
 function renderMeta() {
@@ -487,14 +659,15 @@ function renderMeta() {
   el.innerHTML = '<span>Scanned <strong>' + SCAN_META.scanDate + '</strong></span>' +
     '<span>' + SCAN_META.sourcesCount + ' sources, ' + SCAN_META.scrapersRun + ' scrapers</span>' +
     '<span>' + SCAN_META.rawListings + ' raw &rarr; <strong>' + SCAN_META.scoredListings + ' scored</strong></span>' +
+    '<span><strong>' + SCAN_META.passedVerification + '</strong> verified live, ' + SCAN_META.deadLinks + ' dead</span>' +
     '<span style="color:var(--grade-a-text)">' + SCAN_META.gradeA + ' A-grade</span>' +
     '<span style="color:var(--grade-b-text)">' + SCAN_META.gradeB + ' B-grade</span>' +
-    '<span style="color:var(--grade-c-text)">' + SCAN_META.gradeC + ' C-grade</span>';
+    '<span>Est. ' + SCAN_META.estCostUSD + '</span>';
 }
 let activeFilter = 'all';
 function renderFilters() {
   const el = document.getElementById('filters');
-  const filters = [{key:'all',label:'All'},{key:'A',label:'A-Grade'},{key:'B',label:'B-Grade'},{key:'C',label:'C-Grade'},{key:'dream',label:'Dream Companies'}];
+  const filters = [{key:'all',label:'All'},{key:'new',label:'New This Week'},{key:'A',label:'A-Grade'},{key:'B',label:'B-Grade'},{key:'C',label:'C-Grade'},{key:'dream',label:'Dream Companies'}];
   el.innerHTML = filters.map(f => '<button class="filter-btn ' + (activeFilter === f.key ? 'active' : '') + '" data-filter="' + f.key + '">' + f.label + '</button>').join('');
   el.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => { activeFilter = btn.dataset.filter; renderFilters(); renderJobs(); }); });
 }
@@ -502,6 +675,7 @@ function renderJobs() {
   const el = document.getElementById('jobList');
   let filtered = JOBS;
   if (activeFilter === 'dream') filtered = JOBS.filter(j => j.dreamCompany);
+  else if (activeFilter === 'new') filtered = JOBS.filter(j => j.scanDate === SCAN_META.scanDate);
   else if (activeFilter !== 'all') filtered = JOBS.filter(j => j.grade === activeFilter);
   if (filtered.length === 0) { el.innerHTML = '<div class="empty-state">No listings match this filter.</div>'; return; }
   const grades = ['A','B','C'];
@@ -519,12 +693,14 @@ function renderJobs() {
 function renderCard(job) {
   const badgeClass = {A:'badge-a',B:'badge-b',C:'badge-c'}[job.grade];
   const dreamBadge = job.dreamCompany ? '<span class="badge badge-dream">Dream Company</span>' : '';
+  const newBadge = job.scanDate === SCAN_META.scanDate ? '<span class="badge badge-new">New</span>' : '';
   const salaryHtml = job.salary ? '<span>' + job.salary + '</span>' : '';
-  return '<div class="job-card"><div class="job-card-top"><div><div class="job-card-title">' + job.title + '</div><div class="job-card-company">' + job.company + '</div></div><div class="badges"><span class="badge ' + badgeClass + '">' + job.grade + '</span>' + dreamBadge + '</div></div><div class="job-meta"><span>' + job.location + '</span><span>' + job.source + '</span>' + salaryHtml + '</div><div class="job-notes">' + job.notes + '</div><a class="apply-link" href="' + job.url + '" target="_blank" rel="noopener">View Listing &rarr;</a></div>';
+  const hybridHtml = job.hybrid === true ? '<span>Hybrid</span>' : '';
+  return '<div class="job-card"><div class="job-card-top"><div><div class="job-card-title">' + job.title + '</div><div class="job-card-company">' + job.company + '</div></div><div class="badges"><span class="badge ' + badgeClass + '">' + job.grade + '</span>' + newBadge + dreamBadge + '</div></div><div class="job-meta"><span>' + job.location + '</span><span>' + job.source + '</span>' + salaryHtml + hybridHtml + '</div><div class="job-notes">' + job.notes + '</div><a class="apply-link" href="' + job.url + '" target="_blank" rel="noopener">View Listing &rarr;</a></div>';
 }
 function renderDream() {
   const grid = document.getElementById('dreamGrid');
-  grid.innerHTML = DREAM_COMPANIES.map(dc => '<div class="dream-chip ' + (dc.hit ? 'hit' : '') + '"><span class="indicator"></span><span>' + dc.name + '</span></div>').join('');
+  grid.innerHTML = DREAM_COMPANIES.map(dc => '<div class="dream-chip ' + (dc.hit ? 'hit' : '') + '" title="' + (dc.roles ? String(dc.roles).replace(/"/g, '&quot;') : 'No roles found') + '"><span class="indicator"></span><span>' + dc.name + '</span></div>').join('');
 }
 function renderHealth() {
   const rows = document.getElementById('healthRows');
