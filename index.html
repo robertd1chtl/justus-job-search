@@ -129,20 +129,20 @@
 <script>
 const SCAN_META = {
   lastScan: "2026-08-12",
-  totalScraped: 258,
-  passedVerification: 14,
+  totalScraped: 425,
+  passedVerification: 16,
   deadLinks: 0,
-  estCostUSD: "$3.50",
+  estCostUSD: "$5.80",
   sources: ["Glassdoor","LinkedIn","StepStone","Indeed","XING","Arbeitsagentur","Workday"],
   scanDate: "2026-08-12",
   sourcesCount: 7,
   scrapersRun: 18,
-  rawListings: 258,
-  scoredListings: 14,
-  gradeA: 4,
-  gradeB: 10,
+  rawListings: 425,
+  scoredListings: 16,
+  gradeA: 5,
+  gradeB: 11,
   gradeC: 0,
-  notes: "Strongest week of the search so far. 14 of 14 shortlisted URLs verified live via Chrome, zero dead links. Headline find: Webasto Director Digital Transformation & Process Excellence (Munich/Stockdorf) — closest match to Justus's LHT profile seen to date. Knorr-Bremse VP Global Industrial Engineering is live again (reposted 6 days ago) with a fresh LinkedIn URL. Isar Aerospace is now a double dream-company hit. Rohde & Schwarz posted two hybrid transformation roles within 24 hours. XING returned a title/content mismatch on the Webasto ad (the page rendered a different PMMG listing) — resolved by re-verifying via Glassdoor, which carried the full live description. StepStone failed for the 6th consecutive week (0 items) — recommend replacing the actor. Workday Celonis threw WDY-2011 for the 4th week. Est. cost: $3.50"
+  notes: "Two scan passes ran on 2026-08-12 (the scheduled job fired twice, ~6 minutes apart). Combined result: 425 raw listings, 16 shortlisted, 16 of 16 URLs verified live via Chrome, zero dead links. The second pass added two listings the first missed. Headline find is now MONTANA Energie-Handel Head of Process Management in Gr\u00fcnwald: strategic ownership of company-wide process management, 8 direct reports, reports into the Gesch\u00e4ftsleitung, and the ad names Wirtschaftsingenieurwesen, BPMN, Lean, Six Sigma and process mining explicitly. Webasto Director Digital Transformation and Process Excellence remains the second-strongest. Knorr-Bremse VP Global Industrial Engineering re-verified live. Isar Aerospace is a double dream-company hit. StepStone failed again (0 items, 6th consecutive week) and Workday Celonis threw WDY-2011 again: both actors should be replaced. Est. combined cost: $5.80"
 };
 
 const JOBS = [
@@ -201,6 +201,34 @@ const JOBS = [
     hybrid: null,
     notes: "Dream company, bumped B→A. Head-level with direct reports at Europe's highest-profile defence AI company, building out serial production in Munich. Domain gap to flag: this is quality rather than process management, though production quality at ramp-up stage is heavily process-system work (QMS design, process capability, audits). Aviation MRO quality background transfers well. Posted 4 days ago. Verified live 2026-08-12.",
     dreamCompany: true
+  },
+  {
+    id: "montana-energie-handel-head-process-management",
+    scanDate: "2026-08-12",
+    grade: "A",
+    title: "Head of Process Management (m/w/d)",
+    company: "MONTANA Energie-Handel GmbH & Co. KG",
+    location: "Gr\u00fcnwald (Dr.-Max-Stra\u00dfe 26, ~20 min south of Munich centre)",
+    source: "Indeed",
+    url: "https://de.indeed.com/viewjob?jk=a7c157fea4b2377c",
+    salary: null,
+    hybrid: true,
+    notes: "Added in the second scan pass of 2026-08-12, missed by the first pass. Arguably the cleanest title-and-scope match found to date. Strategic end-to-end ownership of company-wide process management and application management, builds and maintains the holistic process model, leads an 8-person competence team, reports directly to the Gesch\u00e4ftsleitung. The ad explicitly names Wirtschaftsingenieurwesen as a target degree and asks for Lean, Six Sigma, BPMN, automation, KPI-based steering and process-mining tooling: a near line-by-line map of Justus\'s LHT profile. Owner-run family business, 65 years old, flat hierarchy, mobile working offered. Salary not stated, ask early. Verified live 2026-08-12.",
+    dreamCompany: false
+  },
+  {
+    id: "egym-head-operations-performance",
+    scanDate: "2026-08-12",
+    grade: "B",
+    title: "Head of (Operations) Performance (m/w/d)",
+    company: "EGYM",
+    location: "Munich",
+    source: "LinkedIn / XING",
+    url: "https://de.linkedin.com/jobs/view/head-of-operations-performance-m-w-d-at-egym-dach-4453073294",
+    salary: "EUR 71,000 - 95,000 (XING estimate)",
+    hybrid: true,
+    notes: "Added in the second scan pass of 2026-08-12. Head-level operations performance seat at a Munich scale-up, hybrid, posted within the hour, so early-mover advantage is real. Gap to watch: the XING salary estimate sits well below the 120k floor and the scope reads more commercial-operations than industrial process management. Worth a call to test the band before investing in an application. Verified live 2026-08-12.",
+    dreamCompany: false
   },
   {
     id: "knds-abteilungsleiter-projektmanagement-transformation",
