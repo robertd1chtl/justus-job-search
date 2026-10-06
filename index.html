@@ -130,22 +130,36 @@
 const SCAN_META = {
   lastScan: "2026-10-05",
   totalScraped: 376,
-  passedVerification: 12,
-  deadLinks: 2,
-  estCostUSD: "~$3.60 (estimate)",
-  sources: ["Glassdoor","LinkedIn","StepStone","Indeed","XING","Arbeitsagentur","Workday"],
+  passedVerification: 13,
+  deadLinks: 3,
+  estCostUSD: "~$3.60 + ~$1.60 second pass (estimates)",
+  sources: ["Glassdoor","LinkedIn","StepStone","Indeed","XING","Arbeitsagentur","Workday","Greenhouse"],
   scanDate: "2026-10-05",
-  sourcesCount: 7,
+  sourcesCount: 8,
   scrapersRun: 18,
   rawListings: 376,
-  scoredListings: 11,
+  scoredListings: 12,
   gradeA: 4,
-  gradeB: 7,
+  gradeB: 8,
   gradeC: 0,
-  notes: "Weekly scan of 2026-10-05: 376 raw listings, 11 shortlisted (4 A, 7 B). 14 URLs checked in Chrome: 12 live, 2 dead (Quantum Systems Head of Operations, a Siemens JobDetail link), both excluded. ISOPLUS Head of Transformation in Rosenheim was live but excluded because it is on-site, outside the 45-minute radius. Headline: Generali Head of Process & Task Mining, the first role in weeks with process mining in the title. StepStone returned 0 again and Workday Celonis threw WDY-2011 again. Both actors need replacing. Cost is estimated from list prices, not billed usage."
+  notes: "Weekly scan of 2026-10-05, run twice (the scheduler fired a second time that evening). Combined: 11 + 1 shortlisted (4 A, 8 B). The second pass, with the replacement StepStone (valig) and Greenhouse (Celonis) actors, both working, found nothing new except Isar Aerospace VP Ground Systems (B, weak domain fit). Generali Head of Process & Task Mining is still the headline and still live. Quantum Systems Head of Production link is dead. Cost is estimated from list prices, not billed usage."
 };
 
 const JOBS = [
+  {
+    id: "isar-aerospace-vp-ground-systems",
+    scanDate: "2026-10-05",
+    grade: "B",
+    title: "VP Ground Systems (m/f/d)",
+    company: "Isar Aerospace",
+    location: "Parsdorf (On-site)",
+    source: "LinkedIn",
+    url: "https://de.linkedin.com/jobs/view/4473951432",
+    salary: null,
+    hybrid: false,
+    notes: "Added in the second pass. Dream company, bumped C to B. VP level and an operations-heavy remit, but ground systems means test and launch infrastructure engineering, so the domain fit is weak (inferred from the title; LinkedIn JD not read). On-site in Parsdorf, about 30 minutes east of Munich. Verified live 2026-10-05 (4 applicants).",
+    dreamCompany: true
+  },
   {
     id: "generali-head-process-task-mining",
     scanDate: "2026-10-05",
@@ -807,23 +821,23 @@ const JOBS = [
 ];
 
 const SCRAPER_HEALTH = [
-  { source: "Glassdoor", actor: "valig/glassdoor-jobs-scraper", queries: 5, status: "ok", items: 42, notes: "42 items. Mostly off-target; 'Leiter Prozessmanagement' returned 0." },
-  { source: "LinkedIn", actor: "curious_coder/linkedin-jobs-scraper", queries: 6, status: "ok", items: 149, notes: "Highest-value source again: 10 of 11 shortlisted roles came from LinkedIn." },
-  { source: "StepStone", actor: "easyapi/stepstone-jobs-scraper", queries: 4, status: "fail", items: 0, notes: "0 items after 267s, another consecutive week. Replace this actor." },
-  { source: "Indeed", actor: "misceres/indeed-scraper", queries: 3, status: "ok", items: 75, notes: "75 items. German query returned old listings, some from February 2026." },
-  { source: "XING", actor: "shahidirfan/Xing-Jobs-Scraper", queries: 3, status: "ok", items: 69, notes: "Found Generali Head of Process & Task Mining (cross-verified on LinkedIn)." },
-  { source: "Arbeitsagentur", actor: "blackfalcondata/arbeitsagentur-jobs-feed", queries: 2, status: "warn", items: 1, notes: "1 irrelevant item (Sachbearbeitung). Consistently low yield: drop it." },
-  { source: "Workday: Celonis", actor: "blackfalcondata/workday-scraper", queries: 1, status: "fail", items: 0, notes: "WDY-2011 again. The URL is wrong." },
+  { source: "Glassdoor", actor: "valig/glassdoor-jobs-scraper", queries: 5, status: "ok", items: 37, notes: "Second pass: 37 items, mostly off-target. 'Leiter Prozessmanagement' returned 0 again." },
+  { source: "LinkedIn", actor: "curious_coder/linkedin-jobs-scraper", queries: 6, status: "ok", items: 149, notes: "Highest-yield source again. Every A/B role this week came from here." },
+  { source: "StepStone", actor: "valig/stepstone-jobs-scraper", queries: 4, status: "ok", items: 104, notes: "Replacement actor works: 104 items in ~10s. Loose keyword match, so all noise this week (Sopra Steria Next 'Leiter Prozessmanagement' is consulting)." },
+  { source: "Indeed", actor: "misceres/indeed-scraper", queries: 3, status: "ok", items: 75, notes: "No new targets. German query still returns stale listings back to February." },
+  { source: "XING", actor: "shahidirfan/Xing-Jobs-Scraper", queries: 3, status: "ok", items: 69, notes: "Re-surfaced Generali (XING salary estimate EUR 76-110k, not employer-stated)." },
+  { source: "Arbeitsagentur", actor: "blackfalcondata/arbeitsagentur-jobs-feed", queries: 2, status: "warn", items: 7, notes: "7 items with the English titles, only duplicates of LinkedIn finds. Cheap backup." },
+  { source: "Greenhouse: Celonis", actor: "automation-lab/greenhouse-jobs-scraper", queries: 1, status: "ok", items: 5, notes: "Replacement for the broken Workday URL works. 5 Munich roles in 14 days, all IT/engineering, none in scope." },
   { source: "Workday: Airbus", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "20 items, none in Munich." },
-  { source: "Workday: Carl Zeiss", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "20 items, none in Munich." },
-  { source: "Web Search (Dream Co.)", actor: "n/a", queries: 14, status: "ok", items: "—", notes: "Found Quantum Systems Head of Operations, but the link is dead (job removed). Siemens result was also dead." }
+  { source: "Workday: Carl Zeiss", actor: "blackfalcondata/workday-scraper", queries: 1, status: "ok", items: 20, notes: "20 items, none in the Munich radius (Werkleitung Jena is out of range)." },
+  { source: "Web Search (Dream Co.)", actor: "n/a", queries: 14, status: "ok", items: "—", notes: "Quantum Systems Head of Production (arbeitnow) is dead. Siemens Energy Head of Excellence & Processes is in Erlangen, out of radius." }
 ];
 
 const DREAM_COMPANIES = [
-  { name: "Celonis", hit: false, roles: "Only a Client Value Partner (Retail) GTM role in Munich this week — not an ops/process seat. Workday scraper still failing." },
+  { name: "Celonis", hit: false, roles: "Greenhouse scraper now working: 5 Munich roles in 14 days, all IT/engineering (e.g. Head of IT Platform & Infrastructure). No ops/process seat." },
   { name: "ServiceNow", hit: true, roles: "Senior Director, CEG EMEA Field Ops Lead (B, verified 2026-10-05)" },
   { name: "Helsing", hit: true, roles: "Head of Production Quality (A, verified 2026-08-12)" },
-  { name: "Isar Aerospace", hit: true, roles: "Manager Customer Quality & CI, Parsdorf (B, verified 2026-10-05). Earlier Director roles not re-checked." },
+  { name: "Isar Aerospace", hit: true, roles: "VP Ground Systems (B, weak fit) + Manager Customer Quality & CI (B), both Parsdorf, verified 2026-10-05. Earlier Director roles not re-checked." },
   { name: "Quantum Systems", hit: true, roles: "Head of Operations posting found via web search is dead (removed). Earlier Head of Production/Logistics/Controlling are older and not re-checked." },
   { name: "Forto", hit: false, roles: "No Munich leadership roles" },
   { name: "Personio", hit: false, roles: "Only a Senior Business Automation Specialist (individual contributor)" },
