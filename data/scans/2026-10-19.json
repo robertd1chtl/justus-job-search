@@ -1,0 +1,121 @@
+{
+  "meta": {
+    "lastScan": "2026-10-19",
+    "scanDate": "2026-10-19",
+    "totalScraped": 465,
+    "rawListings": 465,
+    "scoredListings": 25,
+    "passedVerification": 7,
+    "deadLinks": 0,
+    "gradeA": 2,
+    "gradeB": 4,
+    "gradeC": 0,
+    "sourcesCount": 8,
+    "scrapersRun": 21,
+    "estCostUSD": "~$2-3 (estimate)",
+    "notes": "Weekly scan of 2026-10-19. New: Amer Sports VP Digital Operations (A, Garching, hybrid), SAP Director Corporate Strategy & Transformation Projects, Knorr-Bremse Head of Commercial Excellence, RENK Global Director Culture & Organizational Development, Deutsche Aircraft Head of Material Support (all B). Isar Aerospace Director Value Stream re-verified live. Quantum Systems Head of Group Assurance (Glassdoor) could not be verified and was left out. Consulting roles (A&M, BCG, Deloitte, zeb, Porsche Consulting) excluded."
+  },
+  "jobs": [
+    {
+      "id": "amer-sports-vp-digital-operations",
+      "scanDate": "2026-10-19",
+      "grade": "A",
+      "title": "Vice President, Digital Operations (f/m/d)",
+      "company": "Amer Sports",
+      "location": "Garching (Hybrid)",
+      "source": "LinkedIn",
+      "url": "https://de.linkedin.com/jobs/view/4479047877",
+      "salary": null,
+      "hybrid": true,
+      "notes": "Top pick this week. Leads the digital transformation agenda for Amer Sports Global Operations across manufacturing, sourcing, transport and distribution, reports to the Chief Supply Chain Officer with a dotted line to the Group CDIO. VP level, hybrid, Garching. Process mining and data skills fit the digital operations remit (inferred, the JD does not name Celonis). Gap: consumer goods, not aviation. Verified live 2026-10-19, over 100 applicants, apply early.",
+      "dreamCompany": false
+    },
+    {
+      "id": "isar-aerospace-director-value-stream",
+      "scanDate": "2026-08-12",
+      "grade": "A",
+      "title": "Director Value Stream (m/f/d)",
+      "company": "Isar Aerospace",
+      "location": "Parsdorf (On-site)",
+      "source": "LinkedIn",
+      "url": "https://de.linkedin.com/jobs/view/4451505273",
+      "salary": null,
+      "hybrid": false,
+      "notes": "Dream company. Owns end-to-end industrial execution of the launch vehicle programme: manufacturing system, industrialisation, supply chain, production, quality, operational excellence and Lean. Gap: on-site in Parsdorf. Re-verified live 2026-10-19 (reposted, over 100 applicants).",
+      "dreamCompany": true
+    },
+    {
+      "id": "sap-director-corporate-strategy-transformation-projects",
+      "scanDate": "2026-10-19",
+      "grade": "B",
+      "title": "Corporate Strategy and Transformation Projects - Director (f/m/d)",
+      "company": "SAP",
+      "location": "Garching (Hybrid)",
+      "source": "LinkedIn",
+      "url": "https://de.linkedin.com/jobs/view/4479382665",
+      "salary": null,
+      "hybrid": true,
+      "notes": "Drives Executive Board-sponsored strategic and transformation projects in SAP's Corporate Strategy Group, working with the CEO and COO. Gap: internal-consulting style project role, direct reports not stated, strategy-heavy rather than operations. Verified live 2026-10-19, about 100 applicants.",
+      "dreamCompany": false
+    },
+    {
+      "id": "knorr-bremse-head-commercial-excellence",
+      "scanDate": "2026-10-19",
+      "grade": "B",
+      "title": "Head of Commercial Excellence (m/w/d)",
+      "company": "Knorr-Bremse AG",
+      "location": "Munich (On-site)",
+      "source": "LinkedIn",
+      "url": "https://de.linkedin.com/jobs/view/4476477546",
+      "salary": null,
+      "hybrid": false,
+      "notes": "Dream company, bumped C to B. Defines global standards, governance and process harmonisation for sales and commercial excellence across regions, interface to COO and CFO. Gap: commercial domain rather than operations, listed as on-site. Verified live 2026-10-19.",
+      "dreamCompany": true
+    },
+    {
+      "id": "renk-global-director-culture-org-development",
+      "scanDate": "2026-10-19",
+      "grade": "B",
+      "title": "Global Director Culture, Organizational & People Development, Leadership & Learning (m/w/d)",
+      "company": "RENK Group",
+      "location": "Greater Munich (Hybrid)",
+      "source": "LinkedIn",
+      "url": "https://de.linkedin.com/jobs/view/4473187430",
+      "salary": null,
+      "hybrid": true,
+      "notes": "Global director for culture and organisational development, leadership programmes and learning at a listed defence drivetrain group, steering transformation initiatives with KPIs. Organisational development is one of his target domains. Gap: HR and L&D heavy, exact site not stated (RENK HQ is Augsburg, within range). Verified live 2026-10-19.",
+      "dreamCompany": false
+    },
+    {
+      "id": "deutsche-aircraft-head-material-support",
+      "scanDate": "2026-10-19",
+      "grade": "B",
+      "title": "Head of Material Support (all genders)",
+      "company": "Deutsche Aircraft",
+      "location": "Wessling (Hybrid)",
+      "source": "LinkedIn",
+      "url": "https://de.linkedin.com/jobs/view/4476405048",
+      "salary": null,
+      "hybrid": true,
+      "notes": "Aviation aftermarket: leads material sales, order administration, material planning and inventory for the D328eco programme, with organisational development and continuous improvement in scope. Close to his MRO background. Gap: commercial and material-planning focus rather than process management. Verified live 2026-10-19, 18 applicants.",
+      "dreamCompany": false
+    }
+  ],
+  "health": [
+    { "source": "Glassdoor", "actor": "valig/glassdoor-jobs-scraper", "queries": 5, "status": "warn", "items": 36, "notes": "Low yield, two queries returned 1 item each." },
+    { "source": "LinkedIn", "actor": "curious_coder/linkedin-jobs-scraper", "queries": 6, "status": "ok", "items": 150, "notes": "Highest-yield source again, every A/B role came from here." },
+    { "source": "StepStone", "actor": "valig/stepstone-jobs-scraper", "queries": 4, "status": "warn", "items": 105, "notes": "Works, all noise this week." },
+    { "source": "Indeed", "actor": "misceres/indeed-scraper", "queries": 3, "status": "warn", "items": 52, "notes": "Mostly stale listings, detail pages blocked by Cloudflare." },
+    { "source": "XING", "actor": "shahidirfan/Xing-Jobs-Scraper", "queries": 3, "status": "ok", "items": 57, "notes": "Salaries are XING estimates. Nothing in scope." },
+    { "source": "Arbeitsagentur", "actor": "blackfalcondata/arbeitsagentur-jobs-feed", "queries": 2, "status": "ok", "items": 10, "notes": "Low yield as expected." },
+    { "source": "Greenhouse: Celonis", "actor": "automation-lab/greenhouse-jobs-scraper", "queries": 1, "status": "ok", "items": 15, "notes": "Same consulting and IC roles as last week, nothing new in scope." },
+    { "source": "Workday: Airbus", "actor": "blackfalcondata/workday-scraper", "queries": 1, "status": "warn", "items": 20, "notes": "None in Munich." },
+    { "source": "Workday: Carl Zeiss", "actor": "blackfalcondata/workday-scraper", "queries": 1, "status": "warn", "items": 20, "notes": "None in scope in the Munich radius." },
+    { "source": "Web Search (Dream Co.)", "actor": "n/a", "queries": 14, "status": "ok", "items": "—", "notes": "No new verified dream-company roles from web search." }
+  ],
+  "dream": [
+    { "name": "Knorr-Bremse", "hit": true, "roles": "VP Global Industrial Engineering (A, verified 2026-10-12) + Head of Commercial Excellence (B, verified 2026-10-19)" },
+    { "name": "Isar Aerospace", "hit": true, "roles": "Director Value Stream (A, re-verified 2026-10-19), Parsdorf" },
+    { "name": "Quantum Systems", "hit": false, "roles": "Head of Group Assurance seen on Glassdoor 2026-10-19, could not be verified." }
+  ]
+}
