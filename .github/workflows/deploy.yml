@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Prepare public assets
-        run: mkdir -p public && cp *.html public/
+        run: mkdir -p public && cp *.html public/ && cp -r data public/
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
