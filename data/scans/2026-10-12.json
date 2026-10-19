@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "lastScan": "2026-10-12",
+    "scanDate": "2026-10-12",
+    "totalScraped": 330,
+    "rawListings": 330,
+    "scoredListings": 30,
+    "passedVerification": 9,
+    "deadLinks": 1,
+    "gradeA": 1,
+    "gradeB": 4,
+    "gradeC": 0,
+    "sourcesCount": 8,
+    "scrapersRun": 21,
+    "estCostUSD": "~$2-3 (estimate)",
+    "notes": "Weekly scan of 2026-10-12 (added to the board on 2026-10-19, the original deploy failed). 1 A, 4 B. New: Munich Re Transformation Lead, ALLPLAN Senior Director Strategic Programs, HARMAN Executive Director Supply Planning. Knorr-Bremse VP and Rohde & Schwarz Senior Lean Manager re-verified live. Quantum Systems Head of Operations is dead. Immunic, Vantor and Fritzmeier could not be verified (Indeed Cloudflare block) and were left out."
+  },
+  "jobs": [
+    {
+      "id": "knorr-bremse-vp-global-industrial-engineering",
+      "scanDate": "2026-08-12",
+      "grade": "A",
+      "title": "Vice President Global Industrial Engineering (m/w/d)",
+      "company": "Knorr-Bremse AG",
+      "location": "Munich (On-site)",
+      "source": "LinkedIn",
+      "url": "https://de.linkedin.com/jobs/view/4438006780",
+      "salary": null,
+      "hybrid": false,
+      "notes": "Dream company. VP-level global industrial engineering: production network footprint, plant KPI system, capex allocation, digitalization in manufacturing. Highest-seniority role on the board. Gap: LinkedIn lists it as on-site, salary not stated (120k+ inferred from VP level). Re-verified live 2026-10-12, reposted, over 100 applicants.",
+      "dreamCompany": true
+    },
+    {
+      "id": "munich-re-transformation-lead-strategy-execution",
+      "scanDate": "2026-10-12",
+      "grade": "B",
+      "title": "Transformation Lead - Strategy Execution & Business Transformation (m/f/d)",
+      "company": "Munich Re",
+      "location": "Munich (Hybrid)",
+      "source": "LinkedIn",
+      "url": "https://de.linkedin.com/jobs/view/4476360325",
+      "salary": null,
+      "hybrid": true,
+      "notes": "Sits in the Transformation & Organisation unit: process optimisation, organisational design, process excellence, from concept to implementation, reporting to the Head of Transformation. Gap: 'Lead' title may be below Head level, direct reports unclear, insurance not industrial. Verified live 2026-10-12.",
+      "dreamCompany": false
+    },
+    {
+      "id": "allplan-senior-director-strategic-programs",
+      "scanDate": "2026-10-12",
+      "grade": "B",
+      "title": "Senior Director, Strategic Programs & Executive Office (M/F/D)",
+      "company": "ALLPLAN (Nemetschek Group)",
+      "location": "Munich (On-site)",
+      "source": "LinkedIn",
+      "url": "https://de.linkedin.com/jobs/view/4466545066",
+      "salary": null,
+      "hybrid": false,
+      "notes": "Partners with the CEO and COO, runs the executive cadence and leads cross-functional initiatives incl. organisational transformation, process simplification and automation. Gap: chief-of-staff style, on-site, ALLPLAN has about 600 employees so pay may sit below the floor (inferred). Verified live 2026-10-12.",
+      "dreamCompany": false
+    },
+    {
+      "id": "rohde-schwarz-senior-lean-manager",
+      "scanDate": "2026-10-05",
+      "grade": "B",
+      "title": "Senior Lean Manager (m-w-d)",
+      "company": "Rohde & Schwarz",
+      "location": "Munich (Hybrid)",
+      "source": "LinkedIn",
+      "url": "https://de.linkedin.com/jobs/view/4471256250",
+      "salary": null,
+      "hybrid": true,
+      "notes": "Dream company, bumped C to B. Lean R&D and product management culture across the Test & Measurement sites (Kaizen, value stream mapping, KPIs). Gap: Senior Manager title, likely no direct reports, asks for 10+ years of lean implementation. Re-verified live 2026-10-12.",
+      "dreamCompany": true
+    },
+    {
+      "id": "harman-exec-director-global-supply-planning",
+      "scanDate": "2026-10-12",
+      "grade": "B",
+      "title": "Executive Director, Global Supply Planning and Framework",
+      "company": "HARMAN International",
+      "location": "Garching (Hybrid)",
+      "source": "LinkedIn",
+      "url": "https://de.linkedin.com/jobs/view/4466215488",
+      "salary": "EUR 170-220k (Indeed listing)",
+      "hybrid": true,
+      "notes": "Executive Director with 40 people in 3 teams, global supply planning for HARMAN Automotive (about USD 3.8bn supplier volume), reports to the Head of SCM. Gap: supply planning rather than process management, automotive supplier. Verified live 2026-10-12.",
+      "dreamCompany": false
+    }
+  ],
+  "health": [
+    { "source": "Glassdoor", "actor": "valig/glassdoor-jobs-scraper", "queries": 5, "status": "ok", "items": 41, "notes": "Low yield, heavy overlap with LinkedIn." },
+    { "source": "LinkedIn", "actor": "curious_coder/linkedin-jobs-scraper", "queries": 6, "status": "ok", "items": 149, "notes": "Highest-yield source again, every A/B role came from here." },
+    { "source": "StepStone", "actor": "valig/stepstone-jobs-scraper", "queries": 4, "status": "warn", "items": 104, "notes": "Works, but very noisy keyword matching." },
+    { "source": "Indeed", "actor": "misceres/indeed-scraper", "queries": 3, "status": "warn", "items": 72, "notes": "Many stale items. Detail pages blocked by Cloudflare, so Indeed-only finds cannot be verified." },
+    { "source": "XING", "actor": "shahidirfan/Xing-Jobs-Scraper", "queries": 3, "status": "ok", "items": 25, "notes": "Salaries are XING estimates. Nothing new in scope." },
+    { "source": "Arbeitsagentur", "actor": "blackfalcondata/arbeitsagentur-jobs-feed", "queries": 2, "status": "ok", "items": 10, "notes": "Low yield as expected. Listing pages did not load for verification." },
+    { "source": "Greenhouse: Celonis", "actor": "automation-lab/greenhouse-jobs-scraper", "queries": 1, "status": "ok", "items": 15, "notes": "Director roles are customer-facing value consulting with ARR targets, not graded." },
+    { "source": "Workday: Airbus", "actor": "blackfalcondata/workday-scraper", "queries": 1, "status": "warn", "items": 20, "notes": "None in Munich." },
+    { "source": "Workday: Carl Zeiss", "actor": "blackfalcondata/workday-scraper", "queries": 1, "status": "warn", "items": 20, "notes": "None in the Munich radius." },
+    { "source": "Web Search (Dream Co.)", "actor": "n/a", "queries": 14, "status": "ok", "items": "—", "notes": "Quantum Systems Head of Operations link is dead. Siemens process role is in Erlangen." }
+  ],
+  "dream": [
+    { "name": "Celonis", "hit": false, "roles": "Director Business Transformation & Value Consulting (DACH) found, but it is a customer-facing ARR role, not graded (2026-10-12)." },
+    { "name": "Knorr-Bremse", "hit": true, "roles": "VP Global Industrial Engineering (A, re-verified 2026-10-12)" },
+    { "name": "Quantum Systems", "hit": false, "roles": "Head of Operations posting is dead (checked 2026-10-12)." }
+  ]
+}
