@@ -376,12 +376,12 @@ const JOBS = [
     grade: "A",
     title: "Head of Process Management (m/w/d)",
     company: "MONTANA Energie-Handel GmbH & Co. KG",
-    location: "Gr\u00fcnwald (Dr.-Max-Stra\u00dfe 26, ~20 min south of Munich centre)",
+    location: "Grünwald (Dr.-Max-Straße 26, ~20 min south of Munich centre)",
     source: "Indeed",
     url: "https://de.indeed.com/viewjob?jk=a7c157fea4b2377c",
     salary: null,
     hybrid: true,
-    notes: "Added in the second scan pass of 2026-08-12, missed by the first pass. Arguably the cleanest title-and-scope match found to date. Strategic end-to-end ownership of company-wide process management and application management, builds and maintains the holistic process model, leads an 8-person competence team, reports directly to the Gesch\u00e4ftsleitung. The ad explicitly names Wirtschaftsingenieurwesen as a target degree and asks for Lean, Six Sigma, BPMN, automation, KPI-based steering and process-mining tooling: a near line-by-line map of Justus\'s LHT profile. Owner-run family business, 65 years old, flat hierarchy, mobile working offered. Salary not stated, ask early. Verified live 2026-08-12.",
+    notes: "Added in the second scan pass of 2026-08-12, missed by the first pass. Arguably the cleanest title-and-scope match found to date. Strategic end-to-end ownership of company-wide process management and application management, builds and maintains the holistic process model, leads an 8-person competence team, reports directly to the Geschäftsleitung. The ad explicitly names Wirtschaftsingenieurwesen as a target degree and asks for Lean, Six Sigma, BPMN, automation, KPI-based steering and process-mining tooling: a near line-by-line map of Justus\'s LHT profile. Owner-run family business, 65 years old, flat hierarchy, mobile working offered. Salary not stated, ask early. Verified live 2026-08-12.",
     dreamCompany: false
   },
   {
@@ -906,7 +906,29 @@ function renderHealth() {
   const body = document.getElementById('healthBody');
   toggle.addEventListener('click', () => { toggle.classList.toggle('open'); body.classList.toggle('open'); });
 }
-renderMeta(); renderFilters(); renderJobs(); renderDream(); renderHealth();
+function renderAll() { renderMeta(); renderFilters(); renderJobs(); renderDream(); renderHealth(); }
+// Weekly scans are stored as small JSON files in data/scans/, listed in data/manifest.json (oldest first).
+// Each file can hold { meta, jobs, health, dream }. Jobs are merged by id (newer scan wins), the newest meta and health replace the inline values.
+async function loadScans() {
+  const bust = '?v=' + Date.now();
+  const manifest = await fetch('data/manifest.json' + bust).then(r => r.ok ? r.json() : { scans: [] });
+  for (const file of (manifest.scans || [])) {
+    const scan = await fetch('data/scans/' + file + bust).then(r => r.ok ? r.json() : null);
+    if (!scan) continue;
+    if (scan.meta) Object.assign(SCAN_META, scan.meta);
+    if (Array.isArray(scan.health) && scan.health.length) SCRAPER_HEALTH.splice(0, SCRAPER_HEALTH.length, ...scan.health);
+    for (const d of (scan.dream || [])) {
+      const i = DREAM_COMPANIES.findIndex(x => x.name === d.name);
+      if (i >= 0) DREAM_COMPANIES[i] = Object.assign({}, DREAM_COMPANIES[i], d); else DREAM_COMPANIES.push(d);
+    }
+    for (const j of (scan.jobs || []).slice().reverse()) {
+      const i = JOBS.findIndex(x => x.id === j.id);
+      if (i >= 0) JOBS.splice(i, 1);
+      JOBS.unshift(j);
+    }
+  }
+}
+loadScans().catch(err => console.warn('Scan data could not be loaded, showing inline data only', err)).finally(renderAll);
 </script>
 </body>
 </html>
