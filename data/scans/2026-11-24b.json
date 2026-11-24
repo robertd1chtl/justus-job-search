@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "lastScan": "2026-11-24",
+    "scanDate": "2026-11-24",
+    "totalScraped": 409,
+    "rawListings": 409,
+    "scoredListings": 31,
+    "passedVerification": 19,
+    "deadLinks": 6,
+    "gradeA": 4,
+    "gradeB": 12,
+    "gradeC": 3,
+    "sourcesCount": 8,
+    "scrapersRun": 21,
+    "estCostUSD": "~$1.50-2.50 (estimate)",
+    "notes": "Scan of 2026-11-24 with Justus's new target list, extended the same day to a full sweep: career-page web searches now cover all 80 target companies (every-week set plus rotation groups 0 to 3), not just group 0. The full sweep added one role: Hypersonica Head of Supply Chain (B). Other leads from groups 1 to 3 were closed or off-target: ams OSRAM Director Operational Excellence (no longer available), eRC System Head of Processes, Methods and Tools (removed), Orbem Head of Operational Excellence and Head of Procurement and Supply Chain (closed), IQM Head of QPU Production (closed), Mynaric Head of Production and Test (removed), EOS Director Operations (listing removed), Personio Head of Internal AI and Automation (removed). Main scan: new A-grade Rohde & Schwarz Director Project Management Office; new B-grades BayernLB, Generali, Hypersonica Director of Industrialisation, Hensoldt, Isar Aerospace (Indirect Procurement and Logistics), TYTAN and Knorr-Bremse."
+  },
+  "jobs": [
+    {
+      "id": "hypersonica-head-of-supply-chain",
+      "scanDate": "2026-11-24",
+      "grade": "B",
+      "title": "Head of Supply Chain",
+      "company": "Hypersonica",
+      "location": "Munich (On-site)",
+      "source": "Company career page (Lever)",
+      "url": "https://jobs.lever.co/hypersonica-prod/63aa2e1d-f6cc-45d3-bdd7-1c7afe4b70a9",
+      "salary": null,
+      "hybrid": false,
+      "notes": "Target company, bumped C to B. Regional leadership role that builds Hypersonica's German supply-chain capability from first principles: supplier network for aerospace and defence hardware from prototype to production, sourcing and contracting, close work with Engineering. Verified live 2026-11-24 on the company's Lever page. Gaps: sourcing and supplier development is the core, hands-on build-the-function role, travel to suppliers and sites, early-stage start-up so pay is unconfirmed (inferred risk). Same company also has the Director of Industrialisation role on the board.",
+      "dreamCompany": true
+    }
+  ],
+  "health": [
+    { "source": "Glassdoor", "actor": "valig/glassdoor-jobs-scraper", "queries": 5, "status": "warn", "items": 11, "notes": "Two queries returned 0 items, two returned 1. Down from 49 last week. Watch: if it stays this low next week, look for a replacement actor." },
+    { "source": "LinkedIn", "actor": "curious_coder/linkedin-jobs-scraper", "queries": 6, "status": "ok", "items": 149, "notes": "All new graded roles from the main scan came from here." },
+    { "source": "StepStone", "actor": "valig/stepstone-jobs-scraper", "queries": 4, "status": "warn", "items": 105, "notes": "Mostly noise. Generali overlap only." },
+    { "source": "Indeed", "actor": "misceres/indeed-scraper", "queries": 3, "status": "warn", "items": 48, "notes": "Stale or out-of-scope listings." },
+    { "source": "XING", "actor": "shahidirfan/Xing-Jobs-Scraper", "queries": 3, "status": "ok", "items": 34, "notes": "Nothing in scope." },
+    { "source": "Arbeitsagentur", "actor": "blackfalcondata/arbeitsagentur-jobs-feed", "queries": 2, "status": "ok", "items": 7, "notes": "Nothing in scope." },
+    { "source": "Greenhouse: Celonis", "actor": "automation-lab/greenhouse-jobs-scraper", "queries": 1, "status": "ok", "items": 15, "notes": "Only consulting, value engineering and graduate roles." },
+    { "source": "Workday: Airbus", "actor": "blackfalcondata/workday-scraper", "queries": 1, "status": "warn", "items": 20, "notes": "None in the Munich radius." },
+    { "source": "Workday: Carl Zeiss", "actor": "blackfalcondata/workday-scraper", "queries": 1, "status": "warn", "items": 20, "notes": "One Munich role (Digital Workplace Service Manager), out of scope." },
+    { "source": "Web Search (target companies)", "actor": "n/a", "queries": 80, "status": "ok", "items": "n/a", "notes": "Full sweep on 2026-11-24: all 80 target companies searched (every-week set plus groups 0, 1, 2 and 3). One addition from groups 1 to 3 (Hypersonica Head of Supply Chain). Eight further leads were closed or removed (ams OSRAM, eRC System, Orbem x2, IQM, Mynaric, EOS, Personio), so company career pages are taking roles down fast." }
+  ],
+  "dream": [
+    { "name": "Hypersonica", "hit": true, "roles": "Director of Industrialisation (B) and Head of Supply Chain (B, added in the full sweep). Chief of Staff / Director CEO Office also open but wants 3 to 7 years of strategy or consulting experience, not graded in." },
+    { "name": "ams OSRAM", "hit": false, "roles": "Director Operational Excellence no longer available. Head of Industrial Engineering is in Premstätten, Austria (out of scope)." },
+    { "name": "ERC System", "hit": false, "roles": "Head of Processes, Methods and Tools no longer on the eRC System career page." },
+    { "name": "Orbem", "hit": false, "roles": "Head of Operational Excellence and Head of Procurement and Supply Chain both closed." },
+    { "name": "IQM Quantum Computers", "hit": false, "roles": "Head of Production (Quantum Processors) closed." },
+    { "name": "Mynaric", "hit": false, "roles": "Head of Production and Test removed. Rocket Lab Director European Government Operations (Munich) is a government programme role, out of scope." },
+    { "name": "ARX Robotics", "hit": false, "roles": "Team Lead Operational Excellence seen, below target level at a start-up, not graded in." }
+  ]
+}
